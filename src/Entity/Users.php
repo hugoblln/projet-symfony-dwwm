@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UsersRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert ;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: 'email', message: 'l\'email est deja utilisé par un autre utilisateur')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -16,6 +19,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(
+        min: 4,
+        max: 180,
+        minMessage: 'l\'email ne peut pas faire moins de {{ limit }}',
+        maxMessage: 'l\'email ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank()]
+    #[Assert\Email()]
     private ?string $email = null;
 
     /**
@@ -31,9 +42,19 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'le prenom ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank()]
     private ?string $FirstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'le nom ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank()]
     private ?string $LastName = null;
 
     public function getId(): ?int
