@@ -40,7 +40,7 @@ class SecurityController extends AbstractController
               $em->persist($user);
               $em->flush();
       
-          $this->addFlash('succes', 'félicitation, vous ètes bien iscrit sur notre site');
+          $this->addFlash('success', 'félicitation, vous ètes bien iscrit sur notre site');
 
           return $this->redirectToRoute('app.login');
 
