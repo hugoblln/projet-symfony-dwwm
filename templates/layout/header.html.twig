@@ -13,9 +13,21 @@
                     </li>
                 </ul>
                <ul class="navbar-nav ms-auto">
-                <li>
+               {% if app.user %}
+               <li>
                    <a href="/logout" class="btn btn-danger">Déconnexion</a>
                 </li>
+                {% else %}
+                <li>
+                   <a href="/register" class="btn btn-outline-light">S'inscrire</a>
+                </li>
+                <li>
+                   <a href="{{ path('app.login') }}" class="btn btn-light">Connexion</a>
+                </li>
+               {% endif %}
+               
+                
+                
                </ul>
             </div>
         </div>
