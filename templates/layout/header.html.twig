@@ -14,14 +14,14 @@
                 </ul>
                <ul class="navbar-nav ms-auto">
                {% if app.user %}
-               <li>
+               <li class="navbar-item">
                    <a href="/logout" class="btn btn-danger">Déconnexion</a>
                 </li>
                 {% else %}
-                <li>
-                   <a href="/register" class="btn btn-outline-light">S'inscrire</a>
+                <li class="navbar-item me-2">
+                   <a href="{{path('app.register') }}" class="btn btn-outline-light">Inscription</a>
                 </li>
-                <li>
+                <li class="navbar-item">
                    <a href="{{ path('app.login') }}" class="btn btn-light">Connexion</a>
                 </li>
                {% endif %}
