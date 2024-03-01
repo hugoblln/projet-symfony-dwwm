@@ -62,11 +62,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -154,5 +149,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->LastName = $LastName;
 
         return $this;
+    }
+
+    public function getFullName(): string 
+    {
+        return "$this->LastName $this->FirstName";
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
     }
 }
