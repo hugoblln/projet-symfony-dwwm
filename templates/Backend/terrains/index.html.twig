@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Administration des terrains
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+<h1 class="text-center">Administration des terrains</h1>
+<div class="card-list mt-4">
+{% for terrain in terrains %}
+    <div class="blog-card">
+    <div class="blog-card-content">
+    <div class="blog-card-header"><h2>{{terrain.nom}}</h2>
+    <p><strong>description:</strong>{{terrain.description}}</p>
+    <p><strong>type de terrain:</strong>{{terrain.typeTerrain}}</p>
+    <p><strong>taille:</strong>{{terrain.taille}}</p>
+    {# <div class="blog-card-btn">
+    <a href="#" class="btn btn-warning">
+    <i class="bi bi-pencil-square"></i>
+    Modifier</a> #}
+    </div>
+    </div>
+    </div>
+{% endfor %}
+</div>
+</section>
+{% endblock %}
