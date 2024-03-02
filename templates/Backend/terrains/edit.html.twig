@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+modification d'un terrain
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+<h1 class="text-center m-4">Modification d'un terrain</h1>
+{% include "Backend/Terrains/_form.html.twig" with { labelButton: 'Modifier'} %}
+</section>
+
+{% endblock %}

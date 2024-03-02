@@ -12,7 +12,8 @@ administration des utilisateurs
 <div class="card-list mt-4">
 {% for user in users %}
     <div class="blog-card">
-    <div class="blog-card-content"><h2 class="blog-card-header">{{user.FullName}}</h2>
+    <div class="blog-card-content">
+    <h2 class="blog-card-header">{{user.FullName}}</h2>
     <p><strong>Email:</strong>{{user.email}}</p>
     <p><strong>Role(s):</strong>
     {% for role in user.roles %}
@@ -25,7 +26,6 @@ administration des utilisateurs
     {% include "Backend/Users/_deleteform.html.twig" %}
     </div>
     </div>
-    
     </div>
 {% endfor %}
 </div

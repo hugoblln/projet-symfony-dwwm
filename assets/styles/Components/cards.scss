@@ -22,3 +22,11 @@
         @include flexbox(space-between,center,1em 0)
     }
 }
+
+.enable {
+    border: solid 2px green;
+}
+
+.not-enable{
+    border: solid 2px red;
+}
