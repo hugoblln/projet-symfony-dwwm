@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Administration des complexes
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section class="container mt-4">
+<h1 class="text-center">Administration des complexes</h1>
+<button class="btn btn-primary mt-4"><a href="{{ path('admin.complexes.create') }}">Creer un nouveau complexe</a></button>
+<div class="card-list mt-4">
+{% for complexe in complexes %}
+<div class="blog-card {{complexe.enable ? 'enable' : 'not-enable'}}">
+<div class="blog-card-content">
+<h2 class="blog-card-title">{{ complexe.nom }}</h2>
+<p><strong>Adresse: </strong>{{ complexe.adresse }}</p>
+<p><strong>description: </strong>{{ complexe.description|slice(0,150) ~ '...'}}</p>
+<p><strong>téléphone: </strong>{{ complexe.telephone }}</p>
+<div class="blog-card-btn">
+<a href="{{ path('admin.complexes.edit', {id:complexe.id}) }}" class="btn btn-warning">
+ <i class="bi bi-pencil-square"></i>
+ Modifier
+</a>
+{% include "./Backend/Complexes/_deleteform.html.twig" %}
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Modification d'un complexe
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section class="container mt-4">
+<h1>Modification d'un complexe</h1>
+{% include "/Backend/Complexes/_form.html.twig" with { labelButton: 'Modifier' } %}
+</section>
+{% endblock %}
