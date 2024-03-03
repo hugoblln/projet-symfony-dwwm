@@ -57,6 +57,13 @@ class TerrainsController extends AbstractController
     #[Route('/{id}/edit','.edit', methods:['GET','POST'])]
     public function edit(Terrains $terrain, Request $request) : Response
     {
+
+        if(!$terrain) {
+            $this->addFlash('error','terrain non trouvé');
+
+            return$this->redirectToRoute('admin.terrains.index');
+        }
+
         $form = $this->createForm(TerrainType::class, $terrain);
         $form->handleRequest($request);
 

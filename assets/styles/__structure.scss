@@ -108,3 +108,8 @@ pre {
   cursor: pointer;
   color: $primary;
 }
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}

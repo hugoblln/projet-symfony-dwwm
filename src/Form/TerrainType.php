@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Terrains;
+use App\Entity\Complexes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -22,6 +25,15 @@ class TerrainType extends AbstractType
                 'attr' => [
                     'placeholder' => 'terrain numero 1'
                 ]
+            ])
+            ->add('imageFile', VichImageType::class,[
+                'label' => 'Image',
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => 'Supprimer l\'image',
+                'download_label' => false,
+                'download_uri' => false,
+                'image_uri' => true
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'description du terrain',
@@ -47,6 +59,10 @@ class TerrainType extends AbstractType
             ->add('enable', CheckboxType::class,[
                 'label' => 'actif',
                 'required' => false
+            ])
+            ->add('complexe', EntityType::class, [
+                'class' => Complexes::class,
+                'choice_label' => 'nom'
             ]);
     }
 

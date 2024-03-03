@@ -6,9 +6,10 @@ modification d'un terrain
 {% endblock %}
 
 {% block body %}
-<section class="container">
+<section class="container mt-4">
 <h1 class="text-center m-4">Modification d'un terrain</h1>
 {% include "Backend/Terrains/_form.html.twig" with { labelButton: 'Modifier'} %}
+<a href="{{ path('admin.terrains.index')}}" class="btn btn-secondary">Retour a la liste</a>
 </section>
 
 {% endblock %}
