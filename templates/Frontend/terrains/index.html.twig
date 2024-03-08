@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+terrains
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+<h1 class="text-center">Terrains Disponibles</h1>
+<div class="card-list mt-4">
+{% include "./Components/_terrainCard.html.twig" %}
+</div>
+</section>
+{% endblock %}

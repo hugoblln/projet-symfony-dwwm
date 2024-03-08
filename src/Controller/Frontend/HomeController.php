@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('','app.frontend.index', methods:['GET'])]
+    #[Route('','app.index', methods:['GET'])]
     public function index(): Response
     {
         return $this->render('/Frontend/index.html.twig');

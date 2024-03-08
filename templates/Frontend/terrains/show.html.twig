@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}
+{{ terrain.nom }}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+{% include "Frontend/terrains/_banner.html.twig" %}
+<section class="container mt-4">
+<div class="row">
+{% include "Frontend/terrains/_sidebar.html.twig" %}
+{% include "Frontend/terrains/_content.html.twig" %}
+</div>
+</section>
+{% endblock %}

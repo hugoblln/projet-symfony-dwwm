@@ -1,0 +1,19 @@
+.banner-hero{
+    @include flexbox(center,center);
+    height: 80vh;
+
+    &-header {
+        background: #19405f9a;
+        border-radius: $border-radius;
+        padding: 0.6em 1em;
+        border: 1px solid $grey;
+        box-shadow: $box-shadow-card;
+        --webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+
+        h1 {
+            color: white;
+        }
+    }
+}
+

@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Terrains;
 use App\Entity\Complexes;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -62,14 +64,22 @@ class TerrainType extends AbstractType
             ])
             ->add('complexe', EntityType::class, [
                 'class' => Complexes::class,
-                'choice_label' => 'nom'
+                'placeholder' => 'sélectionner un complexe',
+                'choice_label' => 'nom',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                return $er->createQueryBuilder('c')
+                    ->andWhere('c.enable = :enable')
+                    ->setParameter('enable', true)
+                    ->orderBy('c.nom','ASC');
+                }
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Terrains::class
+            'data_class' => Terrains::class,
+            'sanitize_html' => true
         ]);
     }
 }

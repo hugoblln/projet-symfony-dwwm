@@ -8,10 +8,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link {{ app.request.get('_route') == 'app.index' ? 'active' : '' }}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Terrains</a>
+                        <a class="nav-link {{ app.request.get('_route') == 'app.terrains.index' ? 'active' : '' }}" href="{{ path('app.terrains.index')}}">Terrains</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

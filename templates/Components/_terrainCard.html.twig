@@ -1,0 +1,26 @@
+{% for terrain in terrains %}
+    <div class="blog-card {{terrain.enable ? 'enable' : 'not-enable'}}">
+    <div class="blog-card-content">
+    <h2 class="blog-card-header">{{terrain.nom}}</h2>
+    {% if terrain.imageName %}
+    <img src="{{ vich_uploader_asset(terrain)}}" alt="{{ terrain.nom}}" loading="lazy">
+    {% endif %}
+    
+    <p><strong>Complexe: </strong>{{ terrain.complexe.nom }}</p>
+    <p><strong>description:</strong>{{terrain.description|striptags|slice(0,150) ~ '...'}}</p>
+    <p><strong>type de terrain:</strong>{{terrain.typeTerrain}}</p>
+    <p><strong>taille:</strong>{{terrain.taille}}</p>
+    <p><strong>Date de Création: </strong>{{terrain.createdAt|format_datetime('full','none')}}</p>
+    <div class="blog-card-btn">
+    {% if app.request.get('_route') == 'admin.terrains.index' %}
+    <a href="{{ path('admin.terrains.edit', {id: terrain.id}) }}" class="btn btn-warning">
+     <i class="bi bi-pencil-square"></i>
+    Modifier</a>
+    {% include "Backend/Terrains/_deleteform.html.twig" %}
+    {% else %}
+        <a href="#" class="btn btn-primary">RESERVER</a>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+{% endfor %}

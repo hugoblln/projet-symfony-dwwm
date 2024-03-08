@@ -27,7 +27,7 @@ class TerrainsController extends AbstractController
     public function index(): Response
     {
         return $this->render('backend/terrains/index.html.twig', [
-            'terrains' => $this->terrainRepo->findAll()
+            'terrains' => $this->terrainRepo->findAllOrderByName()
         ]);
     }
 

@@ -21,6 +21,25 @@ class TerrainsRepository extends ServiceEntityRepository
         parent::__construct($registry, Terrains::class);
     }
 
+    public function FindAllOrderByName() : array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function FindAllEnableByDate() : array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.enable = :enable')
+            ->setParameter('enable', true)
+            ->orderBy('c.createdAt')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Terrains[] Returns an array of Terrains objects
     //     */

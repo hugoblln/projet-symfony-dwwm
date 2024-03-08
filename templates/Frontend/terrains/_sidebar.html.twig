@@ -1,0 +1,17 @@
+<aside class="col-md-4 terrain-sidebar">
+<h2 class="terrain-sidebar-title">Informations</h2>
+<p class="terrain-sidebar-info">
+<strong>
+<i class="bi bi-calendar2-week-fill"></i>
+Date d'ajout:
+</strong>
+{{ terrain.createdAt|format_datetime('full','none')}}
+</p>
+<p class="terrain-sidebar-info">
+<strong>
+<i class="bi bi-person-badge-fill"></i>
+Complexe: 
+</strong>
+{{ terrain.complexe.nom }}
+</p>
+</aside>

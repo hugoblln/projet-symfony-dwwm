@@ -53,11 +53,11 @@ class Terrains
     private ?float $taille = null;
 
     #[ORM\ManyToOne(inversedBy: 'terrains')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Complexes $complexe = null;
 
     #[Vich\UploadableField(mapping: 'terrain_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Assert\image(
+    #[Assert\Image(
         mimeTypes: ['image/*'],
         maxSize : '8M',
         detectCorrupted: true

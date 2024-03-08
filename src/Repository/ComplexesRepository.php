@@ -21,6 +21,14 @@ class ComplexesRepository extends ServiceEntityRepository
         parent::__construct($registry, Complexes::class);
     }
 
+    public function FindAllOrderByName() : array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Complexes[] Returns an array of Complexes objects
     //     */
