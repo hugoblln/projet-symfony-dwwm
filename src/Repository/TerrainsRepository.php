@@ -23,18 +23,20 @@ class TerrainsRepository extends ServiceEntityRepository
 
     public function FindAllOrderByName() : array
     {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.nom', 'ASC')
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.nom', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
     public function FindAllEnableByDate() : array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.enable = :enable')
+        return $this->createQueryBuilder('t')
+            ->select('t,c')
+            ->join('t.complexe', 'c')
+            ->andWhere('t.enable = :enable')
             ->setParameter('enable', true)
-            ->orderBy('c.createdAt')
+            ->orderBy('t.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
