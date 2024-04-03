@@ -2,9 +2,10 @@
     <div class="blog-card {{terrain.enable ? 'enable' : 'not-enable'}}">
     <div class="blog-card-content">
     <h2 class="blog-card-header">{{terrain.nom}}</h2>
-    {% if terrain.imageName %}
-    <img src="{{ vich_uploader_asset(terrain)}}" alt="{{ terrain.nom}}" loading="lazy">
-    {% endif %}
+     {% for image in terrain.images %}
+        <img src="{{ vich_uploader_asset(image) }}" alt="{{ terrain.nom}}" loading="lazy">
+    {% endfor %}
+    
     
     <p><strong>Complexe: </strong>{{ terrain.complexe.nom }}</p>
     <p><strong>description:</strong>{{terrain.description|striptags|slice(0,150) ~ '...'}}</p>

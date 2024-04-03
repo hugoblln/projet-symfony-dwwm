@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TerrainType extends AbstractType
 {
@@ -28,15 +29,15 @@ class TerrainType extends AbstractType
                     'placeholder' => 'terrain numero 1'
                 ]
             ])
-            ->add('imageFile', VichImageType::class,[
-                'label' => 'Image',
-                'required' => false,
-                'allow_delete' => true,
-                'delete_label' => 'Supprimer l\'image',
-                'download_label' => false,
-                'download_uri' => false,
-                'image_uri' => true
-            ])
+             ->add('images', CollectionType::class,[
+            'label' => false,
+            'required' => false,
+            'entry_type' => TerrainsImageType::class,
+            'allow_add' => true,
+            'allow_delete' => true,
+            'delete_empty' => true,
+            'by_reference' => false
+             ])
             ->add('description', TextareaType::class, [
                 'label' => 'description du terrain',
                 'required' => false,

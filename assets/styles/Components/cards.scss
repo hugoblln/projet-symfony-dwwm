@@ -4,7 +4,7 @@
 
 
 .blog-card{
-    width: 90%;
+    width: 85%;
     border-radius: $border-radius;
     background: $white;
     box-shadow: $box-shadow-card; 
@@ -12,7 +12,7 @@
     @media screen and (min-width: 768px) {
         width: 30%;
     }
-
+    
     &-content {
         padding: 1em 2em;
         word-break: break-word;

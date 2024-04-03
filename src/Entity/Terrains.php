@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\EnableTrait;
@@ -15,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TerrainsRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-#[Vich\Uploadable]
+
 class Terrains
 {
     use DateTimeTrait,
@@ -56,23 +58,18 @@ class Terrains
     #[ORM\JoinColumn(nullable: false)]
     private ?Complexes $complexe = null;
 
-    #[Vich\UploadableField(mapping: 'terrain_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Assert\Image(
-        mimeTypes: ['image/*'],
-        maxSize : '8M',
-        detectCorrupted: true
-    )]
-    private ?File $imageFile = null;
-
-    #[ORM\Column(nullable: true)]
-
-    private ?string $imageName = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $imageSize = null;
+    
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\OneToMany(targetEntity: TerrainsImage::class, mappedBy: 'Terrain', orphanRemoval: true, cascade: ['persist'])]
+    private Collection $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -142,49 +139,36 @@ class Terrains
         return $this;
     }
 
-     /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+  
+
+    /**
+     * @return Collection<int, TerrainsImage>
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function getImages(): Collection
     {
-        $this->imageFile = $imageFile;
+        return $this->images;
+    }
 
-        if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+    public function addImage(TerrainsImage $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setTerrain($this);
         }
+
+        return $this;
     }
 
-    public function getImageFile(): ?File
+    public function removeImage(TerrainsImage $image): static
     {
-        return $this->imageFile;
-    }
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getTerrain() === $this) {
+                $image->setTerrain(null);
+            }
+        }
 
-    public function setImageName(?string $imageName): void
-    {
-        $this->imageName = $imageName;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageSize(?int $imageSize): void
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
+        return $this;
     }
 
 }

@@ -1,34 +1,46 @@
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Locafoot</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link {{ app.request.get('_route') == 'app.index' ? 'active' : '' }}" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ app.request.get('_route') == 'app.terrains.index' ? 'active' : '' }}" href="{{ path('app.terrains.index')}}">Terrains</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% if app.user %}
-                        <li class="nav-item">
-                            <a href="/logout" class="btn btn-danger">Déconnexion</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item me-2">
-                            <a href="{{ path('app.register') }}" class="btn btn-outline-light">Inscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ path('app.login') }}" class="btn btn-light">Connexion</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">Locafoot</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link {{ app.request.get('_route') == 'app.index' ? 'active' : '' }}" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {{ app.request.get('_route') == 'app.terrains.index' ? 'active' : '' }}" href="{{ path('app.terrains.index')}}">Terrains</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					{% if app.user %}
+						{% if 'ROLE_ADMIN' in app.user.roles %}
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Admin
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="{{ path('admin.users.index')}}">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</div>
+							</div>
+						{% endif %}
+						<li class="nav-item">
+							<a href="/logout" class="btn btn-danger">Déconnexion</a>
+						</li>
+					{% else %}
+						<li class="nav-item me-2">
+							<a href="{{ path('app.register') }}" class="btn btn-outline-light">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app.login') }}" class="btn btn-light">Connexion</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
 </header>
