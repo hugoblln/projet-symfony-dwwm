@@ -24,9 +24,28 @@ class TerrainController extends AbstractController
 
         return $this->render('Frontend/terrains/index.html.twig',[
         'terrains' => $this->terrainRepo->FindAllEnableByDate()
-    ]);
-
+        ]);
     }
+
+    #[Route('/ville/{ville}', '.ville', methods: ['GET'])]
+    public function TerrainsByVille(string $ville) : Response
+    {
+        
+     $terrains = $this->terrainRepo->findByVille($ville);
+
+     $message = "";
+
+     if(empty($terrains)) {
+        $message = 'Aucun terrain disponible pour cette ville';
+     }
+
+     return $this->render('Frontend/terrains/indexByVille.html.twig', [
+        'message' => $message,
+        'ville' => $ville,
+        'terrains' => $terrains
+    ]);
+    }
+
 
     #[Route('/{id}', '.show', methods: ['GET'])]
     public function show(Terrains $terrain) : Response

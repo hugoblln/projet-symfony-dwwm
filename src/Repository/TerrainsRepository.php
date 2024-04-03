@@ -41,6 +41,17 @@ class TerrainsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByVille(string $ville): array
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.complexe', 'c') // Joindre avec l'entité Complexes
+            ->andWhere('c.Ville = :ville')
+            ->setParameter('ville', $ville)
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
     //    /**
     //     * @return Terrains[] Returns an array of Terrains objects

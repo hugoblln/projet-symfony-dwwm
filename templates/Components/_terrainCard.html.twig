@@ -5,8 +5,8 @@
      {% for image in terrain.images %}
         <img src="{{ vich_uploader_asset(image) }}" alt="{{ terrain.nom}}" loading="lazy">
     {% endfor %}
-    
-    
+
+    <p><strong>Ville: </strong>{{ terrain.complexe.ville }}</p>
     <p><strong>Complexe: </strong>{{ terrain.complexe.nom }}</p>
     <p><strong>description:</strong>{{terrain.description|striptags|slice(0,150) ~ '...'}}</p>
     <p><strong>type de terrain:</strong>{{terrain.typeTerrain}}</p>

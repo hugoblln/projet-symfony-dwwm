@@ -62,6 +62,9 @@ class Complexes
     #[ORM\OneToMany(targetEntity: Terrains::class, mappedBy: 'complexe')]
     private Collection $terrains;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Ville = null;
+
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
@@ -146,6 +149,18 @@ class Complexes
                 $terrain->setComplexe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->Ville;
+    }
+
+    public function setVille(?string $Ville): static
+    {
+        $this->Ville = $Ville;
 
         return $this;
     }

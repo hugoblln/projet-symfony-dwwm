@@ -1,5 +1,5 @@
 .card-list {
-    @include flexbox(space-between,flex-start, 2em 0);
+    @include flexbox(space-between,flex-start,row, 2em 0);
 }
 
 

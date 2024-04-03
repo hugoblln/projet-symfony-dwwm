@@ -18,15 +18,22 @@
 					{% if app.user %}
 						{% if 'ROLE_ADMIN' in app.user.roles %}
 							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
 									Admin
 								</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="{{ path('admin.users.index')}}">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</div>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+									<li>
+										<a class="dropdown-item" href="{{ path('admin.users.index')}}">Users</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{ path('admin.complexes.index')}}">Complexes</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{ path('admin.terrains.index')}}">Terrains</a>
+									</li>
+								</ul>
 							</div>
+
 						{% endif %}
 						<li class="nav-item">
 							<a href="/logout" class="btn btn-danger">Déconnexion</a>
