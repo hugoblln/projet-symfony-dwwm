@@ -8,49 +8,49 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/terrains','app.terrains')]
+#[Route('/terrains', 'app.terrains')]
 class TerrainController extends AbstractController
 {
 
     public function __construct(
-       private TerrainsRepository $terrainRepo
+        private TerrainsRepository $terrainRepo
     ) {
     }
 
 
-    #[Route('','.index', methods: ['GET'])]
-    public function index() : Response
+    #[Route('', '.index', methods: ['GET'])]
+    public function index(): Response
     {
 
-        return $this->render('Frontend/terrains/index.html.twig',[
-        'terrains' => $this->terrainRepo->FindAllEnableByDate()
+        return $this->render('Frontend/terrains/index.html.twig', [
+            'terrains' => $this->terrainRepo->FindAllEnableByDate()
         ]);
     }
 
     #[Route('/ville/{ville}', '.ville', methods: ['GET'])]
-    public function TerrainsByVille(string $ville) : Response
+    public function TerrainsByVille(string $ville): Response
     {
-        
-     $terrains = $this->terrainRepo->findByVille($ville);
 
-     $message = "";
+        $terrains = $this->terrainRepo->findByVille($ville);
 
-     if(empty($terrains)) {
-        $message = 'Aucun terrain disponible pour cette ville';
-     }
+        $message = "";
 
-     return $this->render('Frontend/terrains/indexByVille.html.twig', [
-        'message' => $message,
-        'ville' => $ville,
-        'terrains' => $terrains
-    ]);
+        if (empty($terrains)) {
+            $message = 'Aucun terrain disponible pour cette ville';
+        }
+
+        return $this->render('Frontend/terrains/indexByVille.html.twig', [
+            'message' => $message,
+            'ville' => $ville,
+            'terrains' => $terrains
+        ]);
     }
 
 
     #[Route('/{id}', '.show', methods: ['GET'])]
-    public function show(Terrains $terrain) : Response
+    public function show(?Terrains $terrain): Response
     {
-        if(!$terrain) {
+        if (!$terrain) {
             $this->addFlash('error', 'aucune correspondace avec un terrain trouvé');
 
             return $this->redirectToRoute('app.terrains.index');
