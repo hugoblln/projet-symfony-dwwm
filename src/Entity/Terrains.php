@@ -3,15 +3,16 @@
 namespace App\Entity;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\EnableTrait;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\TerrainsRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -28,6 +29,12 @@ class Terrains
     #[ORM\Column]
     private ?int $id = null;
 
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(max: 255)]
+    #[Gedmo\Slug(fields: ['nom'])]
+    private ?string $slug = null;
+
     #[ORM\Column(length: 255)]
     #[Assert\Length(
         max: 255,
@@ -40,7 +47,7 @@ class Terrains
     #[Assert\NotBlank()]
     private ?string $description = null;
 
-    
+
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(
@@ -58,7 +65,7 @@ class Terrains
     #[ORM\JoinColumn(nullable: false)]
     private ?Complexes $complexe = null;
 
-    
+
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -101,7 +108,7 @@ class Terrains
         return $this;
     }
 
-    
+
 
     public function getTypeTerrain(): ?string
     {
@@ -139,7 +146,7 @@ class Terrains
         return $this;
     }
 
-  
+
 
     /**
      * @return Collection<int, TerrainsImage>
@@ -171,4 +178,8 @@ class Terrains
         return $this;
     }
 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }

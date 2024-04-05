@@ -20,26 +20,26 @@ administration des utilisateurs
 
 {% block body %}
 <section class="container mt-2">
-<h1 class="text-center">Adminstration des utilisateurs</h1>
-<div class="card-list mt-4">
-{% for user in users %}
-    <div class="blog-card">
-    <div class="blog-card-content">
-    <h2 class="blog-card-header">{{user.FullName}}</h2>
-    <p><strong>Email:</strong>{{user.email}}</p>
-    <p><strong>Role(s):</strong>
-    {% for role in user.roles %}
-        {{role == 'ROLE_ADMIN' ? 'Admin' : 'User'}} 
-    {% endfor %}</p>
-    <div class="blog-card-btn">
-    <a href="{{path('admin.users.edit', {id: user.id})}}" class="btn btn-warning">
-    <i class="bi bi-pencil-square"></i>
-    Modifier</a>
-    {% include "Backend/Users/_deleteform.html.twig" %}
-    </div>
-    </div>
-    </div>
-{% endfor %}
-</div
-</section>
-{% endblock %}
+    <section class="container mt-2">
+        <h1 class="text-center">Administration des users</h1>
+        <a href="{{ path('app.register') }}" class="btn btn-primary my-2">Créer un utilisateur</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
+                data-sort-order="asc" data-pagination="true" data-search="true" data-show-columns="true">
+                <thead>
+                    <tr scope="row">
+                        <th scope="col" data-field="id">Id</th>
+                        <th scope="col" data-field="nom" data-sortable="true">nom</th>
+                        <th scope="col" data-field="email" data-sortable="true">email</th>
+                        <th scope="col" data-field="createdAt" data-sortable="true">date de creation</th>
+                        <th scope="col" data-field="roles">Role</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% include "/Backend/Users/ProductRow.html.twig" %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    {% endblock %}

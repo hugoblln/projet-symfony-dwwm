@@ -1,6 +1,7 @@
-.banner-hero{
-    @include flexbox(center,center);
+.banner-hero {
+    @include flexbox(center, center);
     height: 80vh;
+    background: center / cover url('../../img/home.jpg');
 
     &-header {
         background: #19405f9a;
@@ -10,10 +11,9 @@
         box-shadow: $box-shadow-card;
         --webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
-        
+
         h1 {
             color: white;
         }
     }
 }
-

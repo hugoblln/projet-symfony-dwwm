@@ -11,4 +11,7 @@ const $ = require('jquery');
 
 require('bootstrap')
 
+import './javascript/jquery.js'
+import './javascript/bootstrap-table.js'
+
 
