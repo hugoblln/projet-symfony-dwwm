@@ -1,0 +1,32 @@
+.contact {
+    background-color: $primary;
+    color: $white;
+    padding: 10px;
+    box-shadow: $box-shadow-card;
+    text-align: center;
+
+    @media screen and (min-width:768px) {
+        width: 50%;
+    }
+
+    a {
+        color: $white;
+    }
+
+    &-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.6em;
+        padding-top: 20px;
+    }
+
+    &-types {
+        @include flexbox(space-around,center,row);
+    }
+
+    &-telephone,
+    &-mail {
+        padding: 20px;
+        border-bottom: solid 1px;
+    }
+}

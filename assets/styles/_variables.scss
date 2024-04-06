@@ -1,5 +1,5 @@
 
-$primary: #193f5f;
+$primary: #283b4d;
 $secondary: #f8c557;
 $tertiary: #252c33;
 
@@ -14,15 +14,15 @@ $heading: #48455a;
 
 /** Fonts **/
 
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
 
-$font-primary: "Lato", sans-serif;
+$font-primary: "Poppins", sans-serif;
 
 // Border radius
-$border-radius: 8px;
+$border-radius: 10px;
 
 // Box shadow
 $box-shadow-card:
-    0 16px 38px -12px rgba(0, 0, 0, 0.56),
-    0 4px 25px 0px rgba(0, 0, 0, 0.12),
-    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+0px 12px 20px -12px rgba(0, 0, 0, 0.56),
+ 0px 5px 20px 0px rgba(0, 0, 0, 0.12), 
+ -1px 5px 0px -5px rgba(0, 0, 0, 0.2)
