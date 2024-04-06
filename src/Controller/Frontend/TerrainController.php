@@ -47,7 +47,7 @@ class TerrainController extends AbstractController
     }
 
 
-    #[Route('/{id}', '.show', methods: ['GET'])]
+    #[Route('/{slug}', '.show', methods: ['GET'])]
     public function show(?Terrains $terrain): Response
     {
         if (!$terrain) {

@@ -35,6 +35,7 @@ class ComplexesType extends AbstractType
                 'required' => false,
                 'label' => 'Actif'
             ])
+            ->add('ville', TextType::class)
         ;
     }
 

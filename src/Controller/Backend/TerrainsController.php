@@ -54,7 +54,7 @@ class TerrainsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit','.edit', methods:['GET','POST'])]
+    #[Route('/{slug}/edit','.edit', methods:['GET','POST'])]
     public function edit(Terrains $terrain, Request $request) : Response
     {
 
@@ -81,7 +81,7 @@ class TerrainsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
+    #[Route('/{slug}/delete', name: '.delete', methods: ['POST'])]
     public function delete(Terrains $terrain, Request $request): Response
     {
         if(!$terrain) {

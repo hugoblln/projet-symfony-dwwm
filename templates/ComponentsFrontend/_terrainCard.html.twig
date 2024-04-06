@@ -1,10 +1,10 @@
 {% for terrain in terrains %}
-    <div class="blog-card {{terrain.enable ? 'enable' : 'not-enable'}}">
+    <div class="blog-card">
     <div class="blog-card-content">
     <h2 class="blog-card-header">{{terrain.nom}}</h2>
-     {% for image in terrain.images %}
-        <img src="{{ vich_uploader_asset(image) }}" alt="{{ terrain.nom}}" loading="lazy">
-    {% endfor %}
+     {% if terrain.imageName %}
+    <img src="{{ vich_uploader_asset(terrain)}}" alt="{{ terrain.nom}}" loading="lazy">
+    {% endif %}
 
     <p><strong>Ville: </strong>{{ terrain.complexe.ville }}</p>
     <p><strong>Complexe: </strong>{{ terrain.complexe.nom }}</p>
@@ -19,7 +19,7 @@
     Modifier</a>
     {% include "Backend/Terrains/_deleteform.html.twig" %}
     {% else %}
-        <a href="#" class="btn btn-primary">RESERVER</a>
+        <a href="{{ path('app.terrains.show', {slug:terrain.slug})}}" class="btn btn-primary">RESERVER</a>
     {% endif %}
     </div>
     </div>
