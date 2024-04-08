@@ -1,0 +1,22 @@
+{% for complexe in complexes %}
+<tr scope="row">
+    <td scope="col">{{ complexe.id }}</td>
+    <td scope="col">{{ complexe.nom}}</td>
+    <td scope="col">{{ complexe.adresse}}</td>
+    <td scope="col">{{ complexe.description}}</td>
+    <td scope="col">{{ complexe.telephone }}</td>
+    <td scope="col">{{ complexe.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">{{ complexe.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td>{{ complexe.enable ? 'Oui' : 'Non' }}</td>
+
+    <td scope="col">
+
+        <div class="d-flex gap-2">
+            <a href="{{path('admin.complexes.edit', {id:complexe.id})}}" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+                Modifier</a>
+            {% include "/Backend/complexes/_deleteForm.html.twig" %}
+        </div>
+    </td>
+</tr>
+{% endfor %}

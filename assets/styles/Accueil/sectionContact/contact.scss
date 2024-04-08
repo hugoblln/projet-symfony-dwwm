@@ -5,7 +5,7 @@
     box-shadow: $box-shadow-card;
     text-align: center;
 
-    @media screen and (min-width:768px) {
+    @media screen and (min-width:1024px) {
         width: 50%;
     }
 
@@ -21,7 +21,7 @@
     }
 
     &-types {
-        @include flexbox(space-around,center,row);
+        @include flexbox(space-around, center, row);
     }
 
     &-telephone,

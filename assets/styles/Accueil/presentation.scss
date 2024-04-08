@@ -1,5 +1,5 @@
 .presentation {
-    @include flexbox(space-around,center,row, 1em 0);
+    @include flexbox(space-around, center, row, 1em 0);
     margin-top: 30px;
 
     @media screen and (min-width:1024px) {
@@ -7,14 +7,14 @@
     }
 
     h2 {
-        color : $white
+        color: $white
     }
 
 
 
     &-content {
         text-align: center;
-        width: 100%;
+        width: 95%;
         background: $primary;
         color: $white;
         box-shadow: $box-shadow-card;
@@ -22,7 +22,7 @@
         height: 400px;
         @include flexbox(space-around, center, column);
 
-        @media  screen and (min-width: 1024px) {
+        @media screen and (min-width: 1024px) {
             width: 30%;
         }
 

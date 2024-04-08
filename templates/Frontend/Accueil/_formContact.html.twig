@@ -1,20 +1,29 @@
-<div class="form-contact">
-<p>Nous sommes toujours à la recherche d'opinions précieuses de nos utilisateurs. Si vous avez des <strong>suggestions</strong>, des <strong>idées</strong> ou des <strong>retours d'expèriences</strong>, nous serions ravis de les entendre !</p>
-<form action="/votre-script-de-traitement.php" method="POST">
-    <div class="form-content">
-        <label for="email">Adresse e-mail :</label><br>
-        <input type="email" id="email" name="email" required><br>
-    </div>
-    <div>
-        <label for="sujet">Sujet :</label><br>
-        <input type="text" id="sujet" name="sujet" required><br>
-    </div>
-    <div class="form-content">
-        <label for="message">Message :</label><br>
-        <textarea id="message" name="message" rows="4" required></textarea><br>
-    </div>
-    <div>
-        <button type="submit">Envoyer</button>
-    </div>
-</form>
+<div class="formcarry-container">
+    <p>Nous sommes toujours à la recherche d'opinions précieuses de nos utilisateurs. Si vous avez des
+        <strong>suggestions</strong>, des <strong>idées</strong> ou des <strong>retours d'expèriences</strong>, nous
+        serions ravis de les entendre !
+    </p>
+    <form action="#" method="POST" enctype="multipart/form-data">
+
+        <div class="formcarry-block">
+            <label for="fc-generated-1-mail">votre adresse mail</label>
+            <input type="mail" name="email" id="fc-generated-1-mail" placeholder="exemple@gmail.fr" />
+        </div>
+
+        <div class="formcarry-block">
+            <label for="fc-generated-1-name">sujet du message</label>
+            <input type="sujet" name="sujet" id="fc-generated-1-name" placeholder="prise de rdv" />
+        </div>
+
+        <div class="formcarry-block">
+            <label for="fc-generated-1-message">Votre message</label>
+            <textarea name="message" name="message" id="fc-generated-1-message"
+                placeholder="Entrez votre message"></textarea>
+        </div>
+
+        <div class="formcarry-block">
+            <button type="submit">Send</button>
+        </div>
+
+    </form>
 </div>
