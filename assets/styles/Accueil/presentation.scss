@@ -1,0 +1,30 @@
+.presentation {
+    @include flexbox(space-around,center,row, 1em 0);
+    margin-top: 30px;
+
+    @media screen and (min-width:1024px) {
+        gap: 0 1em;
+    }
+
+    h2 {
+        color : $white
+    }
+
+
+
+    &-content {
+        text-align: center;
+        width: 100%;
+        background: $primary;
+        color: $white;
+        box-shadow: $box-shadow-card;
+        padding: 20px;
+        height: 400px;
+        @include flexbox(space-around, center, column);
+
+        @media  screen and (min-width: 1024px) {
+            width: 30%;
+        }
+
+    }
+}

@@ -18,6 +18,15 @@ body {
   line-height: 28px;
   transition: 0.5s;
 }
+.main-content {
+
+  width: 100%;
+
+  @media screen and (min-width:768px) {
+    width: 80%;
+    margin: auto;
+  }
+}
 
 a {
 text-decoration: none;

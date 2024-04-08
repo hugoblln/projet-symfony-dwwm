@@ -28,7 +28,7 @@ class TerrainController extends AbstractController
     }
 
     #[Route('/ville/{ville}', '.ville', methods: ['GET'])]
-    public function TerrainsByVille(string $ville): Response
+    public function indexByVille(string $ville): Response
     {
 
         $terrains = $this->terrainRepo->findByVille($ville);
