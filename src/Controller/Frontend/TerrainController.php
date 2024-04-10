@@ -2,8 +2,13 @@
 
 namespace App\Controller\Frontend;
 
+use App\Entity\Avis;
+use App\Form\AvisType;
 use App\Entity\Terrains;
+use App\Repository\AvisRepository;
 use App\Repository\TerrainsRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +18,9 @@ class TerrainController extends AbstractController
 {
 
     public function __construct(
-        private TerrainsRepository $terrainRepo
+        private TerrainsRepository $terrainRepo,
+        private EntityManagerInterface $em,
+        private AvisRepository $avisRepo
     ) {
     }
 
@@ -47,8 +54,8 @@ class TerrainController extends AbstractController
     }
 
 
-    #[Route('/{slug}', '.show', methods: ['GET'])]
-    public function show(?Terrains $terrain): Response
+    #[Route('/{slug}', '.show', methods: ['GET','POST'])]
+    public function show(?Terrains $terrain, Request $request): Response
     {
         if (!$terrain) {
             $this->addFlash('error', 'aucune correspondace avec un terrain trouvé');
@@ -56,8 +63,36 @@ class TerrainController extends AbstractController
             return $this->redirectToRoute('app.terrains.index');
         }
 
+        $allAvis = $this->avisRepo->findAllEnableByDate($terrain->getId());
+
+        $avis = new Avis;
+
+        $form = $this->createForm(AvisType::class, $avis);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            
+            $user = $this->getUser();
+
+            $avis
+                ->setUser($user)
+                ->setTerrain($terrain)
+                ->setEnable(true);
+
+            $this->em->persist($avis);
+            $this->em->flush();
+
+            $this->addFlash('success','votre avis à été publié avec succés');
+
+            return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
+        }
+
+
         return $this->render('Frontend/terrains/show.html.twig', [
-            'terrain' => $terrain
+            'terrain' => $terrain,
+            'form' => $form,
+            'allAvis' => $allAvis
         ]);
+
     }
 }

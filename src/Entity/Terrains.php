@@ -79,10 +79,14 @@ class Terrains
     #[ORM\JoinColumn(nullable: false)]
     private ?Complexes $complexe = null;
 
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'terrain')]
+    private Collection $avis;
+
 
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
 
@@ -203,5 +207,35 @@ class Terrains
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): static
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setTerrain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): static
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getTerrain() === $this) {
+                $avi->setTerrain(null);
+            }
+        }
+
+        return $this;
     }
 }

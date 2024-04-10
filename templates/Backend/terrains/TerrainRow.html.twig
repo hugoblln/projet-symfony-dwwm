@@ -14,7 +14,11 @@
     {% endif %}
     </td>
     <td>{{ terrain.enable ? 'Oui' : 'Non' }}</td>
-
+    <td scope='col'>
+    <a href="{{ path('admin.avis.index', {slug:terrain.slug})}}" class="btn btn-primary">
+    Gérer les avis
+    </a>
+    </td>
     <td scope="col">
 
         <div class="d-flex gap-2">

@@ -1,0 +1,8 @@
+<div class="list-content">
+	<p class="list-content-note">{{ avis.note }}</p>
+	<div class="list-content-avis">
+		<p class="list-content-avis-name">{{ avis.user.lastName }}</p>
+		<p class="list-content-avis-text">{{ avis.commentaire|sanitize_html }}</p>
+		{# <p class="card-text text-muted">{{ avis.createdAt|format_date('yy-mm') }}</p> #}
+	</div>
+	</div>

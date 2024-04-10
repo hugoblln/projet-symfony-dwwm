@@ -1,0 +1,17 @@
+{% for avis in allAvis %}
+<tr scope="row">
+    <td scope="col">{{ avis.id }}</td>
+    <td scope="col">{{ avis.user.lastName}}</td>
+    <td scope="col">{{ avis.note}}</td>
+    <td scope="col">{{ avis.commentaire}}</td>
+    <td scope="col">{{ avis.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">{{ avis.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td>{{ avis.enable ? 'Oui' : 'Non' }}</td>
+    <td scope="col">
+
+        <div class="d-flex gap-2">
+            {% include "/Backend/Avis/_deleteForm.html.twig" %}
+        </div>
+    </td>
+</tr>
+{% endfor %}

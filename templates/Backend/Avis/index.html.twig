@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title %}
-Administration des terrains
-{{ parent() }}
+{{parent()}}
+Administration des avis
 {% endblock %}
 
 {% block stylesheets %}
@@ -26,21 +26,17 @@ Administration des terrains
                 <thead>
                     <tr scope="row">
                         <th scope="col" data-field="id">Id</th>
-                        <th scope="col" data-field="nom" data-sortable="true">nom</th>
-                        <th scope="col" data-field="complexe" data-sortable="true">complexe</th>
-                         <th scope="col" data-field="description" data-sortable="true">description</th>
-                        <th scope="col" data-field="typeTerrain" data-sortable="true">type de terrain</th>
-                        <th scope="col" data-field="taille" data-sortable="true">taille</th>
+                        <th scope="col" data-field="nom" data-sortable="true">utilisateur</th>
+                         <th scope="col" data-field="note" data-sortable="true">note</th>
+                        <th scope="col" data-field="typeTerrain" data-sortable="true">commentaire</th>
                         <th scope="col" data-field="createdAt" data-sortable="true">date de création</th>
                         <th scope="col" data-field="updatedAt" data-sortable="true">date de dernière maj</th>
-                         <th scope="col">Photo</th>
                          <th scope="col" data-field="enable" data-sortable="true">Actif</th>
-                         <th scope="col">Avis</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    {% include "/Backend/Terrains/TerrainRow.html.twig" %}
+                    {% include "/Backend/Avis/AvisRow.html.twig" %}
                 </tbody>
             </table>
         </div>

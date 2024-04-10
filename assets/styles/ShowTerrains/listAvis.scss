@@ -1,0 +1,19 @@
+.avis {
+    @include flexbox(center,center,row);
+    border-top: solid 5px $primary;
+  
+}
+
+.list-content {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+
+    @media screen and (min-width:768px) {
+        width: 50%;
+    }
+
+    &-avis {
+        border-bottom: solid 2px $primary;
+    }
+}

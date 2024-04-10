@@ -15,8 +15,10 @@
 @import "./Accueil/bannerTerrains.scss";
 @import "Accueil/sectionContact/contact.scss";
 @import "Accueil/sectionContact/section.scss";
-@import "Accueil/sectionContact/contactForm.scss";
+@import "./Form.scss";
 @import "Accueil/presentation.scss";
+
+@import 'ShowTerrains/listAvis.scss';
 
 
 @import "./BootstrapTable/table.scss"
