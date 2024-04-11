@@ -1,5 +1,6 @@
 <div class="list-content">
-	<p class="list-content-note">{{ avis.note }}</p>
+	{# <p class="list-content-note">{{ avis.note }}</p> #}
+	 <span class="star-ratings" data-note="{{ avis.note }}"></span>
 	<div class="list-content-avis">
 		<p class="list-content-avis-name">{{ avis.user.lastName }}</p>
 		<p class="list-content-avis-text">{{ avis.commentaire|sanitize_html }}</p>

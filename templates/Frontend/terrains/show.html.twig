@@ -6,6 +6,16 @@
 {{ parent() }}
 {% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('show') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('show') }}
+{% endblock %}
+
 {% block body %}
 {% include "Frontend/terrains/_banner.html.twig" %}
 <section class="container mt-4">

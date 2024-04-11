@@ -7,7 +7,8 @@
     width: 85%;
     border-radius: $border-radius;
     background: $white;
-    box-shadow: $box-shadow-card; 
+    // box-shadow: $box-shadow-card; 
+    border: solid 2px $primary;
 
     @media screen and (min-width: 768px) {
         width: 30%;
