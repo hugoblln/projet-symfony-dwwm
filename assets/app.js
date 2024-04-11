@@ -13,5 +13,10 @@ require('bootstrap')
 
 import './javascript/jquery.js'
 import './javascript/bootstrap-table.js'
+import './img/terrain-2.jpg'
+import './img/terrain-3.jpg'
+import './img/terrain-4.jpg'
+import './img/terrain-5.jpg'
+import './img/terrain-6.jpg'
 
 
