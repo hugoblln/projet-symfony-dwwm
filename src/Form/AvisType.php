@@ -9,14 +9,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AvisType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('note', IntegerType::class, [
+        ->add('note', ChoiceType::class, [
+            'choices' => [
+                '1' => 1,
+                '2' => 2,
+                '3' => 3,
+                '4' => 4,
+                '5' => 5,
+            ],
             'row_attr' => [
                 'class' => 'formcarry-block',
             ],
@@ -27,7 +35,9 @@ class AvisType extends AbstractType
                 'id' => 'fc-generated-1-name',
             ],
         ])
-            ->add('commentaire',);
+            ->add('commentaire', TextareaType::class, [
+                'required' => false
+            ]);
             
     }
 

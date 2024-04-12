@@ -82,6 +82,10 @@ class Terrains
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'terrain')]
     private Collection $avis;
 
+    #[ORM\ManyToOne(inversedBy: 'terrain')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TarifHeure $tarifHeure = null;
+
 
     public function __construct()
     {
@@ -235,6 +239,18 @@ class Terrains
                 $avi->setTerrain(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTarifHeure(): ?TarifHeure
+    {
+        return $this->tarifHeure;
+    }
+
+    public function setTarifHeure(?TarifHeure $tarifHeure): static
+    {
+        $this->tarifHeure = $tarifHeure;
 
         return $this;
     }

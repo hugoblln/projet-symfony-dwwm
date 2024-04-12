@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Terrains;
 use App\Entity\Complexes;
+use App\Entity\TarifHeure;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -72,7 +73,13 @@ class TerrainType extends AbstractType
                     ->andWhere('c.enable = :enable')
                     ->setParameter('enable', true)
                     ->orderBy('c.nom','ASC');
-                }
+                }    
+            ])
+            ->add('tarifHeure', EntityType::class, [
+                'class' => TarifHeure::class,
+                'label' => 'selectionner un tarif en euros par heure',
+                'placeholder' => 'sélectionner un tarif',
+                'choice_label' => 'tarif'
             ]);
     }
 

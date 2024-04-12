@@ -19,7 +19,7 @@ Administration des terrains
 <section class="container mt-2">
     <section class="container mt-2">
         <h1 class="text-center">Administration des users</h1>
-        <a href="{{ path('app.register') }}" class="btn btn-primary my-2">Créer un utilisateur</a>
+        <a href="{{ path('admin.terrains.create') }}" class="btn btn-primary my-2">Créer un nouveau terrain</a>
         <div class="table-responsive">
             <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
                 data-sort-order="asc" data-pagination="true" data-search="true" data-show-columns="true">
@@ -31,6 +31,7 @@ Administration des terrains
                          <th scope="col" data-field="description" data-sortable="true">description</th>
                         <th scope="col" data-field="typeTerrain" data-sortable="true">type de terrain</th>
                         <th scope="col" data-field="taille" data-sortable="true">taille</th>
+                        <th scope="col" data-field="tarif" data-sortable="true">tarif/h en euros</th>
                         <th scope="col" data-field="createdAt" data-sortable="true">date de création</th>
                         <th scope="col" data-field="updatedAt" data-sortable="true">date de dernière maj</th>
                          <th scope="col">Photo</th>
