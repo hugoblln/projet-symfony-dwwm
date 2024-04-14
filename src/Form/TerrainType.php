@@ -13,6 +13,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -67,6 +68,7 @@ class TerrainType extends AbstractType
             ->add('complexe', EntityType::class, [
                 'class' => Complexes::class,
                 'placeholder' => 'sélectionner un complexe',
+                'required' => false,
                 'choice_label' => 'nom',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                 return $er->createQueryBuilder('c')
@@ -75,12 +77,10 @@ class TerrainType extends AbstractType
                     ->orderBy('c.nom','ASC');
                 }    
             ])
-            ->add('tarifHeure', EntityType::class, [
-                'class' => TarifHeure::class,
-                'label' => 'selectionner un tarif en euros par heure',
-                'placeholder' => 'sélectionner un tarif',
-                'choice_label' => 'tarif'
-            ]);
+           ->add('tarifHeure', MoneyType::class, [
+            'label' => 'saisissez un tarif par heure',
+            'required' => false
+           ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

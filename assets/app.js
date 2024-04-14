@@ -18,5 +18,6 @@ import './img/terrain-3.jpg'
 import './img/terrain-4.jpg'
 import './img/terrain-5.jpg'
 import './img/terrain-6.jpg'
+import './img/LOGO_locafoot.png'
 
 

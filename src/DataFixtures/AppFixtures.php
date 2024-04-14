@@ -43,18 +43,6 @@ class AppFixtures extends Fixture
                     $manager->persist($user);
             };
 
-            $tarif = (New TarifHeure)
-                ->setTarif('10');
-
-                $manager->persist($tarif);
-
-
-            $tarif = (New TarifHeure)
-                ->setTarif('15');
-
-                $manager->persist($tarif);
-    
-
         $manager->flush();
 
     }

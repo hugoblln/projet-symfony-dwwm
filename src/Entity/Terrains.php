@@ -82,10 +82,9 @@ class Terrains
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'terrain')]
     private Collection $avis;
 
-    #[ORM\ManyToOne(inversedBy: 'terrain')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?TarifHeure $tarifHeure = null;
-
+    #[ORM\Column]
+    #[Assert\NotBlank()]
+    private ?float $tarifHeure = null;
 
     public function __construct()
     {
@@ -243,15 +242,16 @@ class Terrains
         return $this;
     }
 
-    public function getTarifHeure(): ?TarifHeure
+    public function getTarifHeure(): ?float
     {
         return $this->tarifHeure;
     }
 
-    public function setTarifHeure(?TarifHeure $tarifHeure): static
+    public function setTarifHeure(float $tarifHeure): static
     {
         $this->tarifHeure = $tarifHeure;
 
         return $this;
     }
+
 }
