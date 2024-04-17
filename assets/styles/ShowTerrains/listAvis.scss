@@ -1,13 +1,16 @@
 .avis {
-    @include flexbox(center,center,row);
-    border-top: solid 5px $primary;
-  
+    @include flexbox(center, center, row);
+    background: $primary;
+    box-shadow: $box-shadow-card;
+    color: $white;
+
 }
 
 .list-content {
     width: 100%;
     margin: auto;
     text-align: center;
+    border: dashed 1px $white;
 
     @media screen and (min-width:768px) {
         width: 50%;

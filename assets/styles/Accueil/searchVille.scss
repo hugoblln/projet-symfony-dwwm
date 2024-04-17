@@ -5,14 +5,14 @@
     &-text {
         text-align: center;
         margin-top: 20px;
-        font-weight: bold ;
+        font-weight: bold;
         font-size: 1.1em;
     }
 
     &-form-input {
         width: 100%;
         border-radius: $border-radius;
-        padding: 0 50px ;
+        padding: 0 50px;
 
         @media screen and (min-width: 768px) {
             width: 800px;
@@ -20,12 +20,18 @@
     }
 
     &-form-list {
-       text-align: center;
-       padding: 10px;
-       border-bottom: solid 1px ;
+        text-align: center;
+        padding: 10px;
+        border-bottom: solid 1px;
 
-       li {
-        cursor: pointer;
-    }
+        li {
+            cursor: pointer;
+            background: white;
+
+            &:hover {
+                background: black;
+                color: white;
+            }
+        }
     }
 }

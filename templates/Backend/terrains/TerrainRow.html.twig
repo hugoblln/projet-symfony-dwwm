@@ -6,19 +6,19 @@
     <td scope="col">{{ terrain.description}}</td>
     <td scope="col">{{ terrain.typeTerrain }}</td>
     <td scope="col">{{ terrain.taille }}</td>
-    <td scope="col">{{ terrain.tarifHeure.tarif }}</td>
+    <td scope="col">{{ terrain.tarifHeure }}</td>
     <td scope="col">{{ terrain.createdAt|date('Y-m-d H:i:s') }}</td>
     <td scope="col">{{ terrain.updatedAt|date('Y-m-d H:i:s') }}</td>
     <td scope="col">
-    {% if terrain.imageName %}
-    <img src="{{vich_uploader_asset(terrain)}}" alt="{{terrain.nom}}" class="rounded">
-    {% endif %}
+        {% if terrain.imageName %}
+        <img src="{{vich_uploader_asset(terrain)}}" alt="{{terrain.nom}}" class="rounded">
+        {% endif %}
     </td>
     <td>{{ terrain.enable ? 'Oui' : 'Non' }}</td>
     <td scope='col'>
-    <a href="{{ path('admin.avis.index', {slug:terrain.slug})}}" class="btn btn-primary">
-    Gérer les avis
-    </a>
+        <a href="{{ path('admin.avis.index', {slug:terrain.slug})}}" class="btn btn-primary">
+            Gérer les avis
+        </a>
     </td>
     <td scope="col">
 
