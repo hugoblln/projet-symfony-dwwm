@@ -11,13 +11,18 @@
 
 @import "./Components/cards.scss";
 
-@import "./Accueil/searchVille.scss";
+@import "./Accueil/searchCity.scss";
 @import "./Accueil/bannerTerrains.scss";
 @import "./accueil/banqueImage.scss";
-@import "Accueil/sectionContact/contact.scss";
-@import "Accueil/sectionContact/section.scss";
-@import "./Form.scss";
 @import "Accueil/presentation.scss";
+
+@import "./Form.scss";
+
+@import "./Contact/contactInfos.scss";
+@import "./Contact/formContact.scss";
+@import "./Contact/section.scss";
+
+
 
 @import 'ShowTerrains/listAvis.scss';
 

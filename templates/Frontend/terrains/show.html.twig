@@ -8,17 +8,17 @@
 
 {% block stylesheets %}
 {{ parent() }}
-{{ encore_entry_link_tags('show') }}
+{{ encore_entry_link_tags('front') }}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
-{{ encore_entry_script_tags('show') }}
+{{ encore_entry_script_tags('front') }}
 {% endblock %}
 
 {% block body %}
 {% include "Frontend/terrains/_banner.html.twig" %}
-<section class="container mt-4">
+<section class="main-content">
 <div class="row">
 {% include "Frontend/terrains/_sidebar.html.twig" %}
 {% include "Frontend/terrains/_content.html.twig" %}
@@ -38,6 +38,7 @@
  </div>
  {% endif %}
 <section class="avis">
+
 {% for avis in allAvis %}
 {% include "Frontend/terrains/_listAvis.html.twig" %}
 {% endfor %}

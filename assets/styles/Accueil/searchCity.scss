@@ -2,7 +2,12 @@
     @include flexbox(center, center, column);
     background-color: $white;
 
+    &-form {
+        width: 80%;
+    }
+
     &-text {
+        color: $primary;
         text-align: center;
         margin-top: 20px;
         font-weight: bold;
@@ -12,10 +17,10 @@
     &-form-input {
         width: 100%;
         border-radius: $border-radius;
-        padding: 0 50px;
-
-        @media screen and (min-width: 768px) {
-            width: 800px;
+        padding:  10px 50px;
+        border: solid 5px #dcdde1;
+        @media screen and (min-width: 1024px) {
+           
         }
     }
 

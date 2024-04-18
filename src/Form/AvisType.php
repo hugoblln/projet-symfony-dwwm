@@ -28,15 +28,19 @@ class AvisType extends AbstractType
             'row_attr' => [
                 'class' => 'formcarry-block',
             ],
-            'attr' => [
-                'id' => 'fc-generated-1-name'
-            ],
-            'label_attr' => [
-                'id' => 'fc-generated-1-name',
+            'attr'=> [
+                'class' => null
             ],
         ])
             ->add('commentaire', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'row_attr' => [
+                    'class' => 'formcarry-block',
+                ],
+                'attr'=> [
+                    'class' => null
+                ],
+                'inherit_data' => false, // Désactiver l'héritage des données des champs parents
             ]);
             
     }

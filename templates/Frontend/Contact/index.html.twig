@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+{{ parent() }}
+Contact
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+{% block body %}
+<h1>Contactez-nous</h1>
+ <div class="container-contact">
+      <span class="big-circle"></span>
+      <div class="form">
+       {% include "Frontend/Contact/_contactInfos.html.twig" %}
+       {% include "Frontend/Contact/_formContact.html.twig" %}
+      </div>
+    </div>
+{% endblock %}

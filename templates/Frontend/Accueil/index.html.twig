@@ -7,12 +7,12 @@ Accueil
 
 {% block stylesheets %}
 {{ parent() }}
-{{ encore_entry_link_tags('admin') }}
+{{ encore_entry_link_tags('front') }}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
-{{ encore_entry_script_tags('admin') }}
+{{ encore_entry_script_tags('front') }}
 {% endblock %}
 
 
@@ -21,10 +21,6 @@ Accueil
 <section class="main-content">
 {% include "/Frontend/accueil/_searchCity.html.twig" %}
 {% include "/Frontend/accueil/_presentation.html.twig" %}
-<section class="section-contact">
-{% include "/Frontend/accueil/_contact.html.twig" %}
-{% include "/Frontend/accueil/_formContact.html.twig" %}
-</section>
 {% include "/Frontend/accueil/_banqueImage.html.twig" %}
 </section>
 {% endblock %}
