@@ -1,9 +1,10 @@
 {% for user in users %}
 <tr scope="row">
     <td scope="col">{{ user.id }}</td>
-    <td scope="col">{{ user.lastName}}</td>
+    <td scope="col">{{ user.fullName}}</td>
     <td scope="col">{{ user.email}}</td>
     <td scope="col">{{ user.roles|join(', ') }}</td>
+    <th scope="col" data-sortable="true">{{user.isVerified ? 'oui' : 'non'}}</th>
     <td scope="col">{{ user.createdAt|date('Y-m-d H:i:s') }}</td>
 
     <td scope="col">

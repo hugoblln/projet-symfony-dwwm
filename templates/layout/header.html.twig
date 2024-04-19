@@ -16,6 +16,10 @@
 						<a class="nav-link {{ app.request.get('_route') == 'app.terrains.index' ? 'active' : '' }}"
 							href="{{ path('app.terrains.index')}}">Terrains</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link {{ app.request.get('_route') == 'app.contact.index' ? 'active' : '' }}"
+							href="{{ path('app.contact.index')}}">Contact</a>
+					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					{% if app.user %}

@@ -67,6 +67,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'user')]
     private Collection $avis;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+
+    public function fullName()
+    {
+        return $this->getFirstName(). ' ' . $this->getLastName();
+    }
 
 
     public function __construct()
@@ -204,6 +212,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
                 $avi->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

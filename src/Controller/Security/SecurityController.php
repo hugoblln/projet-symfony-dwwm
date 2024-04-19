@@ -24,31 +24,16 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/register','app.register', methods: ['GET','POST'])]
-    public function register(Request $request, UserPasswordHasherInterface $hasher,EntityManagerInterface $em): Response|RedirectResponse
+    #[Route('profile', 'app.profile', methods:['GET', 'POST'])]
+    public function edit() : Response|RedirectResponse 
     {
-
-        $user = new Users;
+        $user = $this->getUser();
 
         $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $user
-              ->setPassword($hasher->hashPassword($user, $form->get('password')->getData()));
-        
-              $em->persist($user);
-              $em->flush();
-      
-          $this->addFlash('success', 'félicitation, vous ètes bien iscrit sur notre site');
+     
 
-          return $this->redirectToRoute('app.login');
-
-        }
-
-
-
-        return $this->render('/Security/register.html.twig',[
+        return $this->render('Security/profile.html.twig', [
             'form' => $form
         ]);
     }

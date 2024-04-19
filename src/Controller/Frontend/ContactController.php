@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
-#[Route('/contact', 'contact')]
+#[Route('/contact', 'app.contact')]
 class ContactController extends AbstractController
 {
     #[Route('', '.index',methods:['GET','POST'])]
