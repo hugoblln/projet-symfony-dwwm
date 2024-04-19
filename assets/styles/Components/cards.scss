@@ -1,9 +1,62 @@
-.terrain-card {
+.card-list {
     @include flexbox (space-between, flex-start, row);
+    padding-top: 30px;
+}
 
+.terrain-card {
     width: 90%;
+    margin: auto;
 
-    @media screen and(min-width: 1024px) {
+    @media screen and (min-width: 1024px) {
         width: 30%;
+
+        :hover {
+            background: $secondary;
+            transition: 0.5s;
+        }
+    }
+
+    img {
+        border-radius: $border-radius;
+    }
+
+    &-content {
+        padding: 20px;
+
+
+        &-price {
+            position: relative;
+            top: 28px;
+            background: #00000099;
+            border-radius: 10px 10px 0 0;
+            padding-left: 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+        &-title {
+            @include flexbox(space-around,flex-start, row)
+        }
+
+        &-text {
+            @include flexbox (space-around, flex-start, row)
+        }
+
+        &-btn {
+            background: $primary;
+            text-align: center;
+
+            :hover {
+                background: $white;
+                color: $primary;
+            }
+
+            a {
+            color: $white;
+            display: inline-block;
+            width: 100%;
+            font-weight: bold;
+            }
+        }
     }
 }
