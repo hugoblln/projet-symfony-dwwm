@@ -5,27 +5,46 @@ Connexion
 {{parent()}}
 {% endblock %}
 
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+
+
 {% block body %}
-<section class="container mt-4">
+<section class="main-content">
 <h1 class="text-center">Se connecter</h1>
 {% if error %}
 
 <div class="text-center alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path('app.login') }}" method="post" class="card p-3 w-50 mx-auto h-70  mt-3">
-<div class="mb-3">
-<label for="email" class="form-label">Email:</label>
-<input type="email" class="form-control" id="email" name="_username" value="{{ lastUserName}}">
+<div class="contact-form">
+        <span class="circle one"></span>
+        <span class="circle two"></span>
+<form action="{{ path('app.login') }}" method="post" class="start-form">
+<div class="input-container">
+<input type="email" class="input" id="email" name="_username" value="{{ lastUserName}}">
+<label for="email" >Email</label>
+<span>Email</span>
 </div>
-<div class="mb-3">
-<label for="password" class="form-label">mot de passe:</label>
-<input type="password" class="form-control" id="password" name="_password">
+<div class="input-container">
+<input type="password" class="input" id="password" name="_password">
+<label for="password" >mot de passe</label>
+<span>mot de passe</span>
 </div>
 
 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-<button type="submit" class="btn btn-primary">connexion</button>
+<input type="submit" value="Connexion" class="btn-form" />
 </form>
+</div>
 </section>
 {% endblock %} 

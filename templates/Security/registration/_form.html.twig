@@ -9,8 +9,42 @@
 
         <button type="submit" class="btn">Register</button> #}
 
-        {{form_start(registrationForm, {'attr': {'class': 'card p-3 w-75 mx-auto'}})}}
+        {# {{form_start(registrationForm, {'attr': {'class': 'card p-3 w-75 mx-auto'}})}}
 {{form_widget(registrationForm)}}
 <button type="submit" class="btn btn-primary">S'inscrire</button>
-{{form_end(registrationForm)}}
+{{form_end(registrationForm)}} #}
+
+<div class="contact-form">
+<span class="circle one"></span>
+<span class="circle two"></span>
+ {{form_start(registrationForm, {'attr': {'class': 'start-form'}, 'autocomplete' : 'off'})}}
+ <div class="input-container">
+ {{ form_widget(registrationForm.LastName, {'attr': {'class': 'input'}}) }}
+        {{ form_label(registrationForm.LastName, 'Nom') }}
+        <span>Username</span>
+ </div>
+ <div class="input-container">
+ {{ form_widget(registrationForm.FirstName, {'attr': {'class': 'input'}}) }}
+        {{ form_label(registrationForm.FirstName, 'Prenom') }}
+        <span>Username</span>
+ </div>
+   <div class="input-container">
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'input'}}) }}
+        {{ form_label(registrationForm.email, 'Email') }}
+        <span>Email</span>
+    </div>
+    <div class="input-container">
+     {{ form_widget(registrationForm.password.first, {'attr': {'class': 'input'}}) }}
+        {{ form_label(registrationForm.password.first, 'Mot de passe') }}
+        <span>Mot de passe</span>
+    </div>
+    <div class="input-container">
+     {{ form_widget(registrationForm.password.second, {'attr': {'class': 'input'}}) }}
+        {{ form_label(registrationForm.password.second, 'confirmation mot de passe') }}
+        <span>confirmation Mot de passe</span>
+    </div>
+     {{ form_row(registrationForm.agreeTerms) }}
+    <input type="submit" value="Send" class="btn-form" />
+{{ form_end(registrationForm) }}
+</div>
  

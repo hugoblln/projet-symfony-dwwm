@@ -1,3 +1,3 @@
 import './javascript/starRating'
-import './javascript/contactPage'
+import './javascript/form'
 import './javascript/searchByVille';

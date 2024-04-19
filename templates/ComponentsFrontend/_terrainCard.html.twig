@@ -1,26 +1,29 @@
 {% for terrain in terrains %}
-    <div class="blog-card">
-    <div class="blog-card-content">
-    <h2 class="blog-card-header">{{terrain.nom}}</h2>
-     {% if terrain.imageName %}
-    <img src="{{ vich_uploader_asset(terrain)}}" alt="{{ terrain.nom}}" loading="lazy">
+    <div class="terrain-card">
+    <div class="terrain-card-content">
+    <div class="terrain-card-content-price">
+    {{ terrain.tarifHeure }} 
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="#283b4d" d="M15 21q-2.95 0-5.25-1.675T6.5 15H3v-2h3.05q-.075-.6-.062-1.112T6.05 11H3V9h3.5q.95-2.65 3.25-4.325T15 3q1.725 0 3.263.613T21 5.3l-1.425 1.4q-.925-.8-2.087-1.25T15 5q-2.125 0-3.8 1.113T8.675 9H15v2H8.075q-.1.675-.075 1.188t.075.812H15v2H8.675q.85 1.775 2.525 2.888T15 19q1.325 0 2.488-.45t2.087-1.25L21 18.7q-1.2 1.075-2.738 1.688T15 21"/></svg>
+    </div>
+    {% if terrain.imageName %}
+    <img src="{{ vich_uploader_asset(terrain)}}" alt="image terrain" loading="lazy">
     {% endif %}
-
-    <p><strong>Ville: </strong>{{ terrain.complexe.ville }}</p>
-    <p><strong>Complexe: </strong>{{ terrain.complexe.nom }}</p>
-    <p><strong>description:</strong>{{terrain.description|striptags|slice(0,150) ~ '...'}}</p>
-    <p><strong>type de terrain:</strong>{{terrain.typeTerrain}}</p>
-    <p><strong>taille:</strong>{{terrain.taille}}</p>
-    <p><strong>Date de Création: </strong>{{terrain.createdAt|format_datetime('full','none')}}</p>
-    <div class="blog-card-btn">
-    {% if app.request.get('_route') == 'admin.terrains.index' %}
-    <a href="{{ path('admin.terrains.edit', {id: terrain.id}) }}" class="btn btn-warning">
-     <i class="bi bi-pencil-square"></i>
-    Modifier</a>
-    {% include "Backend/Terrains/_deleteform.html.twig" %}
-    {% else %}
-        <a href="{{ path('app.terrains.show', {slug:terrain.slug})}}" class="btn btn-primary">RESERVER</a>
-    {% endif %}
+    <div class="terrain-card-content-title">
+    <p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="#283b4d" d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"></path></svg>
+    {{terrain.complexe.ville}}
+    </p>
+    <p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256"><g fill="#283b4d"><path d="M216 116.69V216h-64v-64h-48v64H40v-99.31l82.34-82.35a8 8 0 0 1 11.32 0Z" opacity="0.2"></path><path d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"></path></g></svg>
+    {{ terrain.complexe.nom }}
+    </p>
+    </div>
+    <div class="terrain-card-content-text">
+    <p>type de terrain : {{ terrain.typeTerrain }}</p>
+    <p>taille : {{ terrain.taille }} mètres</p>
+    </div>
+    <div class="terrain-card-content-btn">
+    <a href="{{ path('app.terrains.show', {slug:terrain.slug} ) }}">RESERVER</a>
     </div>
     </div>
     </div>

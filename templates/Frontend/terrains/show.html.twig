@@ -27,15 +27,7 @@
 <h2>Dnnez votre avis</h2>
 {% include "Frontend/terrains/_avisForm.html.twig" %}
 {% else %}
- <div class="alert alert-info mt-2" role="alert">
- <p>
- <b>Attention!</b>
- <br/>
- Vous devez
- <a href="{{ path('app.login') }}">être connecté</a>
- pour laisser un commentaire.
- </p>
- </div>
+ {% include "Frontend/terrains/_avisMessage.html.twig" %}
  {% endif %}
 <section class="avis">
 

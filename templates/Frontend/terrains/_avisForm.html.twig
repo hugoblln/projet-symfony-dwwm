@@ -1,7 +1,17 @@
-<div class="formcarry-container">
-    {{ form_start(form) }}
-    {{ form_row(form.note) }}
-    {{ form_row(form.commentaire) }}
-    <button type="submit" class="btn btn-primary">envoyer avis</button>
-    {{ form_end(form) }}
-</div>
+ <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+ {{ form_start(form, { 'attr' : { 'class' : 'start-form'}, 'autocomplete' : 'off'}) }}
+ <div class="input-container">
+    {{ form_widget(form.note, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.note, 'Note') }}
+        <span>Note</span>
+ </div>
+  <div class="input-container">
+    {{ form_widget(form.commentaire, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.commentaire, 'Commentaire') }}
+        <span>Commentaire</span>
+ </div>
+  <input type="submit" value="Envoyer" class="btn-form" />
+{{ form_end(form) }}
+

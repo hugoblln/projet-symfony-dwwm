@@ -23,9 +23,6 @@ class RegistrationFormType extends AbstractType
         ->add('FirstName', TextType::class, [
             'label' =>'prenom:',
             'required' => false,
-            'attr' => [
-                'placeholder' => 'hugo'
-            ]
           ])
           ->add('LastName', TextType::class,[
             'label' => 'nom:',
@@ -37,9 +34,6 @@ class RegistrationFormType extends AbstractType
           ->add('email', EmailType::class, [
             'label' => 'Email:',
             'required' => false,
-            'attr' => [
-                'placeholder' => 'exemple@gmail.com'
-            ]
           ])
             ->add('agreeTerms', CheckboxType::class, [
                                 'mapped' => false,
