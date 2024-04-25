@@ -32,9 +32,10 @@
         li {
             cursor: pointer;
             background: white;
+            width: 100%;
 
             &:hover {
-                background: black;
+                background: $primary;
                 color: white;
             }
         }
