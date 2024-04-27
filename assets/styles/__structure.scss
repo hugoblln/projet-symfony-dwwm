@@ -14,13 +14,14 @@ body {
   font-family: $font-primary;
   font-size: 16px;
   font-weight: 400;
-  color: $text-color;
+  color: $primary;
   line-height: 28px;
   transition: 0.5s;
 }
 .main-content {
 
-  width: 100%;
+  width: 85%;
+  margin: auto;
 
   @media screen and (min-width:768px) {
     width: 80%;
@@ -38,7 +39,6 @@ h3,
 h4,
 h5,
 h6 {
-  color: $heading;
   margin-bottom: 0;
 }
 
@@ -53,7 +53,6 @@ h2 {
   font-size: 32px;
   font-weight: 600;
   line-height: 43px;
-  letter-spacing: -0.8px;
 }
 
 h3 {
@@ -80,21 +79,6 @@ h6 {
 
 p {
   margin-bottom: 0;
-}
-
-p:last-of-type {
-margin-bottom:  1em;
-}
-
-.btn-primary {
-  color: $white !important;
-  background-color: $secondary;
-  border: 1px solid $secondary;
-
-  &:hover {
-    background-color: darken($secondary, 10%);
-    border: 1px solid darken($secondary, 10%);
-  }
 }
 
 .alert {

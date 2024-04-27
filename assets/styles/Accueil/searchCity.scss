@@ -1,43 +1,31 @@
 .section-city {
-    @include flexbox(center, center, column);
-    background-color: $white;
+    margin-top: 20vh;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
 
-    &-form {
-        width: 80%;
+    form {
+        padding: 20px;
     }
 
-    &-text {
-        color: $primary;
-        text-align: center;
-        margin-top: 20px;
-        font-weight: bold;
-        font-size: 1.1em;
-    }
+    /******** TABLETTE *******/
+    @media  screen and (min-width : 768px) and (max-width : 1024px) {
+        font-size: 18px;
+     }
 
-    &-form-input {
+     /******* DESKTOP ********/
+     @media  screen and (min-width : 1024px)  {
+        font-size: 24px;
+     }
+
+    input {
+        padding: 9px;
         width: 100%;
-        border-radius: $border-radius;
-        padding:  10px 50px;
-        border: solid 5px #dcdde1;
-        @media screen and (min-width: 1024px) {
-           
-        }
-    }
+        border-radius: 10px;
+        border: solid $secondary;
 
-    &-form-list {
-        text-align: center;
-        padding: 10px;
-        border-bottom: solid 1px;
-
-        li {
-            cursor: pointer;
-            background: white;
-            width: 100%;
-
-            &:hover {
-                background: $primary;
-                color: white;
-            }
-        }
+        @media  screen and (min-width : 768px)  {
+            width: 60%;
+         }
     }
 }

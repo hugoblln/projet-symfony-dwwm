@@ -13,11 +13,15 @@ require('bootstrap')
 
 import './javascript/jquery.js'
 import './javascript/bootstrap-table.js'
-import './img/terrain-2.jpg'
-import './img/terrain-3.jpg'
-import './img/terrain-4.jpg'
-import './img/terrain-5.jpg'
-import './img/terrain-6.jpg'
+import './img/terrain1.jpg'
+import './img/terrain2.jpg'
+import './img/terrain3.jpg'
+import './img/terrain4.jpg'
+import './img/terrain5.jpg'
+import './img/terrain6.jpg'
 import './img/LOGO_locafoot.png'
+import './img/banner_locafoot_desktop.jpeg'
+import './img/banner_locafoot_tablette.jpeg'
+import './img/banner_locafoot_mobile.jpeg'
 
 

@@ -1,18 +1,57 @@
 .banner-hero {
-    @include flexbox(center, center);
-    height: 80vh;
-    background: center / cover url('../../img/home.jpg');
+    background:  center / cover url('../../img/banner_locafoot_mobile.png');
+    height: 100vh;
 
-    &-header {
-        background: rgb(0 0 0 / 54%);
-        border-radius: $border-radius;
-        padding: 0.6em 1em;
-        box-shadow: $box-shadow-card;
-        --webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
+    /******* TABLETTE *********/
+    @media  screen and (min-width : 768px) and (max-width : 1024px) {
+        background:  center / cover url('../../img/banner_locafoot_tablette.png');
+    }
+
+    
+    /******* DESKTOP *********/
+    @media  screen and (min-width : 1024px) {
+        background:  center / cover url('../../img/banner_locafoot_desktop.png');
+    }
+    
+
+    &-content {
+        height: 120vh;
+        margin: auto;
+        width: 80%;
+        @include flexbox(space-evenly, center, column);
 
         h1 {
-            color: white;
+            background: $secondary;
+            font-size: $font-size-button;
+            border-radius: $border-radius;
+            padding: $button-padding;
+            box-shadow: $box-shadow-card;
         }
+
+    }
+
+    &-text {
+    background: linear-gradient(rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
+    border-radius: $border-radius;
+    color: $white;
+    backdrop-filter: blur(20px);
+    text-align: center;
+    font-size: 18px;
+    padding: $button-padding;
+
+    
+    /******* TABLETTE *********/
+    @media  screen and (min-width : 768px) and (max-width : 1024px) {
+       font-size: 24px;;
+    }
+
+    /******* DESKTOP *********/
+    @media screen and (min-width : 1024px) {
+        font-size: 28px;
+        width: 60%;
+    }
+      
+
     }
 }
+
