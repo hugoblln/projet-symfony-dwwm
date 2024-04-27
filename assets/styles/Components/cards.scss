@@ -1,65 +1,47 @@
-.card-list {
-    @include flexbox (space-between, flex-start, row);
-    padding-top: 30px;
-}
 
-.terrain-card {
-    width: 90%;
-    margin: auto;
-    background: white;
 
-    @media screen and (min-width: 1024px) {
-        width: 30%;
+.card-terrain {
+    width: 350px;
+    box-shadow: $box-shadow-card;
+    border-radius: $border-radius;
 
-        :hover {
-            background: $secondary;
-            transition: 0.5s;
-        }
-    }
+    margin: 100px;
 
     img {
-        border-radius: $border-radius;
-        width: 410px;
-        height: 300px;
+        border-radius: $border-radius  $border-radius 0 0;
     }
 
     &-content {
-        padding: 20px;
+        @include flexbox(space-evenly,center,row);
 
+        &-details {
 
-        &-price {
-            position: relative;
-            top: 28px;
-            background: #00000099;
-            border-radius: 10px 10px 0 0;
-            padding-left: 10px;
-            font-weight: bold;
-            color: white;
-        }
+          h2 {
+            padding: 20px 0;
+          }
 
-        &-title {
-            @include flexbox(space-around,flex-start, row)
-        }
+          p {
+            padding: 10px 0;
+          }
+    }
 
-        &-text {
-            @include flexbox (space-around, flex-start, row)
-        }
+    &-price {
+        margin-bottom: 40px;
+        color: $secondary;
+    }
 
-        &-btn {
-            background: $primary;
-            text-align: center;
+    }
 
-            :hover {
-                background: $white;
-                color: $primary;
-            }
+    &-button {
+        
+        background: $primary;
+        text-align: center;
+        padding: $button-padding;
+        margin-top: 20px;
+        border-radius: 0 0 $border-radius  $border-radius;
 
-            a {
+        a {
             color: $white;
-            display: inline-block;
-            width: 100%;
-            font-weight: bold;
-            }
         }
     }
 }

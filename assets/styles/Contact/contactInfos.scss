@@ -2,119 +2,91 @@
 .contact-info {
   padding: 2.3rem 2.2rem;
   position: relative;
-}
+  background: linear-gradient(to right, hsl(0deg 0% 100% / 20%), hsl(0deg 0% 100% / 40%));
+  backdrop-filter: blur(20px);
 
-.contact-info .title {
-  color: $primary;
-}
-
-.text {
-  color: #333;
+&-text {
   margin: 1.5rem 0 2rem 0;
 }
 
-.information {
+&-content {
+  margin-top: 50px;
+}
+
+&-information {
   display: flex;
-  color: #555;
-  margin: 0.7rem 0;
-  align-items: stretch;
-  font-size: 0.95rem;
+  margin: 30px;
+  font-size: 14px;
 }
 
-.information i {
-  color: #1ABC9C;
+&-social-icons {
+
+  @include flexbox(space-evenly,center,row);
+
+  margin-top: 25%;
+
 }
 
-.icon {
-  width: 28px;
-  margin-right: 0.7rem;
-}
-
-.social-media {
-  padding: 2rem 0 0 0;
-}
-
-.social-media p {
-  color: #333;
-}
-
-.social-icons {
-  display: flex;
-  margin-top: 0.5rem;
-}
-
-.social-icons a {
+&-social-icons a {
   width: 35px;
   height: 35px;
   border-radius: 5px;
-  background: linear-gradient(45deg, $secondary, $primary);
-  color: #fff;
   text-align: center;
   line-height: 35px;
   margin-right: 0.5rem;
   transition: 0.3s;
 }
 
-.social-icons a:hover {
+&-social-icons a:hover {
   transform: scale(1.05);
 }
 
-.contact-info:before {
-  content: "";
-  position: absolute;
-  width: 110px;
-  height: 100px;
-  border: 22px solid $secondary;
-  border-radius: 50%;
-  bottom: -77px;
-  right: 50px;
-  opacity: 0.3;
+
 }
+
 
 
 
 @media (max-width: 850px) {
  
-  .contact-info:before {
+  .contact-info {
+  
+  :before {
     bottom: initial;
     top: -75px;
     right: 65px;
     transform: scale(0.95);
   }
 
-
-  .text {
+    &-text {
     margin: 1rem 0 1.5rem 0;
   }
 
-  .social-media {
-    padding: 1.5rem 0 0 0;
   }
+
 }
 
 @media (max-width: 480px) {
 
-  .contact-info:before {
+  .contact-info {
+
+    padding: 1.7rem 1.6rem;
+  
+  :before {
     display: none;
   }
-  .contact-info {
-    padding: 1.7rem 1.6rem;
-  }
-
-  .text,
-  .information,
-  .social-media p {
+  
+  &-text,
+  &-information p {
     font-size: 0.8rem;
   }
 
-
-  .social-icons a {
+  &-social-icons a {
     width: 30px;
     height: 30px;
     line-height: 30px;
   }
 
-  .icon {
-    width: 23px;
-  }
+}
+
 }

@@ -1,35 +1,21 @@
  <div class="card-list">
-
 {% for terrain in terrains %}
-    <div class="terrain-card">
-    <div class="terrain-card-content">
-    <div class="terrain-card-content-price">
-    {{ terrain.tarifHeure }}€/H
-    </div>
-    {% if terrain.imageName %}
-    <img src="{{ vich_uploader_asset(terrain)}}" alt="image terrain" loading="lazy">
+   <div class="card-terrain">
+     {% if terrain.imageName %}
+    <img src="{{ vich_uploader_asset(terrain)}}" alt="image terrain" width="350px" loading="lazy">
     {% endif %}
-    <div class="terrain-card-content-title">
-    <p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="#283b4d" d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"></path></svg>
-    {{terrain.complexe.ville}}
-    </p>
-    <p>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 256"><g fill="#283b4d"><path d="M216 116.69V216h-64v-64h-48v64H40v-99.31l82.34-82.35a8 8 0 0 1 11.32 0Z" opacity="0.2"></path><path d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"></path></g></svg>
-    {{ terrain.complexe.nom }}
-    </p>
+    <div class="card-terrain-content">
+    <div class="card-terrain-content-details">
+    <h2>{{ terrain.complexe.nom }}</h2>
+    <p><strong>Ou ?</strong> {{ terrain.complexe.ville }}</p>
+    <p><strong>Type de terrain</strong> {{ terrain.typeTerrain }}</p>
+    <p><strong>Taille</strong> {{ terrain.taille }}</p>
     </div>
-    <div class="terrain-card-content-text">
-    <div>
-    <p> <strong>type de terrain : </strong> {{ terrain.typeTerrain }}</p>
-    <p> <strong>taille : </strong> {{ terrain.taille }} mètres</p>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24"><path fill="#283b4d" d="M4 4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2h7v2.13c-1.76.46-3 2.05-3 3.87a4.01 4.01 0 0 0 3 3.87V18H4v-2h3V8H4zm9 0h7v2h-3v8h3v2h-7v-2.13c1.76-.46 3-2.05 3-3.87a4.01 4.01 0 0 0-3-3.87zm-9 4h1v4H4zm15 0h1v4h-1zm-6 .27c.62.36 1 1.02 1 1.73s-.38 1.37-1 1.73zm-2 0v3.46c-.62-.36-1-1.02-1-1.73s.38-1.37 1-1.73"/></svg>
-    </div>
-    <div class="terrain-card-content-btn">
-    <a href="{{ path('app.terrains.show', {slug:terrain.slug} ) }}">RESERVER</a>
+    <div class="card-terrain-content-price">
+    <h3>{{ terrain.tarifHeure }}€/H</h3>
     </div>
     </div>
-    </div>
+    <h2 class="card-terrain-button"><a href=" {{ path('app.terrains.show', {slug:terrain.slug}) }}">Réserver maintenant</a></h2>
+   </div>
 {% endfor %}
 </div>

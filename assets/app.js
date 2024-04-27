@@ -20,8 +20,8 @@ import './img/terrain4.jpg'
 import './img/terrain5.jpg'
 import './img/terrain6.jpg'
 import './img/LOGO_locafoot.png'
-import './img/banner_locafoot_desktop.jpeg'
-import './img/banner_locafoot_tablette.jpeg'
-import './img/banner_locafoot_mobile.jpeg'
+import './img/banner_locafoot_desktop.png'
+import './img/banner_locafoot_tablette.png'
+import './img/banner_locafoot_mobile.png'
 
 
