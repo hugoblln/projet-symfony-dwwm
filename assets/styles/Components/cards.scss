@@ -1,5 +1,3 @@
-
-
 .card-terrain {
     width: 350px;
     box-shadow: $box-shadow-card;
@@ -8,40 +6,45 @@
     margin: 100px;
 
     img {
-        border-radius: $border-radius  $border-radius 0 0;
+        border-radius: $border-radius $border-radius 0 0;
     }
 
     &-content {
-        @include flexbox(space-evenly,center,row);
+        @include flexbox(space-evenly, center, row);
 
         &-details {
 
-          h2 {
-            padding: 20px 0;
-          }
+            h2 {
+                padding: 20px 0;
+            }
 
-          p {
-            padding: 10px 0;
-          }
-    }
-
-    &-price {
-        margin-bottom: 40px;
-        color: $secondary;
-    }
-
-    }
-
-    &-button {
-        
-        background: $primary;
-        text-align: center;
-        padding: $button-padding;
-        margin-top: 20px;
-        border-radius: 0 0 $border-radius  $border-radius;
-
-        a {
-            color: $white;
+            p {
+                padding: 10px 0;
+            }
         }
+
+        &-price {
+            margin-bottom: 40px;
+            color: $primary;
+        }
+
     }
+
+    &-button a {
+        background: $primary;
+        font-size: $font-size-button;
+        border-radius: 0 0 $border-radius $border-radius;
+        padding: $button-padding;
+        box-shadow: $box-shadow-card;
+        color: $white;
+        display: block;
+        text-align: center;
+    }
+
+
+}
+
+.average {
+    position: relative;
+    top: 100px;
 }

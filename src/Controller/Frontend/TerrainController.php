@@ -29,8 +29,18 @@ class TerrainController extends AbstractController
     public function index(): Response
     {
 
+        $terrains = $this->terrainRepo->FindAllEnableByDate();
+
+        $averageRatings = [];
+
+        foreach ($terrains as $terrain) {
+            $averageRatings[$terrain->getId()] = $this->avisRepo->findAverage($terrain->getId());
+        }
+
+
         return $this->render('Frontend/terrains/index.html.twig', [
-            'terrains' => $this->terrainRepo->FindAllEnableByDate()
+            'terrains' => $terrains,
+            'averageRatings' => $averageRatings
         ]);
     }
 
@@ -39,6 +49,7 @@ class TerrainController extends AbstractController
     {
 
         $terrains = $this->terrainRepo->findByVille($ville);
+
 
         $message = "";
 
@@ -49,12 +60,13 @@ class TerrainController extends AbstractController
         return $this->render('Frontend/terrains/indexByVille.html.twig', [
             'message' => $message,
             'ville' => $ville,
-            'terrains' => $terrains
+            'terrains' => $terrains,
+
         ]);
     }
 
 
-    #[Route('/{slug}', '.show', methods: ['GET','POST'])]
+    #[Route('/{slug}', '.show', methods: ['GET', 'POST'])]
     public function show(?Terrains $terrain, Request $request): Response
     {
         if (!$terrain) {
@@ -70,8 +82,8 @@ class TerrainController extends AbstractController
         $form = $this->createForm(AvisType::class, $avis);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+
             $user = $this->getUser();
 
             $avis
@@ -82,7 +94,7 @@ class TerrainController extends AbstractController
             $this->em->persist($avis);
             $this->em->flush();
 
-            $this->addFlash('success','votre avis à été publié avec succés');
+            $this->addFlash('success', 'votre avis à été publié avec succés');
 
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
@@ -93,6 +105,5 @@ class TerrainController extends AbstractController
             'form' => $form,
             'allAvis' => $allAvis
         ]);
-
     }
 }

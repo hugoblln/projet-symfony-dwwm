@@ -21,25 +21,35 @@ class AvisRepository extends ServiceEntityRepository
         parent::__construct($registry, Avis::class);
     }
 
-    public function FindAllEnableByDate(int $terrainId) : array
+    public function FindAllEnableByDate(int $terrainId): array
     {
         return $this->createQueryBuilder('a')
-        ->andWhere('a.terrain = :id')
-        ->setParameter('id',$terrainId)
+            ->andWhere('a.terrain = :id')
+            ->setParameter('id', $terrainId)
             ->andWhere('a.enable = :enable')
             ->setParameter('enable', true)
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
-    public function FindAllByDate(int $terrainId) : array
+    public function FindAllByDate(int $terrainId): array
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.terrain = :id')
-            ->setParameter('id',$terrainId)
+            ->setParameter('id', $terrainId)
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAverage(int $terrainId): float
+    {
+        return $this->createQueryBuilder('a')
+            ->select('AVG(a.note)')
+            ->andWhere('a.terrain = :id')
+            ->setParameter('id', $terrainId)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
 

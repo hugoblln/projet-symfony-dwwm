@@ -1,57 +1,74 @@
 .banner-hero {
-    background:  center / cover url('../../img/banner_locafoot_mobile.png');
+    background: center / cover url('../../img/banner_locafoot_mobile.png');
     height: 100vh;
 
     /******* TABLETTE *********/
-    @media  screen and (min-width : 768px) and (max-width : 1024px) {
-        background:  center / cover url('../../img/banner_locafoot_tablette.png');
+    @media screen and (min-width : 768px) and (max-width : 1024px) {
+        background: center / cover url('../../img/banner_locafoot_tablette.png');
     }
 
-    
+
     /******* DESKTOP *********/
-    @media  screen and (min-width : 1024px) {
-        background:  center / cover url('../../img/banner_locafoot_desktop.png');
+    @media screen and (min-width : 1024px) {
+        background: center / cover url('../../img/banner_locafoot_desktop.png');
     }
-    
+
 
     &-content {
         height: 120vh;
         margin: auto;
         width: 80%;
-        @include flexbox(space-evenly, center, column);
+        @include flexbox(center, center, column);
 
-        h1 {
+        h2 a {
             background: $secondary;
             font-size: $font-size-button;
             border-radius: $border-radius;
             padding: $button-padding;
             box-shadow: $box-shadow-card;
+
+            &:hover{
+            @media screen and (min-width: 1024px ) {
+                
+            }
+        }
         }
 
     }
 
     &-text {
-    background: linear-gradient(rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
-    border-radius: $border-radius;
-    color: $white;
-    backdrop-filter: blur(20px);
-    text-align: center;
-    font-size: 18px;
-    padding: $button-padding;
+        background: linear-gradient(rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));
+        border-radius: $border-radius;
+        color: $white;
+        backdrop-filter: blur(20px);
+        text-align: center;
+        font-size: 18px;
+        padding: 20px;
+        margin-bottom: 150px;
 
-    
-    /******* TABLETTE *********/
-    @media  screen and (min-width : 768px) and (max-width : 1024px) {
-       font-size: 24px;;
-    }
+        h1 {
+            padding: 10px;
+            font-size: 1.8em;
+        }
 
-    /******* DESKTOP *********/
-    @media screen and (min-width : 1024px) {
-        font-size: 28px;
-        width: 60%;
-    }
-      
+
+
+        /******* TABLETTE *********/
+        @media screen and (min-width : 768px) and (max-width : 1024px) {
+            font-size: 24px;
+
+            h1 {
+                font-size: 2em;
+            }
+
+        }
+
+        /******* DESKTOP *********/
+        @media screen and (min-width : 1024px) {
+            font-size: 28px;
+            width: 60%;
+        }
+
 
     }
 }
-

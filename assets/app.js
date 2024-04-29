@@ -23,5 +23,6 @@ import './img/LOGO_locafoot.png'
 import './img/banner_locafoot_desktop.png'
 import './img/banner_locafoot_tablette.png'
 import './img/banner_locafoot_mobile.png'
+import './img/test_logo.png'
 
 

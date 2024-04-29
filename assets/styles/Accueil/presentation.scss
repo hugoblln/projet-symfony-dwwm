@@ -1,15 +1,15 @@
 .presentation {
-    margin-top: 20vh;
-    @include flexbox(space-around,center,row, 2em 0);
+    margin-top: $section-spacing;
+    @include flexbox(space-around, center, row, 2em 0);
 
-    @media  screen and (min-width : 768px) and (max-width : 1024px) {
+    @media screen and (min-width : 768px) and (max-width : 1024px) {
         gap: 2em 2em;
-     }
+    }
 
-     @media  screen and (min-width : 1024px) {
+    @media screen and (min-width : 1024px) {
         gap: 2em 2em;
-     }
-    
+    }
+
 
     &-content {
         background: $primary;
@@ -20,37 +20,37 @@
         box-shadow: $box-shadow-card;
         max-width: 400px;
         height: 300px;
-;
-    @include flexbox(space-around, center, column);
+        ;
+        @include flexbox(space-around, center, column);
 
-    /****** TABLETTE ********/
-    @media  screen and (min-width : 768px) and (max-width : 1024px) {
-        max-width: 290px;
-        max-height: 250px;
-     }
+        /****** TABLETTE ********/
+        @media screen and (min-width : 768px) and (max-width : 1024px) {
+            max-width: 290px;
+            max-height: 250px;
+        }
 
-       /****** DESKTOP ********/
-    @media  screen and (min-width : 1024px)  {
-        max-width: 260px;
-        max-height: 230px;
-     }
+        /****** DESKTOP ********/
+        @media screen and (min-width : 1024px) {
+            max-width: 260px;
+            max-height: 230px;
+        }
 
-     @media  screen and (min-width : 1440px)  {
-        max-width: 360px;
-        max-height: 320px;
-        font-size: 18px;
-     }
+        @media screen and (min-width : 1440px) {
+            max-width: 360px;
+            max-height: 320px;
+            font-size: 18px;
+        }
 
 
-    h2 {
-        font-size: 22px;
-        letter-spacing: 3px;
+        h2 {
+            font-size: 22px;
+            letter-spacing: 3px;
 
-        @media  screen and (min-width : 1440px)  {
-            font-size: 26px;
-         }
-    
-    }
-    
+            @media screen and (min-width : 1440px) {
+                font-size: 26px;
+            }
+
+        }
+
     }
 }
