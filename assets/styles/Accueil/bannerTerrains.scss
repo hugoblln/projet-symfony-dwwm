@@ -26,15 +26,10 @@
             border-radius: $border-radius;
             padding: $button-padding;
             box-shadow: $box-shadow-card;
-
-            &:hover{
-            @media screen and (min-width: 1024px ) {
-                
-            }
         }
-        }
-
     }
+
+
 
     &-text {
         background: linear-gradient(rgb(255 255 255 / 20%), rgb(255 255 255 / 40%));

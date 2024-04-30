@@ -2,27 +2,66 @@
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain1.jpg') }}" height="300px" width="400px" alt="terrain1">
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
     </div>
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain2.jpg') }}" height="300px" width="400px" alt="terrain2">
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
+
     </div>
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain3.jpg') }}" height="300px" width="400px" alt="terrain3">
+
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
+
     </div>
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain4.jpg') }}" height="300px" width="400px" alt="terrain4">
+
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
+
     </div>
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain5.jpg') }}" height="300px" width="400px" alt="terrain5">
+
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
+
     </div>
     <div class="banque-image-img">
         <img src="{{ asset('/img/terrain6.jpg') }}" height="300px" width="400px" alt="terrain6">
+
         <h3>Lyon Centre</h3>
+        <div class="banque-image-img-hidden"><a href="">en savoir plus</a></div>
+
     </div>
 
+    <script>
+
+        let images = document.querySelectorAll('.banque-image img')
+
+        for (let image of images) {
+            image.addEventListener('mouseover', function () {
+
+                let hidden = this.nextElementSibling.nextElementSibling
+
+                hidden.classList.remove('banque-image-img-hidden')
+                hidden.classList.add('banque-image-img-visible')
+
+            })
+
+            image.addEventListener('mouseout', function () {
+
+                let hidden = this.nextElementSibling.nextElementSibling
+
+                hidden.classList.remove('banque-image-img-visible')
+                hidden.classList.add('banque-image-img-hidden')
+            })
+        }
+
+    </script>
 
 </section>

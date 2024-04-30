@@ -14,14 +14,6 @@
 
     &-img {
 
-
-        h3 {
-            position: relative;
-            left: 45px;
-            bottom: 50px;
-            color: $white;
-        }
-
         img {
             box-shadow: $box-shadow-card;
             border-radius: $border-radius;
@@ -51,6 +43,54 @@
             }
 
         }
+
+        h3 {
+            position: relative;
+            padding-left: 50px;
+            bottom: 50px;
+            color: $white;
+
+
+        }
+
+        &-hidden {
+            position: relative;
+            bottom: 60px;
+            text-align: center;
+            visibility: hidden;
+
+        }
+
+        &-visible {
+            background: $primary;
+            border-radius: 0 0 $border-radius $border-radius;
+            transition: 1s ease-in-out;
+            text-align: center;
+            position: relative;
+            bottom: 40px;
+            height: 60px;
+
+
+            @media screen and (min-width : 1880px) {
+                width: 90%;
+                margin: auto;
+            }
+
+
+
+
+            a {
+                background: $secondary;
+                border-radius: $border-radius;
+                padding: $button-padding;
+                box-shadow: $box-shadow-card;
+                transition: 0.5s ease-in-out;
+                transition-delay: 1s;
+
+
+            }
+        }
+
     }
 
 
