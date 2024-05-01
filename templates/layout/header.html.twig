@@ -1,64 +1,45 @@
 <header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="/"> <img src="{{ asset('/img/test_logo.png')}}" width="130px" alt=""></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
-				aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="collapsibleNavId">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link {{ app.request.get('_route') == 'app.index' ? 'active' : '' }}"
-							href="/">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link {{ app.request.get('_route') == 'app.terrains.index' ? 'active' : '' }}"
-							href="{{ path('app.terrains.index')}}">Terrains</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link {{ app.request.get('_route') == 'app.contact.index' ? 'active' : '' }}"
-							href="{{ path('app.contact.index')}}">Contact</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					{% if app.user %}
-					{% if 'ROLE_ADMIN' in app.user.roles %}
-					<div class="dropdown">
-						<button class="btn btn-light dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
-							data-bs-toggle="dropdown" aria-expanded="false">
-							Admin
-						</button>
-						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-							<li>
-								<a class="dropdown-item" href="{{ path('admin.users.index')}}">Users</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('admin.complexes.index')}}">Complexes</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('admin.terrains.index')}}">Terrains</a>
-							</li>
-						</ul>
-					</div>
-
-					{% endif %}
-					<li class="nav-item">
-						<a href="/logout" class="btn btn-danger">Déconnexion</a>
-					</li>
-					<li class="nav-item">
-						<a href=""><i class="bi bi-person-circle bg-white"></i></a>
-					</li>
-					{% else %}
-					<li class="nav-item me-2">
-						<a href="{{ path('app.register') }}" class="btn btn-outline-light">Inscription</a>
-					</li>
-					<li class="nav-item">
-						<a href="{{ path('app.login') }}" class="btn btn-light">Connexion</a>
-					</li>
-					{% endif %}
-				</ul>
-			</div>
+	<nav class="navbar">
+	<div class="navbar-logo"> <img src="{{ asset('/img/test_logo.png')}}" width="150px" alt="logo locafoot"></div>
+	<div class="navbar-links">
+	<div class="navbar-links-items">
+	<ul>
+		<li><a href="">Home</a></li>
+		<li><a href="">Terrains</a></li>
+		<li><a href="">Contact</a></li>
+		{% if app.user %}
+		<li><a href="">Mes reservations</a></li>
+		{% if 'ROLE_ADMIN' in app.user.roles %}
+		<li><a href="">Admin</a></li>
+		{% endif %}
+		{% endif %}
+		</ul>
 		</div>
+
+	<div class="navbar-links-button">
+	{% if app.user %}
+	<ul>
+	<li><a href="">Déconnexion</a></li>
+	<li><a href="">Profil</a></li>
+	</ul>
+	{% else %}
+		<ul>
+		<li><a href="">Inscription</a></li>
+		<li><a href="">Connexion</a></li>
+		</ul>
+	{% endif %}
+	</div>
+	</div>	
+		<svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24"><path fill="white" fill-rule="evenodd" d="M3.5 5a1 1 0 0 0 0 2h17a1 1 0 1 0 0-2zm-1 7a1 1 0 0 1 1-1h17a1 1 0 1 1 0 2h-17a1 1 0 0 1-1-1m0 6.001a1 1 0 0 1 1-1h17a1 1 0 1 1 0 2h-17a1 1 0 0 1-1-1" clip-rule="evenodd"/></svg>
+	
+	</div>
 	</nav>
 </header>
+<script>
+  		const menuHamburger = document.querySelector("svg")
+        const navLinks = document.querySelector(".navbar-links")
+ 
+        menuHamburger.addEventListener('click',()=>{
+        navLinks.classList.toggle('mobile-menu')
+        })
+</script>

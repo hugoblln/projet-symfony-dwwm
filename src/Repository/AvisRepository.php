@@ -42,7 +42,7 @@ class AvisRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAverage(int $terrainId): float
+    public function findAverage(int $terrainId): ?float
     {
         return $this->createQueryBuilder('a')
             ->select('AVG(a.note)')

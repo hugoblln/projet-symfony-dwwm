@@ -12,6 +12,15 @@
         gap: 2em 2em;
     }
 
+    &-presentation {
+        h2 {
+            margin-bottom: 5vh;
+        }
+        p {
+            text-align: justify;
+        }
+    }
+
     &-img {
 
         img {
@@ -55,20 +64,18 @@
 
         &-hidden {
             position: relative;
-            bottom: 60px;
+            bottom: 150px;
             text-align: center;
             visibility: hidden;
 
         }
 
         &-visible {
-            background: $primary;
-            border-radius: 0 0 $border-radius $border-radius;
             transition: 1s ease-in-out;
             text-align: center;
             position: relative;
-            bottom: 40px;
-            height: 60px;
+            bottom: 150px;
+            
 
 
             @media screen and (min-width : 1880px) {
@@ -84,10 +91,6 @@
                 border-radius: $border-radius;
                 padding: $button-padding;
                 box-shadow: $box-shadow-card;
-                transition: 0.5s ease-in-out;
-                transition-delay: 1s;
-
-
             }
         }
 

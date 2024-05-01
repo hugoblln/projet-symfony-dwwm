@@ -1,0 +1,46 @@
+.navbar {
+    background: $primary;
+
+    a {
+        color: $white;
+    }
+
+    svg  {
+
+        position: absolute;
+        right: 0px;
+
+        @media  screen and (min-width: 1000px) {
+            display: none;
+        }
+    }
+
+
+    &-links {
+        margin-left: -100%;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        background: $primary;
+        transition: all 0.5s ease;
+
+        @media  screen and (min-width: 1000px) {
+            margin-left: 0;
+            position: inherit;
+        }
+
+        &-items ul {
+            @include flexbox(center,center,column,2em);
+            margin: 50px
+        }
+
+        &-button ul {
+            @include flexbox(center,center,row,2em);
+            margin: 50px;
+        }
+    }
+}
+
+.mobile-menu {
+    margin-left: 0;
+}
