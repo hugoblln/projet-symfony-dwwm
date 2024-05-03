@@ -1,8 +1,28 @@
 .navbar {
     background: $primary;
 
+    @media screen and (min-width: 1000px) {
+        @include flexbox(space-between, center, row);
+        padding: 25px;
+        font-size: 16px;
+
+    }
+
     a {
         color: $white;
+
+
+        @media screen and (min-width: 1000px) {
+            font-size: 14px;
+
+        }
+
+        @media screen and (min-width: 1200px) {
+            font-size: 18px;
+
+        }
+
+
     }
 
     svg {
@@ -29,16 +49,46 @@
         @media screen and (min-width: 1000px) {
             margin-top: 0;
             position: inherit;
+            width: auto;
+
+            @include flexbox(center, center, row, 2em)
         }
 
         &-items ul {
             @include flexbox(center, center, column, 2em);
-            margin: 50px
+
+
+            @media screen and (min-width: 1000px) {
+                flex-direction: row;
+                ;
+            }
         }
 
         &-button ul {
             @include flexbox(center, center, row, 2em);
-            margin: 50px;
+
+
+            li:first-child a {
+                border: solid $secondary;
+                border-radius: $border-radius;
+                padding: $button-padding;
+
+                &:hover {
+                    background: $secondary;
+                }
+            }
+
+            li:last-child a {
+                background: $secondary;
+                border-radius: $border-radius;
+                padding: $button-padding;
+                border: solid $secondary;
+
+                &:hover {
+                    background: $primary;
+                }
+            }
+
         }
     }
 }
