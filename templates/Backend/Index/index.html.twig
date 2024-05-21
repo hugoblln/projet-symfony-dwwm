@@ -7,4 +7,8 @@ Accueil de l'administration
 
 {% block body %}
 <h1>Accueil de l'administration</h1>
+
+<a href="{{ path('admin.users.index')}}">Administration des utilisateurs</a>
+<a href="{{ path('admin.terrains.index')}}">Administration des terrains</a>
+<a href="{{ path('admin.complexes.index')}}">Administration des complexes</a>
 {% endblock %}

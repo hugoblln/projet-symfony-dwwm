@@ -10,7 +10,7 @@
 					{% if app.user %}
 					<li><a href="#">Mes reservations</a></li>
 					{% if 'ROLE_ADMIN' in app.user.roles %}
-					<li><a href="">Admin</a></li>
+					<li><a href="{{ path('admin.index')}}">Admin</a></li>
 					{% endif %}
 					{% endif %}
 				</ul>
