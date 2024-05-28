@@ -13,8 +13,8 @@
          </div>
          <div class="card-terrain-content-price">
             <h3>{{ terrain.tarifHeure }}€/H</h3>
-            {% if averageRatings[terrain.getId()] %}
-            <div class="star-ratings average" data-note="{{ averageRatings[terrain.getId()] }}"></div>
+            {% if terrain|terrain_average %}
+            <div class="star-ratings average" data-note="{{ terrain|terrain_average }}"></div>
             {% else %}
             <p class="average">0 avis</p>
             {% endif %}

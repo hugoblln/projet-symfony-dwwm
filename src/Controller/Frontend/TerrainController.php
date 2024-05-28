@@ -31,16 +31,16 @@ class TerrainController extends AbstractController
 
         $terrains = $this->terrainRepo->FindAllEnableByDate();
 
-        $averageRatings = [];
+        // $averageRatings = [];
 
-        foreach ($terrains as $terrain) {
-            $averageRatings[$terrain->getId()] = $this->avisRepo->findAverage($terrain->getId());
-        }
+        // foreach ($terrains as $terrain) {
+        //     $averageRatings[$terrain->getId()] = $this->avisRepo->findAverage($terrain->getId());
+        // }
 
 
         return $this->render('Frontend/terrains/index.html.twig', [
             'terrains' => $terrains,
-            'averageRatings' => $averageRatings
+            // 'averageRatings' => $averageRatings
         ]);
     }
 
