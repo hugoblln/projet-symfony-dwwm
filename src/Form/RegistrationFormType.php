@@ -20,28 +20,29 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('FirstName', TextType::class, [
-            'label' =>'prenom:',
-            'required' => false,
-          ])
-          ->add('LastName', TextType::class,[
-            'label' => 'nom:',
-            'required' => false
-           
-          ])
-          ->add('email', EmailType::class, [
-            'label' => 'Email:',
-            'required' => false,
-          ])
+            ->add('FirstName', TextType::class, [
+                'label' => 'prenom:',
+                'required' => false,
+            ])
+            ->add('LastName', TextType::class, [
+                'label' => 'nom:',
+                'required' => false
+
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email:',
+                'required' => false,
+            ])
             ->add('agreeTerms', CheckboxType::class, [
-                                'mapped' => false,
+                'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'vous devez accepter nos termes',
                     ]),
                 ],
             ])
-            ->add('password', RepeatedType::class,[
+            ->add('password', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'required' => false,
@@ -49,12 +50,16 @@ class RegistrationFormType extends AbstractType
                 'first_options' => [
                     'label' => 'Mot De Passe:',
                     'constraints' => [
-                        new Assert\NotBlank(),
+                        new Assert\NotBlank(
+                            [],
+                            message: 'veuillez renseigner un mot de passe'
+                        ),
                         new Assert\Length([
                             'max' => 4096
                         ]),
                         new Assert\Regex(
                             pattern: '/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/',
+                            message: 'le mot de passe doit contenir au minimum 1 lettre majuscule, minuscule, 1 chiffre et un caractère spécial'
                         )
                     ]
                 ],
@@ -62,22 +67,22 @@ class RegistrationFormType extends AbstractType
                     'label' => 'confirmation mot de passe:'
                 ],
                 'help' => 'le mot de passe doit contenir au minimum 1 lettre majuscule, minuscule, 1 chiffre et un caractère spécial'
-    
-              ]);
 
-            if($options['isAdmin']) {
-                $builder->remove('password')
-                        ->add('roles',ChoiceType::class,[
-                            'label' => 'roles:',
-                            'placeholder' => 'selectionnez un role',
-                            'choices' => [
-                                'Utilisateur' => 'ROLE_USER',
-                                'Administrateur' => 'ROLE_ADMIN'
-                            ],
-                            'expanded' => true,
-                            'multiple' => true
-                        ]);
-              }
+            ]);
+
+        if ($options['isAdmin']) {
+            $builder->remove('password')
+                ->add('roles', ChoiceType::class, [
+                    'label' => 'roles:',
+                    'placeholder' => 'selectionnez un role',
+                    'choices' => [
+                        'Utilisateur' => 'ROLE_USER',
+                        'Administrateur' => 'ROLE_ADMIN'
+                    ],
+                    'expanded' => true,
+                    'multiple' => true
+                ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,6 +1,12 @@
 .contact-form {
   background-color: $primary;
   position: relative;
+
+  li {
+    font-weight: bold;
+    color: rgb(253, 100, 100);
+  }
+
 }
 
 .circle {
@@ -191,7 +197,7 @@ textarea.input {
 }
 
 
-.form-front  {
+.form-front {
   border-radius: $border-radius;
   width: 60%;
   margin: auto;

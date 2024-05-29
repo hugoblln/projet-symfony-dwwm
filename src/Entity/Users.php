@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
 use App\Entity\Traits\DateTimeTrait;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert ;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
@@ -32,8 +32,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'l\'email ne peut pas faire moins de {{ limit }}',
         maxMessage: 'l\'email ne peut pas faire plus de {{ limit }}'
     )]
-    #[Assert\NotBlank()]
-    #[Assert\Email()]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un email'
+    )]
+    #[Assert\Email(
+        message: 'veuillez renseigner un email valide'
+    )]
     private ?string $email = null;
 
     /**
@@ -53,7 +58,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         max: 255,
         maxMessage: 'le prenom ne peut pas faire plus de {{ limit }}'
     )]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un prénom'
+    )]
     private ?string $FirstName = null;
 
     #[ORM\Column(length: 255)]
@@ -61,7 +69,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         max: 255,
         maxMessage: 'le nom ne peut pas faire plus de {{ limit }}'
     )]
-    #[Assert\NotBlank()]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un nom'
+    )]
     private ?string $LastName = null;
 
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'user')]
@@ -73,7 +84,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function fullName()
     {
-        return $this->getFirstName(). ' ' . $this->getLastName();
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
 
@@ -176,7 +187,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFullName(): string 
+    public function getFullName(): string
     {
         return "$this->LastName $this->FirstName";
     }

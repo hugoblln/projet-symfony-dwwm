@@ -41,7 +41,7 @@ class ContactController extends AbstractController
                 $mailer->send($email);
                 $this->addFlash('success', 'L\'email a bien été envoyé.');
 
-                return $this->redirectToRoute('app.contact');
+                return $this->redirectToRoute('app.contact.index');
             }
         } catch (TransportExceptionInterface $e) {
             $this->addFlash('error', 'Une erreur s\'est produite lors de l\'envoi de l\'email.');
