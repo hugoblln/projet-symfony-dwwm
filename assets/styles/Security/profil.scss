@@ -1,0 +1,59 @@
+.profil {
+
+    &-container {
+
+        border: solid 2px $primary;
+        box-shadow: $box-shadow-card;
+        border-radius: $border-radius;
+        padding: 30px 0;
+
+        table {
+            width: 100%;
+            text-align: center;
+
+            &-flex {
+                // @include flexbox(center, center, column)
+            }
+
+            tr {
+                td:first-child {
+                    text-align: right;
+                    font-weight: bold;
+                }
+
+                td {
+                    padding: 50px 0;
+
+                    @media screen and (min-width: 1024px) {
+                        font-size: 30px;
+                    }
+
+                }
+            }
+        }
+    }
+
+    &-mdp a {
+        background: $primary;
+        font-size: $font-size-button;
+        border-radius: $border-radius;
+        padding: $button-padding;
+        box-shadow: $box-shadow-card;
+        color: $white;
+    }
+
+    &-infos {
+
+        text-align: center;
+        margin-top: 50px;
+
+        a {
+            background: $secondary;
+            font-size: $font-size-button;
+            border-radius: $border-radius;
+            padding: $button-padding;
+            box-shadow: $box-shadow-card;
+        }
+    }
+
+}
