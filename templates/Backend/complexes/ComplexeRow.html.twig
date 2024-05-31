@@ -4,6 +4,8 @@
     <td scope="col">{{ complexe.nom}}</td>
     <td scope="col">{{ complexe.adresse}}</td>
     <td scope="col">{{ complexe.description}}</td>
+    <td scope="col">{{ complexe.HeureOuverture|date('H')}} H</td>
+    <td scope="col">{{ complexe.HeureFermeture|date('H')}} H</td>
     <td scope="col">{{ complexe.telephone }}</td>
     <td scope="col">{{ complexe.createdAt|date('Y-m-d H:i:s') }}</td>
     <td scope="col">{{ complexe.updatedAt|date('Y-m-d H:i:s') }}</td>

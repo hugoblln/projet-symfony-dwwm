@@ -64,6 +64,12 @@ class Complexes
     #[ORM\Column(length: 255)]
     private ?string $Ville = null;
 
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $HeureOuverture = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $HeureFermeture = null;
+
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
@@ -160,6 +166,30 @@ class Complexes
     public function setVille(?string $Ville): static
     {
         $this->Ville = $Ville;
+
+        return $this;
+    }
+
+    public function getHeureOuverture(): ?\DateTimeInterface
+    {
+        return $this->HeureOuverture;
+    }
+
+    public function setHeureOuverture(\DateTimeInterface $HeureOuverture): static
+    {
+        $this->HeureOuverture = $HeureOuverture;
+
+        return $this;
+    }
+
+    public function getHeureFermeture(): ?\DateTimeInterface
+    {
+        return $this->HeureFermeture;
+    }
+
+    public function setHeureFermeture(\DateTimeInterface $HeureFermeture): static
+    {
+        $this->HeureFermeture = $HeureFermeture;
 
         return $this;
     }
