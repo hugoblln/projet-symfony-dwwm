@@ -6,6 +6,8 @@
 parameters:
 
 services:
+    App\Command\GenerateCreneauxCommand:
+        tags: ['console.command']
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -24,5 +26,4 @@ services:
     # please note that last definitions always *replace* previous ones
 
     app.directory_namer.terrain:
-        class: App\Services\TerrainDirectoryNamer
-        public: true
+        class: App\Services\TerrainDirector
