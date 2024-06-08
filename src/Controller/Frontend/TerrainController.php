@@ -6,6 +6,7 @@ use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Entity\Terrains;
 use App\Repository\AvisRepository;
+use App\Repository\CreneauxRepository;
 use App\Repository\TerrainsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,8 @@ class TerrainController extends AbstractController
     public function __construct(
         private TerrainsRepository $terrainRepo,
         private EntityManagerInterface $em,
-        private AvisRepository $avisRepo
+        private AvisRepository $avisRepo,
+        private CreneauxRepository $creneauxRepo
     ) {
     }
 
@@ -99,11 +101,14 @@ class TerrainController extends AbstractController
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 
+        $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getId());
+
 
         return $this->render('Frontend/terrains/show.html.twig', [
             'terrain' => $terrain,
             'form' => $form,
-            'allAvis' => $allAvis
+            'allAvis' => $allAvis,
+            'creneaux' => $creneaux
         ]);
     }
 }

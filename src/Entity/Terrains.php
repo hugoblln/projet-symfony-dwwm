@@ -86,10 +86,14 @@ class Terrains
     #[Assert\NotBlank()]
     private ?float $tarifHeure = null;
 
+    #[ORM\OneToMany(targetEntity: Reservations::class, mappedBy: 'terrain')]
+    private Collection $reservations;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->avis = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
 
@@ -250,6 +254,36 @@ class Terrains
     public function setTarifHeure(float $tarifHeure): static
     {
         $this->tarifHeure = $tarifHeure;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservations>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservations $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setTerrain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservations $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getTerrain() === $this) {
+                $reservation->setTerrain(null);
+            }
+        }
 
         return $this;
     }

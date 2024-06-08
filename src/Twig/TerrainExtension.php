@@ -22,7 +22,7 @@ class TerrainExtension extends AbstractExtension
         ];
     }
 
-    public function getAverage(Terrains $terrain): float
+    public function getAverage(Terrains $terrain): float|null
     {
         return $this->avisRepo->findAverage($terrain->getId());
     }
