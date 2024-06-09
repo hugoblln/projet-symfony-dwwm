@@ -5,6 +5,8 @@ namespace App\Controller\Frontend;
 use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Entity\Terrains;
+use App\Entity\Reservations;
+use App\Form\ReservationsType;
 use App\Repository\AvisRepository;
 use App\Repository\CreneauxRepository;
 use App\Repository\TerrainsRepository;
@@ -101,14 +103,23 @@ class TerrainController extends AbstractController
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 
-        $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getId());
+        $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getComplexe()->getId());
+
+        $reservation = new Reservations;
+
+        $resForm = $this->createForm(ReservationsType::class, $reservation, [
+            'creneaux' => $creneaux
+        ]);
+
+        var_dump($creneaux);
 
 
         return $this->render('Frontend/terrains/show.html.twig', [
             'terrain' => $terrain,
             'form' => $form,
             'allAvis' => $allAvis,
-            'creneaux' => $creneaux
+            'creneaux' => $creneaux,
+            'resForm' =>$resForm
         ]);
     }
 }

@@ -1,7 +1,16 @@
 <article class="col-md-8">
-{{ terrain.description|sanitize_html }}
-{% for creneau in creneaux %}
-<div>{{ creneau["creneau"]}}</div>
+    {{ terrain.description|sanitize_html }}
+    {{ form_start(resForm) }}
+    {{ form_widget(resForm.date) }}
     
-{% endfor %}
+    <h3>Liste des créneaux</h3>
+    {% for creneau in creneaux %}
+        <div>
+            <input type="checkbox" id="creneau_{{ loop.index }}" name="creneaux[]" value="{{ creneau.creneau }}">
+            <label for="creneau_{{ loop.index }}">{{ creneau.creneau }}</label>
+        </div>
+    {% endfor %}
+    
+    <button type="submit">Réserver</button>
+    {{ form_end(resForm) }}
 </article>
