@@ -20,11 +20,18 @@ class ReservationsType extends AbstractType
     public function __construct(
         CreneauxRepository $creneauxRepo
     ) {
-
+        $this->creneauxRepo = $creneauxRepo;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $creneaux = $this->creneauxRepo->findCreneauxComplexe($options['complexe_id']);
+        $choices = [];
+        
+        foreach ($creneaux as $creneau) {
+            $choices[$creneau['creneau']] = $creneau['creneau'];
+        }
 
         
         $builder
@@ -32,6 +39,10 @@ class ReservationsType extends AbstractType
                  'widget' => 'choice',
                  'input'  => 'datetime_immutable',
                  'format' => 'yyyy-MM-dd',
+            ])
+            ->add('creneau',ChoiceType::class, [
+                'choices' => $choices,
+                'label' => 'Créneau',
             ]);
       
     }
@@ -40,7 +51,7 @@ class ReservationsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservations::class,
+            'complexe_id' => null, 
         ]);
-        $resolver->setRequired('creneaux');
     }
 }

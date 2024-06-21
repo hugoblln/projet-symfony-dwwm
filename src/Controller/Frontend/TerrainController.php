@@ -98,27 +98,30 @@ class TerrainController extends AbstractController
             $this->em->persist($avis);
             $this->em->flush();
 
+
             $this->addFlash('success', 'votre avis à été publié avec succés');
 
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 
-        $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getComplexe()->getId());
+        // $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getComplexe()->getId());
 
         $reservation = new Reservations;
 
         $resForm = $this->createForm(ReservationsType::class, $reservation, [
-            'creneaux' => $creneaux
+            'complexe_id' => $terrain->getComplexe()->getId()
         ]);
 
-        var_dump($creneaux);
+        
+        var_dump($resForm->getData());
+
 
 
         return $this->render('Frontend/terrains/show.html.twig', [
             'terrain' => $terrain,
             'form' => $form,
             'allAvis' => $allAvis,
-            'creneaux' => $creneaux,
+            // 'creneaux' => $creneaux,
             'resForm' =>$resForm
         ]);
     }
