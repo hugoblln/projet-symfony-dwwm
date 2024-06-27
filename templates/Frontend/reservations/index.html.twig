@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }}
+Mes réservations
+{% endblock %}
+
+{% block body %}
+<div>
+
+<h1>mes réservations</h1>
+{% for reservation in reservations %}
+
+<p>{{ reservation.terrain.complexe.adresse }}</p>
+<p> {{ reservation.creneau }}</p>
+<p> {{ reservation.date|date('l j F Y') }} </p>
+    
+{% endfor %}
+</div>
+{% endblock %}

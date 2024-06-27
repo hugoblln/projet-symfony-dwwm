@@ -5,6 +5,18 @@ terrains
 {{ parent() }}
 {% endblock %}
 
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+
 {% block body %}
 <section class="main-content">
     <h1 class="text-center">Terrains Disponibles</h1>

@@ -8,7 +8,7 @@
 					<li><a href="{{ path('app.terrains.index')}}">Terrains</a></li>
 					<li><a href="{{ path('app.contact.index')}}">Contact</a></li>
 					{% if app.user %}
-					<li><a href="#">Mes reservations</a></li>
+					<li><a href="{{ path('app.reservations') }}">Mes reservations</a></li>
 					{% if 'ROLE_ADMIN' in app.user.roles %}
 					<li><a href="{{ path('admin.index')}}">Admin</a></li>
 					{% endif %}
