@@ -73,6 +73,8 @@ class TerrainController extends AbstractController
     #[Route('/{slug}', '.show', methods: ['GET', 'POST'])]
     public function show(?Terrains $terrain, Request $request): Response
     {
+        $user = $this->getUser();
+        
         if (!$terrain) {
             $this->addFlash('error', 'aucune correspondace avec un terrain trouvé');
 
@@ -88,7 +90,7 @@ class TerrainController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->getUser();
+            
 
             $avis
                 ->setUser($user)
@@ -111,9 +113,25 @@ class TerrainController extends AbstractController
         $resForm = $this->createForm(ReservationsType::class, $reservation, [
             'complexe_id' => $terrain->getComplexe()->getId()
         ]);
+        $resForm->handleRequest($request);
+
+        if($resForm->isSubmitted() && $resForm->isValid()) {
+            
+            $reservation
+                    ->setUser($user)
+                    ->setTerrain($terrain);
+
+            $this->em->persist($reservation);
+            $this->em->flush();    
+
+            $this->addFlash('success', 'votre reservation est confirmé');
+
+            return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
+        }
+
 
         
-        var_dump($resForm->getData());
+
 
 
 

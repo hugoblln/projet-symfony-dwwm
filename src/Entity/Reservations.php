@@ -15,35 +15,33 @@ class Reservations
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
-    private ?Creneaux $creneau = null;
+    private ?string $creneau = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank()]
     private ?Terrains $terrain = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank()]
     private ?Users $user = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
     #[Assert\NotBlank()]
+    private ?\DateTimeInterface $date = null;
+    
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCreneau(): ?Creneaux
+    public function getCreneau(): ?string
     {
         return $this->creneau;
     }
 
-    public function setCreneau(?Creneaux $creneau): static
+    public function setCreneau(?string $creneau): static
     {
         $this->creneau = $creneau;
 

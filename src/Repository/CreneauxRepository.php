@@ -27,7 +27,7 @@ class CreneauxRepository extends ServiceEntityRepository
     $conn = $this->getEntityManager()->getConnection();
 
     $sql = '
-    SELECT CONCAT(c.debut,\' \', c.fin) as creneau
+    SELECT concat(debut , " - " , fin)  as creneau
     FROM creneaux c
     CROSS JOIN complexes co
     WHERE c.debut BETWEEN co.heure_ouverture AND co.heure_fermeture - 1

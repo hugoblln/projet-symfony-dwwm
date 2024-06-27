@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CreneauxRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,8 +20,7 @@ class Creneaux
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $fin = null;
 
-    #[ORM\OneToMany(targetEntity: Reservations::class, mappedBy: 'creneau')]
-    private Collection $reservations;
+   
 
     public function __construct()
     {
@@ -59,33 +56,5 @@ class Creneaux
         return $this;
     }
 
-    /**
-     * @return Collection<int, Reservations>
-     */
-    public function getReservations(): Collection
-    {
-        return $this->reservations;
-    }
 
-    public function addReservation(Reservations $reservation): static
-    {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations->add($reservation);
-            $reservation->setCreneau($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReservation(Reservations $reservation): static
-    {
-        if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
-            if ($reservation->getCreneau() === $this) {
-                $reservation->setCreneau(null);
-            }
-        }
-
-        return $this;
-    }
 }
