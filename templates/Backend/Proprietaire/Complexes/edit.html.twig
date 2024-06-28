@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-Creation d'un Complexe
+Modification d'un complexe
 {{ parent() }}
 {% endblock %}
 
@@ -21,7 +21,7 @@ Creation d'un Complexe
 
 {% block body %}
 <section class="container mt-4">
-<h1 class="text-center">Création d'un complexes</h1>
-{% include "./Backend/Complexes/_form.html.twig" with { labelButton: 'créer'} %}
+    <h1>Modification d'un complexe</h1>
+    {% include "/Backend/Proprietaire/Complexes/_form.html.twig" with { labelButton: 'Modifier' } %}
 </section>
 {% endblock %}

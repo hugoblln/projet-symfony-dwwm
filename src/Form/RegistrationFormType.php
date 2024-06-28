@@ -77,7 +77,8 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'selectionnez un role',
                     'choices' => [
                         'Utilisateur' => 'ROLE_USER',
-                        'Administrateur' => 'ROLE_ADMIN'
+                        'Administrateur' => 'ROLE_ADMIN',
+                        'Propriétaire' => 'ROLE_PROPRIETAIRE',
                     ],
                     'expanded' => true,
                     'multiple' => true

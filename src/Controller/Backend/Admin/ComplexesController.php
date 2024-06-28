@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backend;
+namespace App\Controller\Backend\Admin;
 
 use App\Entity\Complexes;
 use App\Form\ComplexesType;
@@ -25,31 +25,8 @@ class ComplexesController extends AbstractController
     public function index(): Response
     {
 
-        return $this->render('backend/complexes/index.html.twig', [
+        return $this->render('backend/Admin/complexes/index.html.twig', [
             'complexes' => $this->terrainRepo->findAllOrderByName()
-        ]);
-    }
-
-    #[Route('/create', '.create', methods: ['GET', 'POST'])]
-    public function create(Request $request): Response|RedirectedResponse
-    {
-        $complexe = new Complexes;
-
-        $form = $this->createForm(ComplexesType::class, $complexe);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($complexe);
-            $this->em->flush();
-
-            $this->addFlash('success', 'complexe créer avec succes');
-
-            return $this->redirectToRoute('admin.complexes.index');
-        }
-
-        return $this->render('Backend/Complexes/create.html.twig', [
-            'form' => $form
         ]);
     }
 
@@ -76,10 +53,11 @@ class ComplexesController extends AbstractController
             return $this->redirectToRoute('admin.complexes.index');
         }
 
-        return $this->render('Backend/Complexes/edit.html.twig', [
+        return $this->render('Backend/Admin/Complexes/edit.html.twig', [
             'form' => $form
         ]);
     }
+
 
     #[Route('/{id}/delete', '.delete', methods: ['POST'])]
     public function delete(Complexes $complexe, Request $request): Response|RedirectedResponse

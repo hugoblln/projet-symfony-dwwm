@@ -19,8 +19,7 @@ Administration des complexes
 
 {% block body %}
 <section class="container mt-4">
-    <h1 class="text-center">Administration des complexes</h1>
-    <a href="{{ path('admin.complexes.create') }}" class="btn btn-primary my-2">Creer un nouveau complexe</a>
+    <h1 class="text-center">Mes Complexes</h1>
     <div class="table-responsive">
         <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
             data-sort-order="asc" data-pagination="true" data-search="true" data-show-columns="true">
@@ -39,7 +38,7 @@ Administration des complexes
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                {% include "/Backend/complexes/ComplexeRow.html.twig" %}
+                {% include "/Backend/Admin/complexes/ComplexeRow.html.twig" %}
             </tbody>
         </table>
     </div>

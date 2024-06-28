@@ -29,6 +29,15 @@ class ComplexesRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function FindAllProprietaireComplexe($userId) : array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.Proprietaire = :userId')
+            ->setParameter('userId', $userId )
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Complexes[] Returns an array of Complexes objects
     //     */

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller\Backend;
+namespace App\Controller\Backend\Admin;
 
 use App\Entity\Users;
 use App\Form\UserType;
+use App\Form\RegistrationFormType;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,7 +42,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('admin.users.index');
         }
 
-        $form = $this->createForm(UserType::class, $user, ['isAdmin' => true]);
+        $form = $this->createForm(RegistrationFormType::class, $user, ['isAdmin' => true]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
