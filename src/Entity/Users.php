@@ -84,6 +84,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Reservations::class, mappedBy: 'user')]
     private Collection $reservations;
 
+    #[ORM\OneToMany(targetEntity: Complexes::class, mappedBy: 'Proprietaire')]
+    private Collection $complexes;
+
 
     public function fullName()
     {
@@ -95,6 +98,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->avis = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->complexes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -267,6 +271,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($reservation->getUser() === $this) {
                 $reservation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Complexes>
+     */
+    public function getComplexes(): Collection
+    {
+        return $this->complexes;
+    }
+
+    public function addComplex(Complexes $complex): static
+    {
+        if (!$this->complexes->contains($complex)) {
+            $this->complexes->add($complex);
+            $complex->setPropriétaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComplex(Complexes $complex): static
+    {
+        if ($this->complexes->removeElement($complex)) {
+            // set the owning side to null (unless already changed)
+            if ($complex->getPropriétaire() === $this) {
+                $complex->setPropriétaire(null);
             }
         }
 

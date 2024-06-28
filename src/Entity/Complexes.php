@@ -70,6 +70,11 @@ class Complexes
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $HeureFermeture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'complexes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?users $Proprietaire = null;
+
+
     public function __construct()
     {
         $this->terrains = new ArrayCollection();
@@ -193,4 +198,18 @@ class Complexes
 
         return $this;
     }
+
+    public function getProprietaire(): ?users
+    {
+        return $this->Propriétaire;
+    }
+
+    public function setProprietaire(?users $Propriétaire): static
+    {
+        $this->Propriétaire = $Propriétaire;
+
+        return $this;
+    }
+
+
 }
