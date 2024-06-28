@@ -37,6 +37,8 @@ security:
     # - - { path: ^/admin/complexe, roles: [ROLE_ADMIN, ROLE_COMPLEXE] }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: $/propriétaire, roles: ROLE_USER }
+        - { path: ^/reservations, roles: ROLE_USER }
 
 when@test:
     security:
