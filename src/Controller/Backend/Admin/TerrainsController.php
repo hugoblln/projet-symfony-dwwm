@@ -27,7 +27,7 @@ class TerrainsController extends AbstractController
     public function index(): Response
     {
         return $this->render('backend/Admin/terrains/index.html.twig', [
-            'terrains' => $this->terrainRepo->FindAllEnableByDate()
+            'terrains' => $this->terrainRepo->FindAll()
         ]);
     }
 
@@ -54,7 +54,7 @@ class TerrainsController extends AbstractController
             return $this->redirectToRoute('admin.terrains.index');
         }
 
-        return $this->render('Backend/Terrains/edit.html.twig',[
+        return $this->render('Backend/Admin/Terrains/edit.html.twig',[
             'form' => $form
         ]);
     }
