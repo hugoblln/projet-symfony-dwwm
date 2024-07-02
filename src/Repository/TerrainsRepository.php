@@ -52,6 +52,15 @@ class TerrainsRepository extends ServiceEntityRepository
     }
 
 
+    public function findByComplexe(int $complexeId): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.complexe = :complexeId')
+            ->setParameter('complexeId', $complexeId)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     //    /**
     //     * @return Terrains[] Returns an array of Terrains objects

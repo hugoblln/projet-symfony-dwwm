@@ -41,7 +41,7 @@ class ComplexesController extends AbstractController
         }
 
 
-        $form = $this->createForm(ComplexesType::class, $complexe);
+        $form = $this->createForm(ComplexesType::class, $complexe, ['isAdmin' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

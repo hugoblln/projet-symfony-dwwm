@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backend\Propriétaire;
+namespace App\Controller\Backend\Proprietaire;
 
 use App\Entity\Complexes;
 use App\Form\ComplexesType;

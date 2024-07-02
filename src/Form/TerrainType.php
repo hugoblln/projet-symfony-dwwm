@@ -61,10 +61,6 @@ class TerrainType extends AbstractType
                     'placeholder' => '50'
                 ]
             ])
-            ->add('enable', CheckboxType::class,[
-                'label' => 'actif',
-                'required' => false
-            ])
             ->add('complexe', EntityType::class, [
                 'class' => Complexes::class,
                 'placeholder' => 'sélectionner un complexe',
@@ -81,13 +77,20 @@ class TerrainType extends AbstractType
             'label' => 'saisissez un tarif par heure',
             'required' => false
            ]);
-    }
 
+           if($options['isAdmin']) {
+            $builder->add('enable', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Actif'
+            ]);
+        }
+    }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Terrains::class,
-            'sanitize_html' => true
+            'sanitize_html' => true,
+            'isAdmin' => false
         ]);
     }
 }

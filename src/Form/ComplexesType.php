@@ -40,18 +40,23 @@ class ComplexesType extends AbstractType
                 'required' => false,
                 'label' => 'numéro de téléphone'
             ])
-            ->add('enable', CheckboxType::class, [
+           
+            ->add('ville', TextType::class);
+
+            if($options['isAdmin']) {
+                $builder->add('enable', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Actif'
-            ])
-            ->add('ville', TextType::class);
+                ]);
+            }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Complexes::class,
-            'sanitize_html' => true
+            'sanitize_html' => true,
+            'isAdmin' => false
         ]);
     }
 }

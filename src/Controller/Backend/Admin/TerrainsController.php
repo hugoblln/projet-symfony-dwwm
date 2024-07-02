@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backend;
+namespace App\Controller\Backend\Admin;
 
 use App\Entity\Terrains;
 use App\Form\TerrainType;
@@ -26,33 +26,11 @@ class TerrainsController extends AbstractController
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('backend/terrains/index.html.twig', [
+        return $this->render('backend/Admin/terrains/index.html.twig', [
             'terrains' => $this->terrainRepo->FindAllEnableByDate()
         ]);
     }
 
-    #[Route('/create', '.create', methods: ['GET','POST'])]
-    public function create(Request $request): Response
-    {
-
-        $terrain = new Terrains;
-
-        $form = $this->createForm(TerrainType::class, $terrain);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($terrain);
-            $this->em->flush();
-
-            $this->addFlash('success', 'nouveau terrain créer avec succès');
-
-            return $this->redirectToRoute('admin.terrains.index');
-        }
-
-        return $this->render('Backend/Terrains/create.html.twig',[
-            'form' => $form
-        ]);
-    }
 
     #[Route('/{slug}/edit','.edit', methods:['GET','POST'])]
     public function edit(Terrains $terrain, Request $request) : Response
@@ -64,7 +42,7 @@ class TerrainsController extends AbstractController
             return$this->redirectToRoute('admin.terrains.index');
         }
 
-        $form = $this->createForm(TerrainType::class, $terrain);
+        $form = $this->createForm(TerrainType::class, $terrain, ['isAdmin' => true]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
