@@ -26,7 +26,7 @@ class ComplexesController extends AbstractController
     {
 
         return $this->render('backend/Admin/complexes/index.html.twig', [
-            'complexes' => $this->terrainRepo->findAllOrderByName()
+            'complexes' => $this->terrainRepo->findAllOrderByDate()
         ]);
     }
 
