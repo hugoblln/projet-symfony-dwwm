@@ -7,11 +7,6 @@
     <td scope="col">{{ avis.createdAt|date('Y-m-d H:i:s') }}</td>
     <td scope="col">{{ avis.updatedAt|date('Y-m-d H:i:s') }}</td>
     <td>{{ avis.enable ? 'Oui' : 'Non' }}</td>
-    <td scope="col">
-
-        <div class="d-flex gap-2">
-            {% include "/Backend/Avis/_deleteForm.html.twig" %}
-        </div>
-    </td>
+    
 </tr>
 {% endfor %}

@@ -21,10 +21,10 @@ class ComplexesRepository extends ServiceEntityRepository
         parent::__construct($registry, Complexes::class);
     }
 
-    public function FindAllOrderByName() : array
+    public function FindAllOrderByDate() : array
     {
         return $this->createQueryBuilder('c')
-            ->orderBy('c.nom', 'ASC')
+            ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }

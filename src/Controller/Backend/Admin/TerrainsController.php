@@ -3,6 +3,7 @@
 namespace App\Controller\Backend\Admin;
 
 use App\Entity\Terrains;
+use App\Entity\Complexes;
 use App\Form\TerrainType;
 use App\Repository\TerrainsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,16 @@ class TerrainsController extends AbstractController
         return $this->render('backend/Admin/terrains/index.html.twig', [
             'terrains' => $this->terrainRepo->FindAll()
         ]);
+    }
+
+    #[Route('/{nom}',name: '.complexe', methods:['GET'])]
+    public function indexByComplexe(Complexes $complexe): Response
+    {
+        return $this->render('backend/Admin/Terrains/index.html.twig', [
+            'terrains' => $this->terrainRepo->findByComplexe($complexe->getId()),
+            'complexe' => $complexe
+        ]);
+
     }
 
 

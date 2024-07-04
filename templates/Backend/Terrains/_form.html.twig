@@ -3,7 +3,9 @@
 {{form_row(form.complexe, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
 {{form_row(form.imageFile, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
 {{form_row(form.description, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{% if app.request.pathInfo matches '{/admin}' %}
 {{form_row(form.enable)}}
+{% endif %}
 {{form_row(form.typeTerrain, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
 {{form_row(form.taille, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
 {{form_row(form.tarifHeure, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}

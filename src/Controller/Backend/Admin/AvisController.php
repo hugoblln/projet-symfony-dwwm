@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backend;
+namespace App\Controller\Backend\Admin;
 
 use App\Entity\Avis;
 use App\Entity\Terrains;
@@ -26,8 +26,10 @@ class AvisController extends AbstractController
 
         $allAvis = $this->avisRepo->findAllByDate($terrain->getId());
 
-        return $this->render('Backend/Avis/index.html.twig',[
-            'allAvis' => $allAvis
+        return $this->render('Backend/Admin/Avis/index.html.twig',[
+            'allAvis' => $allAvis,
+            'terrain' => $terrain,
+            'complexe' => $terrain->getComplexe()
         ]);
     }
 

@@ -27,7 +27,7 @@ class TerrainsController extends AbstractController
     #[Route('/{nom}', name: '.index', methods: ['GET'])]
     public function index(Complexes $complexe): Response
     {
-        return $this->render('backend//Proprietaire/terrains/index.html.twig', [
+        return $this->render('backend/Proprietaire/terrains/index.html.twig', [
             'terrains' => $this->terrainRepo->findByComplexe($complexe->getId()),
             'complexe' => $complexe
         ]);
@@ -48,10 +48,10 @@ class TerrainsController extends AbstractController
 
             $this->addFlash('success', 'nouveau terrain créer avec succès');
 
-            return $this->redirectToRoute('admin.terrains.index');
+            return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom()]);
         }
 
-        return $this->render('Backend/Terrains/create.html.twig',[
+        return $this->render('Backend/Proprietaire/Terrains/create.html.twig',[
             'form' => $form
         ]);
     }
@@ -63,7 +63,7 @@ class TerrainsController extends AbstractController
         if(!$terrain) {
             $this->addFlash('error','terrain non trouvé');
 
-            return$this->redirectToRoute('admin.terrains.index');
+            return$this->redirectToRoute('proprietaire.terrains.index');
         }
 
         $form = $this->createForm(TerrainType::class, $terrain);
@@ -75,10 +75,10 @@ class TerrainsController extends AbstractController
 
             $this->addFlash('success','terrain modifié avec succes');
 
-            return $this->redirectToRoute('admin.terrains.index');
+            return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom() ]);
         }
 
-        return $this->render('Backend/Terrains/edit.html.twig',[
+        return $this->render('Backend/Proprietaire/Terrains/edit.html.twig',[
             'form' => $form
         ]);
     }

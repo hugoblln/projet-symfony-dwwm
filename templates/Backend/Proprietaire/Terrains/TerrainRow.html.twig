@@ -17,13 +17,13 @@
     <td>{{ terrain.enable ? 'Oui' : 'Non' }}</td>
     <td scope='col'>
         <a href="{{ path('admin.avis.index', {slug:terrain.slug})}}" class="btn btn-primary">
-            Gérer les avis
+            voir les avis
         </a>
     </td>
     <td scope="col">
 
         <div class="d-flex gap-2">
-            <a href="{{path('admin.terrains.edit', {slug:terrain.slug})}}" class="btn btn-warning">
+            <a href="{{path('proprietaire.terrains.edit', {slug:terrain.slug})}}" class="btn btn-warning">
                 <i class="bi bi-pencil-square"></i>
                 Modifier</a>
         

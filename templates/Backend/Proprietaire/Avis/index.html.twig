@@ -18,8 +18,8 @@ Administration des avis
 {% block body %}
 <section class="container mt-2">
     <section class="container mt-2">
-        <h1 class="text-center">Administration des users</h1>
-        <a href="{{ path('app.register') }}" class="btn btn-primary my-2">Créer un utilisateur</a>
+        <h1 class="text-center">Administration des avis pour le terrain {{ terrain.nom}} du {{ complexe.nom }}</h1>
+        <a href="{{ path('proprietaire.terrains.index', {nom:complexe.nom}) }}" class="btn btn-primary my-2">retour aux terrains</a>
         <div class="table-responsive">
             <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
                 data-sort-order="asc" data-pagination="true" data-search="true" data-show-columns="true">
@@ -32,11 +32,11 @@ Administration des avis
                         <th scope="col" data-field="createdAt" data-sortable="true">date de création</th>
                         <th scope="col" data-field="updatedAt" data-sortable="true">date de dernière maj</th>
                          <th scope="col" data-field="enable" data-sortable="true">Actif</th>
-                        <th scope="col">Actions</th>
+                       
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    {% include "/Backend/Avis/AvisRow.html.twig" %}
+                    {% include "/Backend/Proprietaire/Avis/AvisRow.html.twig" %}
                 </tbody>
             </table>
         </div>

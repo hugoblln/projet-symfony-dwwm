@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+{{ parent() }}
+Accueil de l'administration
+{% endblock %}
+
+{% block body %}
+<h1>Accueil de l'administration</h1>
+<div class="d-flex gap-3 justify-content-center">
+<a class="btn btn-secondary" href="{{ path('admin.users.index')}}">Administration des utilisateurs</a>
+<a class="btn btn-secondary" href="{{ path('admin.terrains.index')}}">Administration des terrains</a>
+<a class="btn btn-secondary" href="{{ path('admin.complexes.index')}}">Administration des complexes</a>
+</div>
+{% endblock %}

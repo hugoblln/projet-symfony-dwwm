@@ -201,12 +201,12 @@ class Complexes
 
     public function getProprietaire(): ?users
     {
-        return $this->Propriétaire;
+        return $this->Proprietaire;
     }
 
     public function setProprietaire(?users $Propriétaire): static
     {
-        $this->Propriétaire = $Propriétaire;
+        $this->Proprietaire = $Propriétaire;
 
         return $this;
     }
