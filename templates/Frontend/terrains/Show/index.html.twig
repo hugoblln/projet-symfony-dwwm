@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}
+{{ terrain.nom }}
+{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+{% block body %}
+<section class="main-content">
+
+{% include "Frontend/terrains/Show/_presentation.html.twig" %}
+
+{% include "Frontend/terrains/Show/_reservations.html.twig" %}
+
+{% include "Frontend/terrains/Show/addAvis.html.twig" %}
+
+
+{% include "Frontend/terrains/Show/_listAvis.html.twig" %}
+
+
+{% endblock %}

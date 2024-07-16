@@ -55,6 +55,7 @@
         }
 
         &-items ul {
+            margin: 30px;
             @include flexbox(center, center, column, 2em);
 
 
@@ -66,7 +67,7 @@
 
         &-button ul {
             @include flexbox(center, center, row, 2em);
-
+            margin: 30px;
 
             li:first-child a {
                 border: solid $secondary;

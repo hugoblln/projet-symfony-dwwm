@@ -1,0 +1,8 @@
+<section class="show-reservations-avis">
+{% if app.user %}
+<h2>Donnez votre avis</h2>
+{% include "Frontend/terrains/Show/_avisForm.html.twig" %}
+{% else %}
+ {% include "Frontend/terrains/Show/_avisMessage.html.twig" %}
+ {% endif %}
+</section>

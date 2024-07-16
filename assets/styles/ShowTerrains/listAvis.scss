@@ -1,12 +1,7 @@
-.avis {
-    @include flexbox(center, center, row);
-    background: $primary;
-    box-shadow: $box-shadow-card;
-    color: $white;
 
-}
 
 .list-content {
+   
     width: 100%;
     margin: auto;
     text-align: center;

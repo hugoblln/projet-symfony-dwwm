@@ -52,6 +52,16 @@ class AvisRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    public function findTotalAvis(int $terrainId): ?float
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a.note)')
+            ->andWhere('a.terrain = :id')
+            ->setParameter('id', $terrainId)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 
     //    /**
     //     * @return Avis[] Returns an array of Avis objects

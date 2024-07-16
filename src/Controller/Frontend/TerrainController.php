@@ -106,7 +106,7 @@ class TerrainController extends AbstractController
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 
-        // $creneaux = $this->creneauxRepo->findCreneauxComplexe($terrain->getComplexe()->getId());
+    
 
         $reservation = new Reservations;
 
@@ -130,17 +130,15 @@ class TerrainController extends AbstractController
         }
 
 
-        
 
 
 
-
-        return $this->render('Frontend/terrains/show.html.twig', [
+        return $this->render('Frontend/terrains/Show/index.html.twig', [
             'terrain' => $terrain,
             'form' => $form,
             'allAvis' => $allAvis,
-            // 'creneaux' => $creneaux,
-            'resForm' =>$resForm
+            'resForm' =>$resForm,
+            'totalAvis' => $this->avisRepo->findTotalAvis($terrain->getId())
         ]);
     }
 }
