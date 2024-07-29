@@ -2,7 +2,7 @@
 
 namespace App\Filter;
 
-class ProductFilter
+class TerrainFilter
 {
     public function __construct(
         private int $page = 1,
@@ -11,7 +11,7 @@ class ProductFilter
         private ?int $max = null,
         private ?string $sort = null,
         private string $order = 'ASC',
-        private array $tags = [],
+        
     ){
 
     }
@@ -136,23 +136,5 @@ class ProductFilter
                 return $this;
         }
 
-        /**
-         * Get the value of tags
-         */ 
-        public function getTags()
-        {
-                return $this->tags;
-        }
-
-        /**
-         * Set the value of tags
-         *
-         * @return  self
-         */ 
-        public function setTags($tags)
-        {
-                $this->tags = $tags;
-
-                return $this;
-        }
+ 
 }
