@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Terrains;
 use App\Form\TerrainType;
 use App\Filter\TerrainFilter;
 use Symfony\Component\Form\AbstractType;
@@ -37,6 +38,10 @@ class TerrainFilterType extends AbstractType
                 ],
                 'required' => false 
             ])
+            // ->add('typeTerrain', EntityType::class, [
+            //     'class' => Terrains::class,
+            //     'choice_label' => 'typeTerrain'
+            // ])
             
         ;
     }
@@ -49,4 +54,9 @@ class TerrainFilterType extends AbstractType
             'csrf_protection' => false
         ]);
     }
-}
+
+    public function getBlockPrefix(): string
+    {
+        return '';
+    }
+} 

@@ -6,7 +6,9 @@ use App\Entity\Avis;
 use App\Form\AvisType;
 use App\Entity\Terrains;
 use App\Entity\Reservations;
+use App\Filter\TerrainFilter;
 use App\Form\ReservationsType;
+use App\Form\TerrainFilterType;
 use App\Repository\AvisRepository;
 use App\Repository\CreneauxRepository;
 use App\Repository\TerrainsRepository;
@@ -30,21 +32,25 @@ class TerrainController extends AbstractController
 
 
     #[Route('', '.index', methods: ['GET'])]
-    public function index(): Response
+    public function index(Request $request): Response
     {
 
         $terrains = $this->terrainRepo->FindAllEnableByDate();
 
-        // $averageRatings = [];
+     
+        $terrainFilter = (new TerrainFilter)
+            ->setPage($request->query->get('page', 1));
 
-        // foreach ($terrains as $terrain) {
-        //     $averageRatings[$terrain->getId()] = $this->avisRepo->findAverage($terrain->getId());
-        // }
+        $form = $this->createForm(TerrainFilterType::class, $terrainFilter );
+        $form->handleRequest($request);
+
+        $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
 
 
         return $this->render('Frontend/terrains/index.html.twig', [
             'terrains' => $terrains,
-            // 'averageRatings' => $averageRatings
+            'form' => $form
+            
         ]);
     }
 

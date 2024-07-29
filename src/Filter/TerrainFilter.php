@@ -10,6 +10,7 @@ class TerrainFilter
         private ?int $min = null,
         private ?int $max = null,
         private ?string $sort = null,
+        private ?array $typeTerrain = [],
         private string $order = 'ASC',
         
     ){
@@ -137,4 +138,24 @@ class TerrainFilter
         }
 
  
+
+        // /**
+        //  * Get the value of typeTerrain
+        //  */ 
+        // public function getTypeTerrain()
+        // {
+        //         return $this->typeTerrain;
+        // }
+
+        // /**
+        //  * Set the value of typeTerrain
+        //  *
+        //  * @return  self
+        //  */ 
+        // public function setTypeTerrain($typeTerrain)
+        // {
+        //         $this->typeTerrain = $typeTerrain;
+
+        //         return $this;
+        // }
 }
