@@ -30,7 +30,7 @@ class ReservationsType extends AbstractType
 
         $creneaux = $this->creneauxRepo->findCreneauxComplexe($options['complexe_id']);
         $choices = [];
-        
+
         foreach ($creneaux as $creneau) {
             $choices[$creneau['creneau']] = $creneau['creneau'];
         }
@@ -38,17 +38,17 @@ class ReservationsType extends AbstractType
         $today = new \DateTimeImmutable();
         $oneMonthLater = $today->modify('+1 month');
 
-        
+
         $builder
             ->add('date', DateType::class, [
                 'label' => 'choisissez une date',
-                 'widget' => 'choice',
-                 'input'  => 'datetime_immutable',
-                 'format' => 'dd-MM-yyyy',
-                 'data' => new \DateTimeImmutable(),
-                 'years' => [date('Y')], //limite la selection a l'année en cours
-                 'months' => range($today->format('m'), $oneMonthLater->format('m')), // limite la selection au mois actuel et m+1
-                 'constraints' => [
+                'widget' => 'choice',
+                'input'  => 'datetime_immutable',
+                'format' => 'dd-MM-yyyy',
+                'data' => new \DateTimeImmutable(),
+                'years' => [date('Y')], //limite la selection a l'année en cours
+                'months' => range($today->format('m'), $oneMonthLater->format('m')), // limite la selection au mois actuel et m+1
+                'constraints' => [
                     new GreaterThanOrEqual([ // vérifie que la date n'est pas dans le passé
                         'value' => $today,
                         'message' => 'La date doit être aujourd\'hui ou dans le futur.'
@@ -57,20 +57,19 @@ class ReservationsType extends AbstractType
                         'value' => $oneMonthLater,
                         'message' => 'La date ne peut pas être à plus d\'un mois dans le futur.'
                     ])
-                 ]
+                ]
             ])
-            ->add('creneau',ChoiceType::class, [
+            ->add('creneau', ChoiceType::class, [
                 'choices' => $choices,
                 'label' => 'choisissez le créneau qui vous convient',
             ]);
-      
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Reservations::class,
-            'complexe_id' => null, 
+            'complexe_id' => null,
         ]);
     }
 }

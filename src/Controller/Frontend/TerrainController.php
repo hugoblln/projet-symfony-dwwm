@@ -37,20 +37,20 @@ class TerrainController extends AbstractController
 
         $terrains = $this->terrainRepo->FindAllEnableByDate();
 
-     
-        $terrainFilter = (new TerrainFilter)
-            ->setPage($request->query->get('page', 1));
 
-        $form = $this->createForm(TerrainFilterType::class, $terrainFilter );
-        $form->handleRequest($request);
+        // $terrainFilter = (new TerrainFilter)
+        //     ->setPage($request->query->get('page', 1));
 
-        $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
+        // $form = $this->createForm(TerrainFilterType::class, $terrainFilter );
+        // $form->handleRequest($request);
+
+        // $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
 
 
         return $this->render('Frontend/terrains/index.html.twig', [
             'terrains' => $terrains,
-            'form' => $form
-            
+            // 'form' => $form
+
         ]);
     }
 
@@ -80,7 +80,7 @@ class TerrainController extends AbstractController
     public function show(?Terrains $terrain, Request $request): Response
     {
         $user = $this->getUser();
-        
+
         if (!$terrain) {
             $this->addFlash('error', 'aucune correspondace avec un terrain trouvé');
 
@@ -96,7 +96,7 @@ class TerrainController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            
+
 
             $avis
                 ->setUser($user)
@@ -112,7 +112,7 @@ class TerrainController extends AbstractController
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 
-    
+
 
         $reservation = new Reservations;
 
@@ -121,14 +121,14 @@ class TerrainController extends AbstractController
         ]);
         $resForm->handleRequest($request);
 
-        if($resForm->isSubmitted() && $resForm->isValid()) {
-            
+        if ($resForm->isSubmitted() && $resForm->isValid()) {
+
             $reservation
-                    ->setUser($user)
-                    ->setTerrain($terrain);
+                ->setUser($user)
+                ->setTerrain($terrain);
 
             $this->em->persist($reservation);
-            $this->em->flush();    
+            $this->em->flush();
 
             $this->addFlash('success', 'votre reservation est confirmé');
 
@@ -143,7 +143,7 @@ class TerrainController extends AbstractController
             'terrain' => $terrain,
             'form' => $form,
             'allAvis' => $allAvis,
-            'resForm' =>$resForm,
+            'resForm' => $resForm,
             'totalAvis' => $this->avisRepo->findTotalAvis($terrain->getId())
         ]);
     }

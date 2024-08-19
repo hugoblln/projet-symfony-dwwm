@@ -1,29 +1,31 @@
 <header>
 	<nav class="navbar">
-		<div class="navbar-logo"> <a href="/"><img src="{{ asset('/img/test_logo.png')}}" width="150px" alt="logo locafoot"></a></div>
+		<div class="navbar-logo"> <a href="/"><img src="{{ asset('/img/test_logo.png')}}" width="150px"
+					alt="logo locafoot"></a></div>
 		<div class="navbar-links">
 			<div class="navbar-links-items">
-			<ul>
-    <li><a href="{{ path('app.index') }}">Home</a></li>
-    <li><a href="{{ path('app.terrains.index') }}">Terrains</a></li>
-    <li><a href="{{ path('app.contact.index') }}">Contact</a></li>
-    {% if app.user %}
-        {% if 'ROLE_USER' in app.user.roles and 'ROLE_PROPRIETAIRE' not in app.user.roles and 'ROLE_ADMIN' not in app.user.roles %}
-            <li><a href="{{ path('app.reservations') }}">Mes réservations</a></li>
-        {% elseif 'ROLE_ADMIN' in app.user.roles %}
-            <li><a href="{{ path('admin.index') }}">Admin</a></li>
-        {% elseif 'ROLE_PROPRIETAIRE' in app.user.roles %}
-            <li><a href="{{ path('proprietaire.complexes.index') }}">Administration</a></li>
-        {% endif %}
-    {% endif %}
-</ul>
+				<ul>
+					<li><a href="{{ path('app.index') }}">Home</a></li>
+					<li><a href="{{ path('app.terrains.index') }}">Terrains</a></li>
+					<li><a href="{{ path('app.contact.index') }}">Contact</a></li>
+					{% if app.user %}
+					{% if 'ROLE_USER' in app.user.roles and 'ROLE_PROPRIETAIRE' not in app.user.roles and 'ROLE_ADMIN'
+					not in app.user.roles %}
+					<li><a href="{{ path('app.reservations') }}">Mes réservations</a></li>
+					{% elseif 'ROLE_ADMIN' in app.user.roles %}
+					<li><a href="{{ path('admin.index') }}">Admin</a></li>
+					{% elseif 'ROLE_PROPRIETAIRE' in app.user.roles %}
+					<li><a href="{{ path('proprietaire.complexes.index') }}">Administration</a></li>
+					{% endif %}
+					{% endif %}
+				</ul>
 			</div>
 
 			<div class="navbar-links-button">
 				{% if app.user %}
 				<ul>
 					<li><a href="/logout">Déconnexion</a></li>
-					<li><a href="#">Profil</a></li>
+					<li><a href="{{ path('app.profile') }}">Profil</a></li>
 				</ul>
 				{% else %}
 				<ul>

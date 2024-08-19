@@ -11,26 +11,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('proprietaire/avis','admin.avis')]
+#[Route('proprietaire/avis', 'proprietaire.avis')]
 class AvisController extends AbstractController
 {
     public function __construct(
         private AvisRepository $avisRepo,
         private EntityManagerInterface $em
-    ){
+    ) {
     }
 
 
-    #[Route('/{slug}','.index',methods:['GET'])]
-    public function index(Terrains $terrain) : Response {
+    #[Route('/{slug}', '.index', methods: ['GET'])]
+    public function index(Terrains $terrain): Response
+    {
 
         $allAvis = $this->avisRepo->findAllByDate($terrain->getId());
 
-        return $this->render('Backend/Proprietaire/Avis/index.html.twig',[
+        return $this->render('Backend/Proprietaire/Avis/index.html.twig', [
             'allAvis' => $allAvis,
             'terrain' => $terrain,
             'complexe' => $terrain->getComplexe()
         ]);
     }
-
 }

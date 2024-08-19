@@ -7,7 +7,12 @@
 {% block body %}
 <h1>Mon Profil</h1>
 <section class="main-content">
-    {% include "Security/_cardProfil.html.twig" %}
+    {# {% include "Security/_cardProfil.html.twig" %} #}
+    {{form_start(form)}}
+
+    {{form_widget(form)}}
+    <input type="submit" value="Modifier">
+    {{form_end(form)}}
 </section>
 
 {% endblock %}

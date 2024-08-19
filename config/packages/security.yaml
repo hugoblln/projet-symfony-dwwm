@@ -40,7 +40,7 @@ security:
         - { path: ^/proprietaire, roles: ROLE_PROPRIETAIRE }
         - { path: ^/reservations, roles: ROLE_USER }
 
-when@test:
+when@test: 
     security:
         password_hashers:
             # By default, password hashers are resource intensive and take time. This is
