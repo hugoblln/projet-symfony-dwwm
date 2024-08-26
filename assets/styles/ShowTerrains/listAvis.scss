@@ -1,17 +1,27 @@
-
-
 .list-content {
-   
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    border: dashed 1px $white;
 
-    @media screen and (min-width:768px) {
-        width: 50%;
+    margin-top: 10vh;
+
+    @include flexbox(center, center, row, 2em 0);
+
+    &-card {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        background: $primary;
+        border-radius: $border-radius;
+        color: $white;
+
+        @media screen and (min-width:768px) {
+            width: 30%;
+        }
+
+        &-avis {
+            @include flexbox(space-evenly, center, row);
+            padding: 10px;
+        }
     }
 
-    &-avis {
-        border-bottom: solid 2px $primary;
-    }
+
+
 }

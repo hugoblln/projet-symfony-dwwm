@@ -1,14 +1,18 @@
 .show-reservations-avis {
 
-    margin-top: 10vh;
+    margin-top: 20vh;
     background: $primary;
     border-radius: $border-radius;
-    width: 40%;
+    width: 90%;
     padding: 10px;
+
+    @media screen and (min-width:768px) {
+        width: 40%;
+    }
 
     &-form {
         border-radius: $border-radius;
-    
+
     }
 
     h2 {
@@ -18,5 +22,5 @@
         border-radius: $border-radius;
         color: $white;
     }
-   
+
 }
