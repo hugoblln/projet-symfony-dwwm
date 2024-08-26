@@ -199,7 +199,13 @@ textarea.input {
 
 .form-front {
   border-radius: $border-radius;
-  width: 60%;
+  width: 100%;
   margin: auto;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .form-front {
+    width: 60%;
+  }
 }

@@ -18,8 +18,7 @@ class SecurityController extends AbstractController
 
     public function __construct(
         private EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
     #[Route('/login', 'app.login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $auth): Response
     {
@@ -48,7 +47,7 @@ class SecurityController extends AbstractController
         }
 
 
-        return $this->render('Security/profil.html.twig', [
+        return $this->render('Security/Profil/profil.html.twig', [
             'form' => $form,
             'user' => $user
         ]);
