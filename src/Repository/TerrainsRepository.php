@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Terrains;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Filter\TerrainFilter;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Terrains>
@@ -21,7 +22,7 @@ class TerrainsRepository extends ServiceEntityRepository
         parent::__construct($registry, Terrains::class);
     }
 
-    public function FindAllOrderByName() : array
+    public function FindAllOrderByName(): array
     {
         return $this->createQueryBuilder('t')
             ->orderBy('t.nom', 'ASC')
@@ -29,7 +30,7 @@ class TerrainsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function FindAllEnableByDate() : array
+    public function FindAllEnableByDate(): array
     {
         return $this->createQueryBuilder('t')
             ->select('t,c')
@@ -59,6 +60,45 @@ class TerrainsRepository extends ServiceEntityRepository
             ->setParameter('complexeId', $complexeId)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByFilter(TerrainFilter $filter)
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->join('t.complexe', 'c') // Joindre l'entité Complexe avec l'alias 'c'
+            ->addSelect('c'); // Optionnel: sélectionner également les données du complexe
+
+
+        if ($filter->getQuery()) {
+            $qb->andWhere('t.nom LIKE :query OR t.description LIKE :query')
+                ->setParameter('query', '%' . $filter->getQuery() . '%');
+        }
+
+        if ($filter->getMin()) {
+            $qb->andWhere('t.tarifHeure >= :min')
+                ->setParameter('min', $filter->getMin());
+        }
+
+        if ($filter->getMax()) {
+            $qb->andWhere('t.tarifHeure <= :max')
+                ->setParameter('max', $filter->getMax());
+        }
+
+        if ($filter->getVille()) {
+            $qb->andWhere('c.Ville = :ville')
+                ->setParameter('ville', $filter->getVille());
+        }
+
+        if ($filter->getTypeTerrain()) {
+            $qb->andWhere('t.typeTerrain IN (:typeTerrain)')
+                ->setParameter('typeTerrain', $filter->getTypeTerrain());
+        }
+
+        if ($filter->getSort()) {
+            $qb->orderBy('t.' . $filter->getSort(), $filter->getOrder());
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
 

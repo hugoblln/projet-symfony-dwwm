@@ -27,12 +27,11 @@ class TerrainController extends AbstractController
         private EntityManagerInterface $em,
         private AvisRepository $avisRepo,
         private CreneauxRepository $creneauxRepo
-    ) {
-    }
+    ) {}
 
 
     #[Route('', '.index', methods: ['GET'])]
-    public function index(Request $request): Response
+    public function index(Request $request, TerrainsRepository $terrainRepository): Response
     {
 
         $terrains = $this->terrainRepo->FindAllEnableByDate();
@@ -46,35 +45,20 @@ class TerrainController extends AbstractController
 
         // $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
 
+        $filter = new TerrainFilter();
+        $form = $this->createForm(TerrainFilterType::class, $filter);
+        $form->handleRequest($request);
+
+        $terrains = $terrainRepository->findByFilter($filter);
+
 
         return $this->render('Frontend/terrains/index.html.twig', [
             'terrains' => $terrains,
             // 'form' => $form
+            'form' => $form->createView(),
 
         ]);
     }
-
-    #[Route('/ville/{ville}', '.ville', methods: ['GET'])]
-    public function indexByVille(string $ville): Response
-    {
-
-        $terrains = $this->terrainRepo->findByVille($ville);
-
-
-        $message = "";
-
-        if (empty($terrains)) {
-            $message = 'Aucun terrain disponible pour cette ville';
-        }
-
-        return $this->render('Frontend/terrains/indexByVille.html.twig', [
-            'message' => $message,
-            'ville' => $ville,
-            'terrains' => $terrains,
-
-        ]);
-    }
-
 
     #[Route('/{slug}', '.show', methods: ['GET', 'POST'])]
     public function show(?Terrains $terrain, Request $request): Response

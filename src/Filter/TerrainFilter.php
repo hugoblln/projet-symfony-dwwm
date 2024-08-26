@@ -1,25 +1,24 @@
-<?php 
+<?php
 
 namespace App\Filter;
 
 class TerrainFilter
 {
-    public function __construct(
-        private int $page = 1,
-        private ?string $query = null,
-        private ?int $min = null,
-        private ?int $max = null,
-        private ?string $sort = null,
-        private ?array $typeTerrain = [],
-        private string $order = 'ASC',
-        
-    ){
+        public function __construct(
+                private int $page = 1,
+                private ?string $query = null,
+                private ?int $min = null,
+                private ?int $max = null,
+                private ?string $sort = null,
+                private ?array $typeTerrain = [],
+                private string $order = 'ASC',
+                private ?string $ville = null,
 
-    }
+        ) {}
 
         /**
          * Get the value of page
-         */ 
+         */
         public function getPage()
         {
                 return $this->page;
@@ -29,7 +28,7 @@ class TerrainFilter
          * Set the value of page
          *
          * @return  self
-         */ 
+         */
         public function setPage($page)
         {
                 $this->page = $page;
@@ -39,7 +38,7 @@ class TerrainFilter
 
         /**
          * Get the value of query
-         */ 
+         */
         public function getQuery()
         {
                 return $this->query;
@@ -49,7 +48,7 @@ class TerrainFilter
          * Set the value of query
          *
          * @return  self
-         */ 
+         */
         public function setQuery($query)
         {
                 $this->query = $query;
@@ -59,7 +58,7 @@ class TerrainFilter
 
         /**
          * Get the value of min
-         */ 
+         */
         public function getMin()
         {
                 return $this->min;
@@ -69,7 +68,7 @@ class TerrainFilter
          * Set the value of min
          *
          * @return  self
-         */ 
+         */
         public function setMin($min)
         {
                 $this->min = $min;
@@ -79,7 +78,7 @@ class TerrainFilter
 
         /**
          * Get the value of max
-         */ 
+         */
         public function getMax()
         {
                 return $this->max;
@@ -89,7 +88,7 @@ class TerrainFilter
          * Set the value of max
          *
          * @return  self
-         */ 
+         */
         public function setMax($max)
         {
                 $this->max = $max;
@@ -99,7 +98,7 @@ class TerrainFilter
 
         /**
          * Get the value of sort
-         */ 
+         */
         public function getSort()
         {
                 return $this->sort;
@@ -109,7 +108,7 @@ class TerrainFilter
          * Set the value of sort
          *
          * @return  self
-         */ 
+         */
         public function setSort($sort)
         {
                 $this->sort = $sort;
@@ -119,7 +118,7 @@ class TerrainFilter
 
         /**
          * Get the value of order
-         */ 
+         */
         public function getOrder()
         {
                 return $this->order;
@@ -129,7 +128,7 @@ class TerrainFilter
          * Set the value of order
          *
          * @return  self
-         */ 
+         */
         public function setOrder($order)
         {
                 $this->order = $order;
@@ -137,25 +136,56 @@ class TerrainFilter
                 return $this;
         }
 
- 
 
-        // /**
-        //  * Get the value of typeTerrain
-        //  */ 
-        // public function getTypeTerrain()
-        // {
-        //         return $this->typeTerrain;
-        // }
 
-        // /**
-        //  * Set the value of typeTerrain
-        //  *
-        //  * @return  self
-        //  */ 
-        // public function setTypeTerrain($typeTerrain)
-        // {
-        //         $this->typeTerrain = $typeTerrain;
 
-        //         return $this;
-        // }
+
+
+        /**
+         * Get the value of ville
+         *
+         * @return ?string
+         */
+        public function getVille(): ?string
+        {
+                return $this->ville;
+        }
+
+        /**
+         * Set the value of ville
+         *
+         * @param string $ville
+         *
+         * @return self
+         */
+        public function setVille(string $ville): self
+        {
+                $this->ville = $ville;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of typeTerrain
+         *
+         * @return ?array
+         */
+        public function getTypeTerrain(): ?array
+        {
+                return $this->typeTerrain;
+        }
+
+        /**
+         * Set the value of typeTerrain
+         *
+         * @param ?array $typeTerrain
+         *
+         * @return self
+         */
+        public function setTypeTerrain(?array $typeTerrain): self
+        {
+                $this->typeTerrain = $typeTerrain;
+
+                return $this;
+        }
 }
