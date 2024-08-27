@@ -1,0 +1,26 @@
+.list {
+    @include flexbox(center,flex-start,row,0 2em );
+
+    &-filter {
+        padding: 5px;
+        border: solid $primary;
+        border-radius: $border-radius;
+    }
+
+
+    &-terrains {
+        @media screen and (min-width: 1024px) {
+            flex: 1.5;
+
+            @include flexbox(space-around,center,row,)
+        }
+    }
+
+    &-btn {
+        background: $secondary;
+        border-radius: $border-radius;
+        padding: $button-padding;
+        font-size: $font-size-button;
+        box-shadow: $box-shadow-card;
+    }
+}

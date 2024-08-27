@@ -21,13 +21,11 @@ terrains
 <section class="main-content">
     <h1 class="text-center">Terrains Disponibles</h1>
 
-    <div class="row mt-4">
-        <aside class="col-md-3">
+    <div class="list">
+        <aside class="list-filter">
             {% include "./Frontend/terrains/_form.html.twig" %}
         </aside>
-        <div class="col-md-9">
-            {% include "./ComponentsFrontend/_terrainCard.html.twig" %}
-        </div>
+       {% include "./Frontend/terrains/_list.html.twig" %}
 
 </section>
 {% endblock %}
