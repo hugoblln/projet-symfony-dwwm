@@ -2,17 +2,25 @@
     @include flexbox(center,flex-start,row,0 2em );
 
     &-filter {
+        width: 100%;
         padding: 5px;
         border: solid $primary;
         border-radius: $border-radius;
+
+        @media screen and (min-width: 1024px) {
+            width: inherit;
+        }
     }
 
 
     &-terrains {
+
+        margin-top: 10vh;
+        @include flexbox(space-around,center,row,2em);
+        
+
         @media screen and (min-width: 1024px) {
             flex: 1.5;
-
-            @include flexbox(space-around,center,row,)
         }
     }
 

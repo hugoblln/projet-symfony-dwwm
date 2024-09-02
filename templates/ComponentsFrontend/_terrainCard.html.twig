@@ -1,8 +1,8 @@
-<div class="card-list">
+
    {% for terrain in terrains %}
    <div class="card-terrain">
       {% if terrain.imageName %}
-      <img src="{{ vich_uploader_asset(terrain)}}" alt="image terrain" width="350px" loading="lazy">
+      <img src="{{ vich_uploader_asset(terrain)}}" alt="image terrain" height="200px" width="350px" loading="lazy">
       {% endif %}
       <div class="card-terrain-content">
          <div class="card-terrain-content-details">
@@ -26,7 +26,7 @@
       </h2>
    </div>
    {% endfor %}
-</div>
+
 <script>
 
    const notes = document.querySelectorAll('.star-ratings')
