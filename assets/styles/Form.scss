@@ -102,19 +102,20 @@ textarea.input {
 }
 
 .btn-form {
-  padding: 0.6rem 1.3rem;
+  padding: $button-padding;
   background-color: #fff;
   border: 2px solid #fafafa;
-  font-size: 0.95rem;
+  font-size: $font-size-button;
   font-weight: bold;
   color: $primary;
   line-height: 1;
-  border-radius: 5px;
+  border-radius: $border-radius;
   outline: none;
   cursor: pointer;
   transition: 0.3s;
   margin: 0;
-  width: 100%;
+  text-align: center;
+  box-shadow: $box-shadow-card;
 }
 
 .btn-form:hover {
@@ -182,10 +183,6 @@ textarea.input {
   .input {
     padding: 0.45rem 1.2rem;
     width: 100%;
-  }
-
-  .btn-form {
-    padding: 0.45rem 1.2rem;
   }
 }
 
