@@ -41,7 +41,7 @@ class ReservationsType extends AbstractType
 
         $builder
             ->add('date', DateType::class, [
-                'label' => 'choisissez une date',
+                'label' => 'choisissez une date :',
                 'widget' => 'choice',
                 'input'  => 'datetime_immutable',
                 'format' => 'dd-MM-yyyy',
@@ -61,7 +61,10 @@ class ReservationsType extends AbstractType
             ])
             ->add('creneau', ChoiceType::class, [
                 'choices' => $choices,
-                'label' => 'choisissez le créneau qui vous convient',
+                'label' => 'choisissez le créneau qui vous convient :',
+                'row_attr' => [
+                    'class' => 'creneaux'
+                ]
             ]);
     }
 

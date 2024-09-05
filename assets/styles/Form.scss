@@ -84,11 +84,12 @@ textarea.input {
 
 .input-container label {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 15px;
   transform: translateY(-50%);
   padding: 0 0.4rem;
   color: #fafafa;
+  background: $primary;
   font-size: 0.9rem;
   font-weight: 400;
   pointer-events: none;
@@ -96,10 +97,6 @@ textarea.input {
   transition: 0.5s;
 }
 
-.input-container.textarea label {
-  top: 1rem;
-  transform: translateY(0);
-}
 
 .btn-form {
   padding: $button-padding;
@@ -135,18 +132,6 @@ textarea.input {
   z-index: 500;
 }
 
-.input-container span:before,
-.input-container span:after {
-  content: "";
-  position: absolute;
-  width: 10%;
-  opacity: 0;
-  transition: 0.3s;
-  height: 5px;
-  background-color: $primary;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
 .input-container span:before {
   left: 50%;
@@ -154,19 +139,6 @@ textarea.input {
 
 .input-container span:after {
   right: 50%;
-}
-
-.input-container.focus label {
-  top: 0;
-  transform: translateY(-50%);
-  left: 25px;
-  font-size: 0.8rem;
-}
-
-.input-container.focus span:before,
-.input-container.focus span:after {
-  width: 50%;
-  opacity: 1;
 }
 
 @media (max-width: 850px) {

@@ -13,6 +13,11 @@
     &-form {
         border-radius: $border-radius;
 
+        #avis_note {
+            font-weight: bold;
+            color: $grey;
+        }
+
     }
 
     h2 {
