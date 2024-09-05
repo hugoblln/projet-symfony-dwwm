@@ -19,7 +19,8 @@ Administration des terrains
 <section class="container mt-2">
     <section class="container mt-2">
         <h1 class="text-center">terrains du complexe {{ complexe.nom }}</h1>
-        <a href="{{ path('proprietaire.terrains.create') }}" class="btn btn-primary my-2">Créer un nouveau terrain</a>
+        <a href="{{ path('proprietaire.terrains.create', {nom:complexe.nom}) }}" class="btn btn-primary my-2">Créer un
+            nouveau terrain</a>
         <a href="{{ path('proprietaire.complexes.index') }}" class="btn btn-primary my-2">Retour à mes complexes</a>
         <div class="table-responsive">
             <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
@@ -29,15 +30,15 @@ Administration des terrains
                         <th scope="col" data-field="id">Id</th>
                         <th scope="col" data-field="nom" data-sortable="true">nom</th>
                         <th scope="col" data-field="complexe" data-sortable="true">complexe</th>
-                         <th scope="col" data-field="description" data-sortable="true">description</th>
+                        <th scope="col" data-field="description" data-sortable="true">description</th>
                         <th scope="col" data-field="typeTerrain" data-sortable="true">type de terrain</th>
                         <th scope="col" data-field="taille" data-sortable="true">taille</th>
                         <th scope="col" data-field="tarif" data-sortable="true">tarif/h en euros</th>
                         <th scope="col" data-field="createdAt" data-sortable="true">date de création</th>
                         <th scope="col" data-field="updatedAt" data-sortable="true">date de dernière maj</th>
-                         <th scope="col">Photo</th>
-                         <th scope="col" data-field="enable" data-sortable="true">Actif</th>
-                         <th scope="col">Avis</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col" data-field="enable" data-sortable="true">Actif</th>
+                        <th scope="col">Avis</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -47,4 +48,4 @@ Administration des terrains
             </table>
         </div>
     </section>
-{% endblock %}
+    {% endblock %}

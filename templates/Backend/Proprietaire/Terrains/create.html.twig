@@ -21,10 +21,11 @@ Creation d'un terrain
 
 {% block body %}
 <section class="container mt-4">
-<h1 class="text-center m-4">Creation d'un nouveau terrain</h1>
-<a href="{{ path('proprietaire.terrains.index')}}" class="btn btn-secondary">Retour a la liste</a>
-{% include "Backend/Terrains/_form.html.twig" with { labelButton: 'créer'}  %}
+    <h1 class="text-center m-4">Creation d'un nouveau terrain</h1>
+    <a href="{{ path('proprietaire.terrains.index', {nom:complexe.nom})}}" class="btn btn-secondary">Retour a la
+        liste</a>
+    {% include "Backend/Terrains/_form.html.twig" with { labelButton: 'créer'} %}
 
-</div>
+    </div>
 </section>
 {% endblock %}
