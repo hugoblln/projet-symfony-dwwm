@@ -1,4 +1,6 @@
 <section class="list-content">
+	{% if allAvis %}
+
 	{% for avis in allAvis %}
 	<div class="list-content-card">
 		{# <p class="list-content-note">{{ avis.note }}</p> #}
@@ -10,4 +12,11 @@
 		</div>
 	</div>
 	{% endfor %}
+
+	{% else %}
+	<p class="noAvis">Aucun avis pour ce terrain pour le moment</p>
+
+	{% endif %}
+
+
 </section>

@@ -20,9 +20,7 @@ class TerrainsController extends AbstractController
     public function __construct(
         private TerrainsRepository $terrainRepo,
         private EntityManagerInterface $em,
-    ) 
-    {    
-    }
+    ) {}
 
     #[Route('/{nom}', name: '.index', methods: ['GET'])]
     public function index(Complexes $complexe): Response
@@ -33,16 +31,21 @@ class TerrainsController extends AbstractController
         ]);
     }
 
-    #[Route('/create', '.create', methods: ['GET','POST'])]
-    public function create(Request $request): Response
+    #[Route('/{nom}/create', '.create', methods: ['GET', 'POST'])]
+    public function create(Request $request, Complexes $complexe): Response
     {
 
         $terrain = new Terrains;
+        $terrain->setComplexe($complexe);
 
         $form = $this->createForm(TerrainType::class, $terrain);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+
             $this->em->persist($terrain);
             $this->em->flush();
 
@@ -51,37 +54,36 @@ class TerrainsController extends AbstractController
             return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom()]);
         }
 
-        return $this->render('Backend/Proprietaire/Terrains/create.html.twig',[
-            'form' => $form
+        return $this->render('Backend/Proprietaire/Terrains/create.html.twig', [
+            'form' => $form,
+            'complexe' => $complexe
         ]);
     }
 
-    #[Route('/{slug}/edit','.edit', methods:['GET','POST'])]
-    public function edit(Terrains $terrain, Request $request) : Response
+    #[Route('/{slug}/edit', '.edit', methods: ['GET', 'POST'])]
+    public function edit(Terrains $terrain, Request $request): Response
     {
 
-        if(!$terrain) {
-            $this->addFlash('error','terrain non trouvé');
+        if (!$terrain) {
+            $this->addFlash('error', 'terrain non trouvé');
 
-            return$this->redirectToRoute('proprietaire.terrains.index');
+            return $this->redirectToRoute('proprietaire.terrains.index');
         }
 
         $form = $this->createForm(TerrainType::class, $terrain);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($terrain);
             $this->em->flush();
 
-            $this->addFlash('success','terrain modifié avec succes');
+            $this->addFlash('success', 'terrain modifié avec succes');
 
-            return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom() ]);
+            return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom()]);
         }
 
-        return $this->render('Backend/Proprietaire/Terrains/edit.html.twig',[
+        return $this->render('Backend/Proprietaire/Terrains/edit.html.twig', [
             'form' => $form
         ]);
     }
-
-   
 }

@@ -17,7 +17,7 @@ input.addEventListener('input', function () {
                 li.textContent = ville.nom;
                 li.addEventListener('click', function () {
                     // Rediriger vers la page Symfony avec la ville sélectionnée
-                    window.location.href = `/terrains?ville=${ville.nom}`;
+                    window.location.href = `/terrains?&query=&min=&max=&ville=${ville.nom}&sort=&order=ASC`;
                 });
                 suggestionsList.appendChild(li);
             });

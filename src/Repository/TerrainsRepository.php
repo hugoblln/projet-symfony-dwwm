@@ -62,6 +62,14 @@ class TerrainsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findTypesTerrains(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->select('DISTINCT t.typeTerrain')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findByFilter(TerrainFilter $filter)
     {
         $qb = $this->createQueryBuilder('t')
@@ -70,7 +78,7 @@ class TerrainsRepository extends ServiceEntityRepository
 
 
         if ($filter->getQuery()) {
-            $qb->andWhere('t.nom LIKE :query OR t.description LIKE :query')
+            $qb->andWhere('c.nom LIKE :query OR c.description LIKE :query')
                 ->setParameter('query', '%' . $filter->getQuery() . '%');
         }
 
@@ -92,10 +100,6 @@ class TerrainsRepository extends ServiceEntityRepository
         if ($filter->getTypeTerrain()) {
             $qb->andWhere('t.typeTerrain IN (:typeTerrain)')
                 ->setParameter('typeTerrain', $filter->getTypeTerrain());
-        }
-
-        if ($filter->getSort()) {
-            $qb->orderBy('t.' . $filter->getSort(), $filter->getOrder());
         }
 
         return $qb->getQuery()->getResult();

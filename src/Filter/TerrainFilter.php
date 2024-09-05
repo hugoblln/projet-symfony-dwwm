@@ -9,7 +9,6 @@ class TerrainFilter
                 private ?string $query = null,
                 private ?int $min = null,
                 private ?int $max = null,
-                private ?string $sort = null,
                 private ?array $typeTerrain = [],
                 private string $order = 'ASC',
                 private ?string $ville = null,
@@ -96,25 +95,7 @@ class TerrainFilter
                 return $this;
         }
 
-        /**
-         * Get the value of sort
-         */
-        public function getSort()
-        {
-                return $this->sort;
-        }
 
-        /**
-         * Set the value of sort
-         *
-         * @return  self
-         */
-        public function setSort($sort)
-        {
-                $this->sort = $sort;
-
-                return $this;
-        }
 
         /**
          * Get the value of order

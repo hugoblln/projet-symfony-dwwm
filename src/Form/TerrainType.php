@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TerrainType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options) 
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nom', TextType::class, [
@@ -31,7 +31,7 @@ class TerrainType extends AbstractType
                     'placeholder' => 'terrain numero 1'
                 ]
             ])
-            ->add('imageFile', VichImageType::class,[
+            ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false,
                 'allow_delete' => true,
@@ -61,27 +61,27 @@ class TerrainType extends AbstractType
                     'placeholder' => '50'
                 ]
             ])
-            ->add('complexe', EntityType::class, [
-                'class' => Complexes::class,
-                'placeholder' => 'sélectionner un complexe',
-                'required' => false,
-                'choice_label' => 'nom',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                return $er->createQueryBuilder('c')
-                    ->andWhere('c.enable = :enable')
-                    ->setParameter('enable', true)
-                    ->orderBy('c.nom','ASC');
-                }    
-            ])
-           ->add('tarifHeure', MoneyType::class, [
-            'label' => 'saisissez un tarif par heure',
-            'required' => false
-           ]);
+            // ->add('complexe', EntityType::class, [
+            //     'class' => Complexes::class,
+            //     'placeholder' => 'sélectionner un complexe',
+            //     'required' => false,
+            //     'choice_label' => 'nom',
+            //     'query_builder' => function (EntityRepository $er): QueryBuilder {
+            //     return $er->createQueryBuilder('c')
+            //         ->andWhere('c.enable = :enable')
+            //         ->setParameter('enable', true)
+            //         ->orderBy('c.nom','ASC');
+            //     }    
+            // ])
+            ->add('tarifHeure', MoneyType::class, [
+                'label' => 'saisissez un tarif par heure',
+                'required' => false
+            ]);
 
-           if($options['isAdmin']) {
+        if ($options['isAdmin']) {
             $builder->add('enable', CheckboxType::class, [
-            'required' => false,
-            'label' => 'Actif'
+                'required' => false,
+                'label' => 'Actif'
             ]);
         }
     }
