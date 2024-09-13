@@ -37,6 +37,7 @@ class TerrainsController extends AbstractController
 
         $terrain = new Terrains;
         $terrain->setComplexe($complexe);
+        $terrain->setEnable(false);
 
         $form = $this->createForm(TerrainType::class, $terrain);
         $form->handleRequest($request);
@@ -74,6 +75,9 @@ class TerrainsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $terrain->setEnable(false);
+
             $this->em->persist($terrain);
             $this->em->flush();
 

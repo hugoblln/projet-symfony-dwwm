@@ -18,8 +18,7 @@ class ComplexesController extends AbstractController
     public function __construct(
         private ComplexesRepository $terrainRepo,
         private EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(): Response
@@ -48,7 +47,7 @@ class ComplexesController extends AbstractController
             $this->em->persist($complexe);
             $this->em->flush();
 
-            $this->addFlash('success', 'ncomplexe modifier avec succès');
+            $this->addFlash('success', 'complexe modifier avec succès');
 
             return $this->redirectToRoute('admin.complexes.index');
         }

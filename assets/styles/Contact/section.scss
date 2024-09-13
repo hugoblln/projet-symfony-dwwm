@@ -24,6 +24,16 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+@media screen and (max-width: 500px) {
+  .form {
+    display: block;
+  }
+
+  .contact-info-information {
+    margin: 0;
+  }
+}
+
 .big-circle {
   position: absolute;
   width: 400px;

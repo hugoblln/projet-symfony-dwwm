@@ -4,12 +4,13 @@
     border-radius: $border-radius;
     box-shadow: $box-shadow-card;
     text-align: center;
+    margin: 20px;
 
     @media screen and (min-width: 1024px) {
         width: 80%;
         margin: auto;
-        @include flexbox(space-between,center);
-       
+        @include flexbox(space-between, center);
+
     }
 
     &-img {
@@ -20,7 +21,7 @@
             @media screen and (min-width: 1024px) {
                 height: 250px;
                 width: 400px;
-                border-radius: $border-radius 0 0 0  ;
+                border-radius: $border-radius 0 0 0;
             }
 
         }
@@ -56,7 +57,7 @@
 
         }
 
-        
+
         @media screen and (min-width: 1024px) and (max-width: 1463px) {
             margin-left: auto;
         }

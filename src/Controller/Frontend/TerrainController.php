@@ -45,7 +45,7 @@ class TerrainController extends AbstractController
 
         // $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
 
-        $filter = new TerrainFilter(); 
+        $filter = new TerrainFilter();
         $form = $this->createForm(TerrainFilterType::class, $filter);
         $form->handleRequest($request);
 
@@ -85,7 +85,7 @@ class TerrainController extends AbstractController
             $avis
                 ->setUser($user)
                 ->setTerrain($terrain)
-                ->setEnable(true);
+                ->setEnable(false);
 
             $this->em->persist($avis);
             $this->em->flush();

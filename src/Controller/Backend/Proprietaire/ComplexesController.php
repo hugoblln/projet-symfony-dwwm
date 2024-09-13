@@ -18,8 +18,7 @@ class ComplexesController extends AbstractController
     public function __construct(
         private ComplexesRepository $complexeRepo,
         private EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
 
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(): Response
@@ -42,13 +41,14 @@ class ComplexesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $complexe->setProprietaire($this->getUser());
+            $complexe->setEnable(false);
 
             $this->em->persist($complexe);
             $this->em->flush();
 
             $this->addFlash('success', 'complexe créer avec succes');
 
-            return $this->redirectToRoute('admin.complexes.index');
+            return $this->redirectToRoute('proprietaire.complexes.index');
         }
 
         return $this->render('Backend/Proprietaire/Complexes/create.html.twig', [
@@ -71,6 +71,9 @@ class ComplexesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $complexe->setEnable(false);
+
             $this->em->persist($complexe);
             $this->em->flush();
 
