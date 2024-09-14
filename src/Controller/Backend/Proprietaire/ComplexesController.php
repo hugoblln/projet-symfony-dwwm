@@ -24,7 +24,7 @@ class ComplexesController extends AbstractController
     public function index(): Response
     {
 
-        return $this->render('Backend/Proprietaire/complexes/index.html.twig', [
+        return $this->render('Backend/Proprietaire/Complexes/index.html.twig', [
             'complexes' => $this->complexeRepo->FindAllProprietaireComplexe($this->getUser()->getId())
         ]);
     }
@@ -79,7 +79,7 @@ class ComplexesController extends AbstractController
 
             $this->addFlash('success', 'complexe modifier avec succès');
 
-            return $this->redirectToRoute('admin.complexes.index');
+            return $this->redirectToRoute('proprietaire.complexes.index');
         }
 
         return $this->render('Backend/Proprietaire/Complexes/edit.html.twig', [

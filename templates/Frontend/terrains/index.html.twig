@@ -25,7 +25,16 @@ terrains
         <aside class="list-filter">
             {% include "./Frontend/terrains/_form.html.twig" %}
         </aside>
+        {% if terrains %}
+
        {% include "./Frontend/terrains/_list.html.twig" %}
 
+       {% else %}
+
+           <div class="text-center">Aucun terrain disponible</div>
+
+{% endif %}
+
+    
 </section>
 {% endblock %}

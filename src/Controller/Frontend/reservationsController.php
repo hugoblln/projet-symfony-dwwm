@@ -23,7 +23,7 @@ class reservationsController extends AbstractController
 
         setlocale(LC_TIME, 'fr_FR.UTF-8');
 
-        return $this->render('frontend/reservations/index.html.twig', [
+        return $this->render('Frontend/Reservations/index.html.twig', [
             'reservations' => $reservations,
         ]);
     }

@@ -5,6 +5,7 @@ namespace App\Controller\Security;
 use App\Entity\Users;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +20,7 @@ class SecurityController extends AbstractController
     public function __construct(
         private EntityManagerInterface $em,
     ) {}
+
     #[Route('/login', 'app.login', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $auth): Response
     {
@@ -51,5 +53,27 @@ class SecurityController extends AbstractController
             'form' => $form,
             'user' => $user
         ]);
+    }
+
+    #[Route('/{id}/delete', 'profil.delete', methods: ['GET', 'POST'])]
+    public function delete(?User $user, Request $request, Security $security): Response|RedirectResponse
+    {
+        if (!$user) {
+
+            $this->addFlash('error', 'Utilisateur inexistant');
+            return $this->redirectToRoute('app.profile');
+        }
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('token'))) {
+
+            //on supprime en bdd
+            $this->em->remove($user);
+            $this->em->flush();
+
+           
+            // Déconnecter l'utilisateur
+            $security->logout(false); 
+            $this->addFlash('success', 'Utilisateur supprimé avec succes');
+            return $this->redirectToRoute('app.index');
+        }
     }
 }

@@ -25,7 +25,7 @@ class TerrainsController extends AbstractController
     #[Route('/{nom}', name: '.index', methods: ['GET'])]
     public function index(Complexes $complexe): Response
     {
-        return $this->render('backend/Proprietaire/terrains/index.html.twig', [
+        return $this->render('Backend/Proprietaire/Terrains/index.html.twig', [
             'terrains' => $this->terrainRepo->findByComplexe($complexe->getId()),
             'complexe' => $complexe
         ]);

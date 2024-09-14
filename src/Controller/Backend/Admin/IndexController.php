@@ -11,6 +11,6 @@ class IndexController extends AbstractController
     #[Route('admin/index', 'admin.index', methods: ['GET'] )]
     public function index() : Response 
     {
-        return $this->render('backend/Admin/index/index.html.twig');
+        return $this->render('Backend/Admin/Index/index.html.twig');
     }
 }

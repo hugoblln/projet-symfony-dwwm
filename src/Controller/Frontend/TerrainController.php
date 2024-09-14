@@ -52,7 +52,7 @@ class TerrainController extends AbstractController
         $terrains = $terrainRepository->findByFilter($filter);
 
 
-        return $this->render('Frontend/terrains/index.html.twig', [
+        return $this->render('Frontend/Terrains/index.html.twig', [
             'terrains' => $terrains,
             // 'form' => $form
             'form' => $form->createView(),
@@ -84,8 +84,7 @@ class TerrainController extends AbstractController
 
             $avis
                 ->setUser($user)
-                ->setTerrain($terrain)
-                ->setEnable(false);
+                ->setTerrain($terrain);
 
             $this->em->persist($avis);
             $this->em->flush();
@@ -123,7 +122,7 @@ class TerrainController extends AbstractController
 
 
 
-        return $this->render('Frontend/terrains/Show/index.html.twig', [
+        return $this->render('Frontend/Terrains/Show/index.html.twig', [
             'terrain' => $terrain,
             'form' => $form,
             'allAvis' => $allAvis,

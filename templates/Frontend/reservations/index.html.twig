@@ -10,6 +10,8 @@ Mes réservations
 <h1>mes réservations</h1>
 <section class="main-content">
 
+<div class="reservations">
+
 {% if reservations %}
 
 {% for reservation in reservations %}
@@ -35,6 +37,7 @@ Mes réservations
 {% else %}
     <div class="text-center">Vous n'avez effectué aucune réservation sur notre site</div>
 {% endif %}
+</div>
 </section>
 
 {% endblock %}
