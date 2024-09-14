@@ -72,7 +72,7 @@ class Complexes
 
     #[ORM\ManyToOne(inversedBy: 'complexes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?users $Proprietaire = null;
+    private ?Users $Proprietaire = null;
 
 
     public function __construct()
