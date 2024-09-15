@@ -33,8 +33,6 @@ class TerrainsRepository extends ServiceEntityRepository
     public function FindAllEnableByDate(): array
     {
         return $this->createQueryBuilder('t')
-            ->select('t,c')
-            ->join('t.complexe', 'c')
             ->andWhere('t.enable = :enable')
             ->setParameter('enable', true)
             ->orderBy('t.createdAt', 'DESC')
@@ -74,8 +72,9 @@ class TerrainsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('t')
             ->join('t.complexe', 'c') // Joindre l'entité Complexe avec l'alias 'c'
-            ->addSelect('c'); // Optionnel: sélectionner également les données du complexe
-
+            ->addSelect('c') // Optionnel: sélectionner également les données du complexe
+            ->andWhere('t.enable = :enable')
+            ->setParameter('enable', true);
 
         if ($filter->getQuery()) {
             $qb->andWhere('c.nom LIKE :query OR c.description LIKE :query')
