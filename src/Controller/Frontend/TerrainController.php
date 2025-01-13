@@ -86,11 +86,20 @@ class TerrainController extends AbstractController
                 ->setUser($user)
                 ->setTerrain($terrain);
 
-            $this->em->persist($avis);
-            $this->em->flush();
+            $this->em->getConnection()->beginTransaction();    
 
+            try {
+                 $this->em->persist($avis);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
 
             $this->addFlash('success', 'votre avis à été publié avec succés');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la publication de l\'avis');
+            }
+           
 
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
@@ -110,11 +119,21 @@ class TerrainController extends AbstractController
                 ->setUser($user)
                 ->setTerrain($terrain);
 
-            $this->em->persist($reservation);
-            $this->em->flush();
+                $this->em->getConnection()->beginTransaction();
+
+                try {
+                     $this->em->persist($reservation);
+                     $this->em->flush();
+
+                     $this->em->getConnection()->commit();
 
             $this->addFlash('success', 'votre reservation est confirmé');
 
+                } catch (\Exception $e) {
+                    $this->em->getConnection()->rollBack();
+                    $this->addFlash('error', 'Erreur lors de la confirmation de la reservation');
+                }
+           
             return $this->redirectToRoute('app.terrains.show', ['slug' => $terrain->getSlug()]);
         }
 

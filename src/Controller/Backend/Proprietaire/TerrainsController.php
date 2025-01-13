@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend\Proprietaire;
 
+use Exception;
 use App\Entity\Terrains;
 use App\Entity\Complexes;
 use App\Form\TerrainType;
@@ -45,12 +46,20 @@ class TerrainsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
 
+            $this->em->getConnection()->beginTransaction();
 
+            try{
+                 $this->em->persist($terrain);
+                 $this->em->flush();
 
-            $this->em->persist($terrain);
-            $this->em->flush();
+                 $this->em->getConnection()->commit();
 
-            $this->addFlash('success', 'nouveau terrain créer avec succès');
+                 $this->addFlash('success', 'nouveau terrain créer avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la création du terrain');
+            }
+           
 
             return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom()]);
         }
@@ -78,10 +87,20 @@ class TerrainsController extends AbstractController
 
             $terrain->setEnable(false);
 
-            $this->em->persist($terrain);
-            $this->em->flush();
+            $this->em->getConnection()->beginTransaction();
 
-            $this->addFlash('success', 'terrain modifié avec succes');
+            try {
+                $this->em->persist($terrain);
+                $this->em->flush();
+
+                $this->em->getConnection()->commit();
+
+                $this->addFlash('success', 'terrain modifié avec succes');
+            } catch (Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la modification du terrain');
+            }
+           
 
             return $this->redirectToRoute('proprietaire.terrains.index', ['nom' => $terrain->getComplexe()->getNom()]);
         }

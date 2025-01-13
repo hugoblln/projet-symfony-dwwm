@@ -28,12 +28,15 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app.register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        // creation d'un nouvel utilisateur
         $user = new Users();
+
+        // creation du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // encoder le mot de passe de l'utilisateur
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -45,7 +48,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
+            // on utilise le service EmailVerifier pour envoyer un email de confirmation
             $this->emailVerifier->sendEmailConfirmation('app.verify.email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('trouvetonterrain@pro.com', 'Admin'))
@@ -53,8 +56,8 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('/Security/registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
-
+            
+            // message flash et redirection
             $this->addFlash('info', 'un email de confirmation vous à été envoyé');
 
             return $this->redirectToRoute('app.login');
@@ -68,9 +71,10 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app.verify.email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
+        // vérifie si l'utilisateur est connecté
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+        //  validation de l'email
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {

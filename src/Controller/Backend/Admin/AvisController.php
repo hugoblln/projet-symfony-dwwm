@@ -43,10 +43,21 @@ class AvisController extends AbstractController
         }
 
         if($this->isCsrfTokenValid('delete' . $avis->getId(), $request->request->get('token'))) {
-            $this->em->remove($avis);
-            $this->em->flush();
+
+            $this->em->getConnection()->beginTransaction();
+            
+            try {
+                $this->em->remove($avis);
+                $this->em->flush();
+
+                $this->em->getConnection()->commit();
 
             $this->addFlash('success','avis supprimé avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error','Erreur lors de la suppression de l\'avis');
+            }
+            
 
         } else {
             $this->addFlash('error','token csrf invalides');

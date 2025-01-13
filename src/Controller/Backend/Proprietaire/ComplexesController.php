@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend\Proprietaire;
 
+use Exception;
 use App\Entity\Complexes;
 use App\Form\ComplexesType;
 use App\Repository\ComplexesRepository;
@@ -43,10 +44,19 @@ class ComplexesController extends AbstractController
             $complexe->setProprietaire($this->getUser());
             $complexe->setEnable(false);
 
-            $this->em->persist($complexe);
-            $this->em->flush();
+            $this->em->getConnection()->beginTransaction();
 
-            $this->addFlash('success', 'complexe créer avec succes');
+            try{
+                $this->em->persist($complexe);
+                $this->em->flush();
+
+                $this->em->getConnection()->commit();
+
+                $this->addFlash('success', 'complexe créer avec succes');
+            } catch (Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la création du complexe');
+            }
 
             return $this->redirectToRoute('proprietaire.complexes.index');
         }
@@ -63,7 +73,7 @@ class ComplexesController extends AbstractController
 
             $this->addFlash('error', 'complexe non trouvé');
 
-            return $this->redirectToRoute('admin.complexes.index');
+            return $this->redirectToRoute('proprietaire.complexes.index');
         }
 
 
@@ -74,10 +84,21 @@ class ComplexesController extends AbstractController
 
             $complexe->setEnable(false);
 
-            $this->em->persist($complexe);
-            $this->em->flush();
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                $this->em->persist($complexe);
+                $this->em->flush();
+
+                $this->em->getConnection()->commit();
 
             $this->addFlash('success', 'complexe modifier avec succès');
+
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la modification du complexe');
+            }
+           
 
             return $this->redirectToRoute('proprietaire.complexes.index');
         }

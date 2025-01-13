@@ -57,10 +57,21 @@ class TerrainsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($terrain);
-            $this->em->flush();
 
-            $this->addFlash('success','terrain modifié avec succes');
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->persist($terrain);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success','terrain modifié avec succes');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error','Erreur lors de la modification du terrain');
+            }
+           
 
             return $this->redirectToRoute('admin.terrains.index');
         }
@@ -80,10 +91,21 @@ class TerrainsController extends AbstractController
         }
 
         if($this->isCsrfTokenValid('delete' . $terrain->getId(), $request->request->get('token'))) {
-            $this->em->remove($terrain);
-            $this->em->flush();
 
-            $this->addFlash('success', 'terrain supprimé avec succès');
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->remove($terrain);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'terrain supprimé avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la suppression du terrain');
+            }
+           
 
         }  else {
             $this->addFlash('error', 'token csrf invalides');

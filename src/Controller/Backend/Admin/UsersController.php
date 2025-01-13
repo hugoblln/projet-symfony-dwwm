@@ -46,10 +46,21 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($user);
-            $this->em->flush();
 
-            $this->addFlash('success', 'Utilisateur modifié avec succes');
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->persist($user);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'Utilisateur modifié avec succes');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la modification de l\'utilisateur');
+            }
+           
 
             return $this->redirectToRoute('admin.users.index');
         }
@@ -70,10 +81,21 @@ class UsersController extends AbstractController
         }
 
         if($this->isCsrfTokenValid('delete' . $user->getId(),$request->request->get('token'))) {
-            $this->em->remove($user);
-            $this->em->flush();
 
-            $this->addFlash('success', 'utilisateur supprimé avec succès');
+            $thos->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->remove($user);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'utilisateur supprimé avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la suppression de l\'utilisateur');
+            }
+           
 
             
         } else {

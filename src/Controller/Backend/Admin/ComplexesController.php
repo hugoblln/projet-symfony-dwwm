@@ -16,7 +16,7 @@ class ComplexesController extends AbstractController
 {
 
     public function __construct(
-        private ComplexesRepository $terrainRepo,
+        private ComplexesRepository $complexeRepo,
         private EntityManagerInterface $em,
     ) {}
 
@@ -25,7 +25,7 @@ class ComplexesController extends AbstractController
     {
 
         return $this->render('backend/Admin/complexes/index.html.twig', [
-            'complexes' => $this->terrainRepo->findAllOrderByDate()
+            'complexes' => $this->complexeRepo->findAllOrderByDate()
         ]);
     }
 
@@ -43,11 +43,22 @@ class ComplexesController extends AbstractController
         $form = $this->createForm(ComplexesType::class, $complexe, ['isAdmin' => true]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($complexe);
-            $this->em->flush();
+        if ($form->isSubmitted() && $form->isValid()) { 
 
-            $this->addFlash('success', 'complexe modifier avec succès');
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->persist($complexe);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'complexe modifier avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la modification du complexe');
+            }
+           
 
             return $this->redirectToRoute('admin.complexes.index');
         }
@@ -70,10 +81,21 @@ class ComplexesController extends AbstractController
         }
 
         if ($this->isCsrfTokenValid('delete' . $complexe->getId(), $request->request->get('token'))) {
-            $this->em->remove($complexe);
-            $this->em->flush();
 
-            $this->addFlash('success', 'complexe supprimé avec succès');
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->remove($complexe);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'complexe supprimé avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la suppression du complexe');
+            }
+           
         } else {
             $this->addFlash('error', 'Token csrf invalides');
         }

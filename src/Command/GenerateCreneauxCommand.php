@@ -21,7 +21,7 @@ class GenerateCreneauxCommand extends Command
     }
 
 
-    protected function configure()
+    protected function configure(): void
     {
 
         // ajoute une description qui sera afficher lors de l'utilisation de la commande dans le terminal

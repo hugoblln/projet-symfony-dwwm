@@ -8,6 +8,9 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
 use App\Entity\Users; // Assurez-vous que cette classe est correctement importée
 
+
+// Entité qui stocke les demandes de réinitialisation de mot de passe, incluant des informations comme l'utilisateur, le token de réinitialisation et la date de création.
+
 #[ORM\Entity(repositoryClass: ResetPasswordRequestRepository::class)]
 /**
  * @IgnoreAnnotation("ORM\Column")
