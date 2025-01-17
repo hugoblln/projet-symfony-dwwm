@@ -29,5 +29,9 @@
 
         </div>
     </td>
+    <td scope="col">
+        <a href="{{ path('proprietaire.reservations.index', {slug:terrain.slug}) }}" class="btn btn-primary">
+            voir les réservations
+        </a>
 </tr>
 {% endfor %}

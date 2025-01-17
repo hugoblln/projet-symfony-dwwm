@@ -31,6 +31,15 @@ class ReservationsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findReservationsByTerrain($terrainId)
+     { 
+        return $this->createQueryBuilder('r') 
+        ->where('r.terrain = :terrainId') 
+        ->setParameter('terrainId', $terrainId) 
+        ->getQuery() 
+        ->getResult(); 
+    }
+
     //    /**
     //     * @return Reservations[] Returns an array of Reservations objects
     //     */

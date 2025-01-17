@@ -15,7 +15,7 @@
     <td scope="col">
 
         <div class="d-flex gap-2">
-            <a href="{{ path('admin.complexes.delete', {id:complexe.id})}}" class="btn btn-danger">Supprimer</a>
+            {% include "/Backend/Admin/Complexes/_deleteForm.html.twig" %}
             <a href="{{path('admin.complexes.edit', {id:complexe.id})}}" class="btn btn-warning">
                 <i class="bi bi-pencil-square"></i>
                 Modifier</a>

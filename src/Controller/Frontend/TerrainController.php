@@ -37,14 +37,6 @@ class TerrainController extends AbstractController
         $terrains = $this->terrainRepo->FindAllEnableByDate();
 
 
-        // $terrainFilter = (new TerrainFilter)
-        //     ->setPage($request->query->get('page', 1));
-
-        // $form = $this->createForm(TerrainFilterType::class, $terrainFilter );
-        // $form->handleRequest($request);
-
-        // $terrains = $this->terrainRepo->findFilterListShop($terrainFilter);
-
         $filter = new TerrainFilter();
         $form = $this->createForm(TerrainFilterType::class, $filter);
         $form->handleRequest($request);
@@ -84,7 +76,8 @@ class TerrainController extends AbstractController
 
             $avis
                 ->setUser($user)
-                ->setTerrain($terrain);
+                ->setTerrain($terrain)
+                ->setenable(true);
 
             $this->em->getConnection()->beginTransaction();    
 
