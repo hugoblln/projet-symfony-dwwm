@@ -1,0 +1,92 @@
+
+.contact-info {
+  padding: 2.3rem 2.2rem;
+  position: relative;
+  background: linear-gradient(to right, hsl(0deg 0% 100% / 20%), hsl(0deg 0% 100% / 40%));
+  backdrop-filter: blur(20px);
+
+&-text {
+  margin: 1.5rem 0 2rem 0;
+}
+
+&-content {
+  margin-top: 50px;
+}
+
+&-information {
+  display: flex;
+  margin: 30px;
+  font-size: 18px;
+}
+
+&-social-icons {
+
+  @include flexbox(space-evenly,center,row);
+
+  margin-top: 25%;
+
+}
+
+&-social-icons a {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 0.5rem;
+  transition: 0.3s;
+}
+
+&-social-icons a:hover {
+  transform: scale(1.05);
+}
+
+
+}
+
+
+
+
+@media (max-width: 850px) {
+ 
+  .contact-info {
+  
+  :before {
+    bottom: initial;
+    top: -75px;
+    right: 65px;
+    transform: scale(0.95);
+  }
+
+    &-text {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .contact-info {
+
+    padding: 1.7rem 1.6rem;
+  
+  :before {
+    display: none;
+  }
+  
+  &-text,
+  &-information p {
+    font-size: 0.8rem;
+  }
+
+  &-social-icons a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+}
+
+}

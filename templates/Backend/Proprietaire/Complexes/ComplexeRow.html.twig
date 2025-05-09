@@ -1,0 +1,30 @@
+{% for complexe in complexes %}
+<tr scope="row">
+    <td scope="col">{{ complexe.id }}</td>
+    <td scope="col">{{ complexe.nom}}</td>
+    <td scope="col">{{ complexe.adresse}}</td>
+    <td scope="col">{{ complexe.description}}</td>
+    <td scope="col">{{ complexe.HeureOuverture|date('H')}} H</td>
+    <td scope="col">{{ complexe.HeureFermeture|date('H')}} H</td>
+    <td scope="col">{{ complexe.telephone }}</td>
+    <td scope="col">{{ complexe.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">{{ complexe.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td>{{ complexe.enable ? 'Oui' : 'Non' }}</td>
+
+    <td scope="col">
+
+        <div class="d-flex gap-2">
+            <a href="{{path('proprietaire.complexes.edit', {id:complexe.id})}}" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+                Modifier</a>
+        </div>
+    </td>
+      <td scope="col">
+
+        <div class="d-flex gap-2">
+            <a href="{{path('proprietaire.terrains.index', {nom:complexe.nom})}}" class="btn btn-info">
+                Terrains</a>
+        </div>
+    </td>
+</tr>
+{% endfor %}

@@ -1,0 +1,31 @@
+.show-reservations-avis {
+
+    margin-top: 20vh;
+    background: $primary;
+    border-radius: $border-radius;
+    width: 90%;
+    padding: 10px;
+
+    @media screen and (min-width:768px) {
+        width: 40%;
+    }
+
+    &-form {
+        border-radius: $border-radius;
+
+        #avis_note {
+            font-weight: bold;
+            color: $grey;
+        }
+
+    }
+
+    h2 {
+        display: inline-block;
+        background: $secondary;
+        padding: 5px;
+        border-radius: $border-radius;
+        color: $white;
+    }
+
+}

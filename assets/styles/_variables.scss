@@ -1,0 +1,34 @@
+$primary: #283b4d;
+$secondary: #FFA500;
+
+$grey: #888;
+$grey-light: #bdbdbd;
+$grey-aside: #ececec;
+$white: #f5f5f5;
+$grey-banner: #fcfcfd;
+
+
+/** Fonts **/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+$font-size-button : 24px;
+$button-padding : 10px 25px;
+
+
+$font-primary: "Poppins", sans-serif;
+$font-title: "Bebas Neue", sans-serif;
+
+$letter-spacing-title: 1.8px;
+
+$section-spacing : 15vh;
+
+// Border radius
+$border-radius: 10px;
+
+// Box shadow
+$box-shadow-card: 0px 12px 20px -12px rgba(0, 0, 0, 0.56),
+    0px 5px 20px 0px rgba(0, 0, 0, 0.12),
+    -1px 5px 0px -5px rgba(0, 0, 0, 0.2)

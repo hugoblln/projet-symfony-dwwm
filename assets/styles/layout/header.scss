@@ -1,0 +1,102 @@
+.navbar {
+    background: $primary;
+
+    @media screen and (min-width: 1000px) {
+        @include flexbox(space-between, center, row);
+        padding: 25px;
+        font-size: 16px;
+
+    }
+
+    a {
+        color: $white;
+
+
+        @media screen and (min-width: 1000px) {
+            font-size: 14px;
+
+        }
+
+        @media screen and (min-width: 1200px) {
+            font-size: 18px;
+
+        }
+
+
+    }
+
+    svg {
+
+        position: absolute;
+        right: 0px;
+        z-index: 10000;
+
+        @media screen and (min-width: 1000px) {
+            display: none;
+        }
+    }
+
+
+    &-links {
+        margin-top: -100%;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        background: $primary;
+        transition: all 0.5s ease;
+        z-index: 10000;
+
+        @media screen and (min-width: 1000px) {
+            margin-top: 0;
+            position: inherit;
+            width: auto;
+
+            @include flexbox(center, center, row, 2em)
+        }
+
+        &-items ul {
+            margin: 30px;
+            @include flexbox(center, center, column, 2em);
+
+
+            @media screen and (min-width: 1000px) {
+                flex-direction: row;
+                ;
+            }
+        }
+
+        &-button ul {
+            @include flexbox(center, center, row, 2em);
+            margin: 30px;
+
+            li:first-child a {
+                border: solid $secondary;
+                border-radius: $border-radius;
+                padding: $button-padding;
+                box-shadow: $box-shadow-card;
+
+
+                &:hover {
+                    background: $secondary;
+                }
+            }
+
+            li:last-child a {
+                background: $secondary;
+                border-radius: $border-radius;
+                padding: $button-padding;
+                border: solid $secondary;
+                box-shadow: $box-shadow-card;
+
+                &:hover {
+                    background: $primary;
+                }
+            }
+
+        }
+    }
+}
+
+.mobile-menu {
+    margin-top: 0;
+}

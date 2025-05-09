@@ -1,0 +1,59 @@
+.section-city {
+    margin-top: $section-spacing;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+
+    /******** TABLETTE *******/
+    @media screen and (min-width : 768px) and (max-width : 1024px) {
+        font-size: 18px;
+    }
+
+    /******* DESKTOP ********/
+    @media screen and (min-width : 1024px) {
+        font-size: 24px;
+    }
+
+    &-form {
+        padding: 20px;
+
+        @media screen and (min-width : 768px) {
+            @include flexbox(center, column)
+        }
+
+        &-list {
+            width: 100%;
+            text-align: left;
+            border: solid $secondary;
+            border-top: none;
+
+            @media screen and (min-width : 768px) {
+                width: 60%;
+            }
+
+            li {
+                padding: 10px 0;
+                cursor: pointer;
+
+                &:hover {
+                    background: $primary;
+                    color: $white;
+                }
+            }
+
+        }
+
+        &-input {
+            padding: 9px;
+            width: 100%;
+            border-radius: 10px;
+            border: solid $secondary;
+
+            @media screen and (min-width : 768px) {
+                width: 60%;
+            }
+        }
+    }
+
+
+}

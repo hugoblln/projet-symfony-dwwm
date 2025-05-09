@@ -1,0 +1,42 @@
+@import './_variables.scss';
+
+
+@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap-icons/font/bootstrap-icons.scss';
+@import '~bootstrap-table/dist/bootstrap-table.min.css';
+
+
+@import "./_mixins.scss";
+@import './_structure.scss';
+
+@import "./Components/cards.scss";
+
+@import "./Accueil/searchCity.scss";
+@import "./Accueil/bannerTerrains.scss";
+@import "./accueil/banqueImage.scss";
+@import "Accueil/presentation.scss";
+@import "Accueil/contactLink.scss";
+
+
+@import "./Form.scss";
+
+@import "./Contact/contactInfos.scss";
+@import "./Contact/section.scss";
+
+@import "./layout/footer.scss";
+@import "./layout/header.scss";
+
+@import './Security/profil.scss';
+
+
+@import 'ShowTerrains/listAvis.scss';
+@import 'ShowTerrains/_presentation.scss';
+@import 'ShowTerrains/_reservations.scss';
+@import 'ShowTerrains/_avis.scss';
+
+@import './Reservations/reservations.scss';
+
+@import './Terrains/list.scss';
+
+
+@import "./BootstrapTable/table.scss"

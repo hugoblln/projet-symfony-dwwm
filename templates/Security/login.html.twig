@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Connexion
+{{parent()}}
+{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+
+
+{% block body %}
+<section class="main-content">
+        <h1 class="text-center">Se connecter</h1>
+        {% if error %}
+
+        <div class="text-center alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <div class="contact-form form-front">
+                <span class="circle one"></span>
+                <span class="circle two"></span>
+                <form action="{{ path('app.login') }}" method="post" class="start-form">
+                        <div class="input-container">
+                                <input type="email" class="input" id="email" name="_username" value="{{ lastUserName}}">
+                                <label for="email">Email</label>
+                                <span>Email</span>
+                        </div>
+                        <div class="input-container">
+                                <input type="password" class="input" id="password" name="_password">
+                                <label for="password">mot de passe</label>
+                                <span>mot de passe</span>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <input type="submit" value="Connexion" class="btn-form" />
+                        <a class="mdp" href="{{ path('app_forgot_password_request') }}">mot de passe oublié</>
+                </form>
+        </div>
+</section>
+{% endblock %}

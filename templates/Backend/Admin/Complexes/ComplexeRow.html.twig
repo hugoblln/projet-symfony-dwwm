@@ -1,0 +1,31 @@
+{% for complexe in complexes %}
+<tr scope="row">
+    <td scope="col">{{ complexe.id }}</td>
+    <td scope="col">{{ complexe.nom}}</td>
+    <td scope="col">{{ complexe.Proprietaire.fullName}}</td>
+    <td scope="col">{{ complexe.adresse}}</td>
+    <td scope="col">{{ complexe.description}}</td>
+    <td scope="col">{{ complexe.HeureOuverture|date('H')}} H</td>
+    <td scope="col">{{ complexe.HeureFermeture|date('H')}} H</td>
+    <td scope="col">{{ complexe.telephone }}</td>
+    <td scope="col">{{ complexe.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">{{ complexe.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td class="{{ complexe.enable ? 'bg-success' : 'bg-danger'}}">{{ complexe.enable ? 'Oui' : 'Non' }}</td>
+
+    <td scope="col">
+
+        <div class="d-flex gap-2">
+            {% include "/Backend/Admin/Complexes/_deleteForm.html.twig" %}
+            <a href="{{path('admin.complexes.edit', {id:complexe.id})}}" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+                Modifier</a>
+        
+       
+            <a href="{{path('admin.terrains.complexe', {nom:complexe.nom})}}" class="btn btn-info">
+                
+                Terrains</a>
+        </div>
+    </td>
+
+</tr>
+{% endfor %}

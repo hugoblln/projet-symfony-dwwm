@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }}
+Mes réservations
+{% endblock %}
+
+{% block body %}
+
+<h1>mes réservations</h1>
+<section class="main-content">
+
+<div class="reservations">
+
+{% if reservations %}
+
+{% for reservation in reservations %}
+
+<div class="reservations-cards">
+<div class="reservations-cards-img">
+ <img src="{{ vich_uploader_asset(reservation.terrain)}}" alt="image terrain"  loading="lazy">
+</div>
+<div class="reservations-cards-content">
+<p>{{ reservation.terrain.complexe.nom }} - {{ reservation.terrain.nom }}</p>
+<p>{{ reservation.terrain.complexe.adresse }}</p>
+<p>date : {{ reservation.date|date('l j F Y') }} </p>
+<p>créneau : {{ reservation.creneau }}</p>
+<p>prix : {{ reservation.terrain.tarifHeure }} euros</p>
+</div>
+<div class="reservations-cards-button">
+<a href="#">modifier</a>
+<a href="#">annuler</a>
+</div>
+</div>
+{% endfor %}
+
+{% else %}
+    <div class="text-center">Vous n'avez effectué aucune réservation sur notre site</div>
+{% endif %}
+</div>
+</section>
+
+{% endblock %}

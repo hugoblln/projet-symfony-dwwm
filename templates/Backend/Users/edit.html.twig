@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Modification d'un utilisateur
+{{ parent() }}
+{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+
+{% block body %}
+<section class="container mt-4">
+<h1 class="text-center">Modification d'un utilisateur</h1>
+{% include "Backend/Users/_form.html.twig" %}
+<a href="{{ path('admin.users.index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{{form_start(form, {'attr':{'class': 'card p-3 w-75 mx-auto'}})}}
+{{form_row(form.nom, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{{form_row(form.imageFile, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{{form_row(form.description, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{% if app.request.pathInfo matches '{/admin}' %}
+{{form_row(form.enable)}}
+{% endif %}
+{{form_row(form.typeTerrain, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{{form_row(form.taille, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+{{form_row(form.tarifHeure, {'attr':{ 'readonly': app.request.pathInfo matches '{/admin/}' ? 'readonly' : false}})}}
+<button type="submit" class="btn btn-primary">{{ labelButton }}</button>
+{{form_end(form)}}

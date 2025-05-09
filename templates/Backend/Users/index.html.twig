@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+administration des utilisateurs
+{{parent()}}
+{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+
+
+{% block body %}
+<section class="container mt-2">
+    <section class="container mt-2">
+        <h1 class="text-center">Administration des users</h1>
+        <a href="{{ path('app.register') }}" class="btn btn-primary my-2">Créer un utilisateur</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" data-toggle="table" data-sort-name="fullName"
+                data-sort-order="asc" data-pagination="true" data-search="true" data-show-columns="true">
+                <thead>
+                    <tr scope="row">
+                        <th scope="col" data-field="id">Id</th>
+                        <th scope="col" data-field="nom" data-sortable="true">nom</th>
+                        <th scope="col" data-field="email" data-sortable="true">email</th>
+                        <th scope="col" data-field="createdAt" data-sortable="true">Role</th>
+                        <th scope="col" data-sortable="true">utilisateur vérifié ?</th>
+                        <th scope="col" data-field="roles">Date de création</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% include "/Backend/Users/UserRow.html.twig" %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    {% endblock %}

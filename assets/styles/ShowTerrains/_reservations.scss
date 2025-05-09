@@ -1,0 +1,41 @@
+.show-reservations {
+    margin-top: 10vh;
+
+    background: $primary;
+    color: $white;
+    border-radius: $border-radius;
+    padding: 10px;
+
+    h2 {
+        display: inline-block;
+        background: $secondary;
+        padding: 5px;
+        border-radius: $border-radius;
+    }
+
+    &-form {
+
+        #reservations {
+            @include flexbox(space-evenly, center, column, 2em 0);
+
+            @media screen and (min-width: 1024px) {
+                align-items: flex-end;
+                flex-direction: row;
+                gap: 0;
+            }
+
+            margin: 20px;
+
+            select {
+                border-radius: $border-radius;
+                padding: $button-padding;
+                border: solid 3px $secondary;
+            }
+
+            .creneaux {
+                @include flexbox(center, stretch, column);
+            }
+        }
+    }
+
+}

@@ -1,0 +1,27 @@
+{% extends './base.html.twig' %}
+
+{% block title %}
+Accueil
+{{parent()}}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+
+{% block body %}
+{% include "/Frontend/accueil/_banner.html.twig" %}
+<section class="main-content">
+    {% include "/Frontend/accueil/_searchCity.html.twig" %}
+    {% include "/Frontend/accueil/_presentation.html.twig" %}
+    {% include "/Frontend/accueil/_banqueImage.html.twig" %}
+    {% include "/Frontend/accueil/_contactLink.html.twig" %}
+</section>
+{% endblock %}

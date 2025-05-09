@@ -1,0 +1,56 @@
+.presentation {
+    margin-top: $section-spacing;
+    @include flexbox(space-around, center, row, 2em 0);
+
+    @media screen and (min-width : 768px) and (max-width : 1024px) {
+        gap: 2em 2em;
+    }
+
+    @media screen and (min-width : 1024px) {
+        gap: 2em 2em;
+    }
+
+
+    &-content {
+        background: $primary;
+        color: $white;
+        border-radius: $border-radius;
+        text-align: center;
+        padding: 5px 10px;
+        box-shadow: $box-shadow-card;
+        max-width: 400px;
+        height: 300px;
+        ;
+        @include flexbox(space-around, center, column);
+
+        /****** TABLETTE ********/
+        @media screen and (min-width : 768px) and (max-width : 1024px) {
+            max-width: 290px;
+            max-height: 250px;
+        }
+
+        /****** DESKTOP ********/
+        @media screen and (min-width : 1024px) {
+            max-width: 260px;
+            max-height: 230px;
+        }
+
+        @media screen and (min-width : 1440px) {
+            max-width: 360px;
+            max-height: 320px;
+            font-size: 18px;
+        }
+
+
+        h2 {
+            font-size: 22px;
+            letter-spacing: 3px;
+
+            @media screen and (min-width : 1440px) {
+                font-size: 26px;
+            }
+
+        }
+
+    }
+}

@@ -1,0 +1,15 @@
+ <div class="contact-form show-reservations-avis-form">
+ {{ form_start(form, { 'attr' : { 'class' : 'start-form'}, 'autocomplete' : 'off'}) }}
+ <div class="input-container">
+    {{ form_widget(form.note, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.note, 'Note') }}
+        <span>Note</span>
+ </div>
+  <div class="input-container">
+    {{ form_widget(form.commentaire, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.commentaire, 'Commentaire') }}
+        <span>Commentaire</span>
+ </div>
+  <input type="submit" value="Envoyer" class="btn-form" />
+{{ form_end(form) }}
+

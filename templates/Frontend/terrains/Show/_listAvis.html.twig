@@ -1,0 +1,22 @@
+<section class="list-content">
+	{% if allAvis %}
+
+	{% for avis in allAvis %}
+	<div class="list-content-card">
+		{# <p class="list-content-note">{{ avis.note }}</p> #}
+		<span class="star-ratings" data-note="{{ avis.note }}"></span>
+		<p><i>{{ avis.createdAt|ago }}</i></p>
+		<div class="list-content-card-avis">
+			<h3 class="list-content-card-avis-name">{{ avis.user.lastName }}</h3>
+			<p class="list-content-card-avis-text"><i>{{ avis.commentaire|sanitize_html }}</i></p>
+		</div>
+	</div>
+	{% endfor %}
+
+	{% else %}
+	<p class="noAvis">Aucun avis pour ce terrain pour le moment</p>
+
+	{% endif %}
+
+
+</section>

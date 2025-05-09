@@ -1,0 +1,116 @@
+<?php
+
+namespace App\Controller\Backend\Admin;
+
+use App\Entity\Terrains;
+use App\Entity\Complexes;
+use App\Form\TerrainType;
+use App\Repository\TerrainsRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
+#[Route('/admin/terrains', name: 'admin.terrains')]
+class TerrainsController extends AbstractController
+{
+
+    public function __construct(
+        private TerrainsRepository $terrainRepo,
+        private EntityManagerInterface $em,
+    ) 
+    {    
+    }
+
+    #[Route('', name: '.index', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->render('backend/Admin/terrains/index.html.twig', [
+            'terrains' => $this->terrainRepo->FindAll()
+        ]);
+    }
+
+    #[Route('/{nom}',name: '.complexe', methods:['GET'])]
+    public function indexByComplexe(Complexes $complexe): Response
+    {
+        return $this->render('Backend/Admin/Terrains/index.html.twig', [
+            'terrains' => $this->terrainRepo->findByComplexe($complexe->getId()),
+            'complexe' => $complexe
+        ]);
+
+    }
+
+
+    #[Route('/{slug}/edit','.edit', methods:['GET','POST'])]
+    public function edit(Terrains $terrain, Request $request) : Response
+    {
+
+        if(!$terrain) {
+            $this->addFlash('error','terrain non trouvé');
+
+            return$this->redirectToRoute('admin.terrains.index');
+        }
+
+        $form = $this->createForm(TerrainType::class, $terrain, ['isAdmin' => true]);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->persist($terrain);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success','terrain modifié avec succes');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error','Erreur lors de la modification du terrain');
+            }
+           
+
+            return $this->redirectToRoute('admin.terrains.index');
+        }
+
+        return $this->render('Backend/Admin/Terrains/edit.html.twig',[
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/{slug}/delete', name: '.delete', methods: ['POST'])]
+    public function delete(Terrains $terrain, Request $request): Response
+    {
+        if(!$terrain) {
+            $this->addFlash('error','terrain non trouvé');
+
+            return$this->redirectToRoute('admin.terrains.index');
+        }
+
+        if($this->isCsrfTokenValid('delete' . $terrain->getId(), $request->request->get('token'))) {
+
+            $this->em->getConnection()->beginTransaction();
+
+            try {
+                 $this->em->remove($terrain);
+                 $this->em->flush();
+
+                 $this->em->getConnection()->commit();
+
+                 $this->addFlash('success', 'terrain supprimé avec succès');
+            } catch (\Exception $e) {
+                $this->em->getConnection()->rollBack();
+                $this->addFlash('error', 'Erreur lors de la suppression du terrain');
+            }
+           
+
+        }  else {
+            $this->addFlash('error', 'token csrf invalides');
+        }
+
+        return $this->redirectToRoute('admin.terrains.index');
+    }
+}

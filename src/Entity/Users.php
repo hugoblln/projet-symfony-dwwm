@@ -1,0 +1,309 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UsersRepository;
+use App\Entity\Traits\DateTimeTrait;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
+#[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: 'email', message: 'l\'email est deja utilisé par un autre utilisateur')]
+#[ORM\HasLifecycleCallbacks]
+class Users implements UserInterface, PasswordAuthenticatedUserInterface
+{
+
+    use DateTimeTrait;
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(
+        min: 4,
+        max: 180,
+        minMessage: 'l\'email ne peut pas faire moins de {{ limit }}',
+        maxMessage: 'l\'email ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un email'
+    )]
+    #[Assert\Email(
+        message: 'veuillez renseigner un email valide'
+    )]
+    private ?string $email = null;
+
+    /**
+     * @var list<string> The user roles
+     */
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'le prenom ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un prénom'
+    )]
+    private ?string $FirstName = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'le nom ne peut pas faire plus de {{ limit }}'
+    )]
+    #[Assert\NotBlank(
+        [],
+        message: 'veuillez renseigner un nom'
+    )]
+    private ?string $LastName = null;
+
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'user')]
+    private Collection $avis;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+    #[ORM\OneToMany(targetEntity: Reservations::class, mappedBy: 'user')]
+    private Collection $reservations;
+
+    #[ORM\OneToMany(targetEntity: Complexes::class, mappedBy: 'Proprietaire')]
+    private Collection $complexes;
+
+
+    public function fullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+
+    public function __construct()
+    {
+        $this->avis = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->complexes = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     *
+     * @return list<string>
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->FirstName;
+    }
+
+    public function setFirstName(string $FirstName): static
+    {
+        $this->FirstName = $FirstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->LastName;
+    }
+
+    public function setLastName(string $LastName): static
+    {
+        $this->LastName = $LastName;
+
+        return $this;
+    }
+
+    public function getFullName(): string
+    {
+        return "$this->LastName $this->FirstName";
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): static
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): static
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getUser() === $this) {
+                $avi->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservations>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservations $reservation): static
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservations $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getUser() === $this) {
+                $reservation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Complexes>
+     */
+    public function getComplexes(): Collection
+    {
+        return $this->complexes;
+    }
+
+    public function addComplex(Complexes $complex): static
+    {
+        if (!$this->complexes->contains($complex)) {
+            $this->complexes->add($complex);
+            $complex->setPropriétaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComplex(Complexes $complex): static
+    {
+        if ($this->complexes->removeElement($complex)) {
+            // set the owning side to null (unless already changed)
+            if ($complex->getPropriétaire() === $this) {
+                $complex->setPropriétaire(null);
+            }
+        }
+
+        return $this;
+    }
+}

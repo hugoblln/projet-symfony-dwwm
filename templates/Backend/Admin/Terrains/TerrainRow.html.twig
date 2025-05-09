@@ -1,0 +1,33 @@
+{% for terrain in terrains %}
+<tr scope="row">
+    <td scope="col">{{ terrain.id }}</td>
+    <td scope="col">{{ terrain.nom}}</td>
+    <td scope="col">{{ terrain.complexe.nom}}</td>
+    <td scope="col">{{ terrain.description}}</td>
+    <td scope="col">{{ terrain.typeTerrain }}</td>
+    <td scope="col">{{ terrain.taille }}</td>
+    <td scope="col">{{ terrain.tarifHeure }}</td>
+    <td scope="col">{{ terrain.createdAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">{{ terrain.updatedAt|date('Y-m-d H:i:s') }}</td>
+    <td scope="col">
+        {% if terrain.imageName %}
+        <img src="{{vich_uploader_asset(terrain)}}" alt="{{terrain.nom}}" class="rounded">
+        {% endif %}
+    </td>
+    <td>{{ terrain.enable ? 'Oui' : 'Non' }}</td>
+    <td scope='col'>
+        <a href="{{ path('admin.avis.index', {slug:terrain.slug})}}" class="btn btn-primary">
+            Gérer les avis
+        </a>
+    </td>
+    <td scope="col">
+
+        <div class="d-flex gap-2">
+            <a href="{{path('admin.terrains.edit', {slug:terrain.slug})}}" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i>
+                Modifier</a>
+            {% include "/Backend/Admin/Terrains/_deleteForm.html.twig" %}
+        </div>
+    </td>
+</tr>
+{% endfor %}

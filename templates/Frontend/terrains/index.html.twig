@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+terrains
+{{ parent() }}
+{% endblock %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('front') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('front') }}
+{% endblock %}
+
+
+{% block body %}
+<section class="main-content">
+    <h1 class="text-center">Terrains Disponibles</h1>
+
+    <div class="list">
+        <aside class="list-filter">
+            {% include "./Frontend/terrains/_form.html.twig" %}
+        </aside>
+        {% if terrains %}
+
+       {% include "./Frontend/terrains/_list.html.twig" %}
+
+       {% else %}
+
+           <div class="text-center">Aucun terrain disponible</div>
+
+{% endif %}
+
+    
+</section>
+{% endblock %}

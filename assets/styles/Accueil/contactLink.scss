@@ -1,0 +1,33 @@
+.contact {
+
+    background: $primary;
+    color: $white;
+    height: 40vh;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-card;
+
+    @include flexbox(space-around, center, column);
+
+    /****** TABLETTE ********/
+    @media screen and (min-width : 768px) and (max-width : 1024px) {
+        max-height: 250px;
+    }
+
+    /****** DESKTOP  *******/
+    @media screen and (min-width : 1024px) {
+        width: 50%;
+        margin: auto;
+        max-height: 200px;
+
+    }
+
+
+    &-button a {
+        background: $secondary;
+        font-size: $font-size-button;
+        border-radius: $border-radius;
+        padding: $button-padding;
+        box-shadow: $box-shadow-card;
+    }
+
+}

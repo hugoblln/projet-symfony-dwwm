@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReservationController!{% endblock %}
+
+{% block body %}
+<h1>réservations</h1>
+<section class="main-content">
+
+<div class="reservations">
+
+{% if reservations %}
+
+{% for reservation in reservations %}
+
+<div class="reservations-cards">
+<div class="reservations-cards-img">
+ <img src="{{ vich_uploader_asset(reservation.terrain)}}" alt="image terrain"  loading="lazy">
+</div>
+<div class="reservations-cards-content">
+<p>{{reservation.user.lastName}} {{reservation.user.firstName}}</p>
+<p>{{ reservation.terrain.complexe.nom }} - {{ reservation.terrain.nom }}</p>
+<p>date : {{ reservation.date|date('l j F Y') }} </p>
+<p>créneau : {{ reservation.creneau }}</p>
+<p>prix : {{ reservation.terrain.tarifHeure }} euros</p>
+</div>
+<div class="reservations-cards-button">
+<a href="#">modifier</a>
+<a href="#">annuler</a>
+</div>
+</div>
+{% endfor %}
+
+{% else %}
+    <div class="text-center"> aucune réservation </div>
+{% endif %}
+</div>
+</section>
+{% endblock %}

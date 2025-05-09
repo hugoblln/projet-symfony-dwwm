@@ -1,0 +1,35 @@
+<div class="contact-form">
+    <span class="circle one"></span>
+    <span class="circle two"></span>
+    {{ form_start(form, {'attr': {'class': 'start-form'}, 'autocomplete': 'off'}) }}
+    <h3 class="title">Contact us</h3>
+    {{ form_errors(form.name) }}
+    {{ form_errors(form.email) }}
+    {{ form_errors(form.phone) }}
+    {{ form_errors(form.message) }}
+    <div class="input-container">
+        {{ form_widget(form.name, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.name, 'Nom') }}
+        <span>Username</span>
+
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.email, 'Email') }}
+        <span>Email</span>
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.phone, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.phone, 'Phone') }}
+        <span>Phone</span>
+
+    </div>
+    <div class="input-container textarea">
+        {{ form_widget(form.message, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.message, 'Message') }}
+        <span>Message</span>
+
+    </div>
+    <input type="submit" value="Send" class="btn-form" />
+    {{ form_end(form) }}
+</div>

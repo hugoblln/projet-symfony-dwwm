@@ -1,0 +1,51 @@
+.footer {
+    height: 60vh;
+    margin-top: 20vh;
+    color: $white;
+    background: $primary;
+    padding: 10px;
+
+    @include flexbox(space-between, center, column);
+
+    @media screen and (min-width : 768px) {
+        height: 20vh;
+       flex-direction: row;
+       justify-content: space-around;
+    }
+
+    &-left
+     {
+        @include flexbox(space-between, center, column, 1em);
+
+        @media screen and (min-width : 768px) {
+            flex-direction: row;
+            gap: 1em;
+        }
+
+    }
+
+    &-right {
+        
+        @include flexbox(space-between, center, row);
+        
+        p {
+        padding: 15px;
+
+       
+    }
+}
+
+    &-social-medias {
+        @include flexbox(space-between,center,column);
+
+
+        @media screen and (min-width : 768px) {
+            flex-direction: row;
+         }
+
+         a {
+            padding: 15px;
+         }
+
+    }
+}

@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Modification d'un complexe
+{{ parent() }}
+{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+
+{% block body %}
+<section class="container mt-4">
+    <h1>Modification d'un complexe</h1>
+    {% include "/Backend/Complexes/_form.html.twig" with { labelButton: 'Modifier' } %}
+</section>
+{% endblock %}

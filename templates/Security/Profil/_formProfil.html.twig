@@ -1,0 +1,40 @@
+{{ form_errors(form) }}
+
+
+<div class="contact-form form-front">
+    <span class="circle one"></span>
+    <span class="circle two"></span>
+    {{form_start(form, {'attr': {'class': 'start-form'}, 'autocomplete' : 'off'})}}
+    {{ form_errors(form.LastName) }}
+    {{ form_errors(form.FirstName) }}
+    {{ form_errors(form.email) }}
+    {{ form_errors(form.password.first) }}
+    {{ form_errors(form.password.second) }}
+    <div class="input-container">
+        {{ form_widget(form.LastName, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.LastName, 'Nom') }}
+        <span>Nom</span>
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.FirstName, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.FirstName, 'Prenom') }}
+        <span>Username</span>
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.email, 'Email') }}
+        <span>Email</span>
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.password.first, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.password.first, 'Mot de passe') }}
+        <span>Mot de passe</span>
+    </div>
+    <div class="input-container">
+        {{ form_widget(form.password.second, {'attr': {'class': 'input'}}) }}
+        {{ form_label(form.password.second, 'confirmation mot de passe') }}
+        <span>confirmation Mot de passe</span>
+    </div>
+    <input type="submit" value="modifier" class="btn-form" />
+    {{ form_end(form) }}
+</div>
